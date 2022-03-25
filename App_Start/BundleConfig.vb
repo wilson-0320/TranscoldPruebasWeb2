@@ -25,15 +25,8 @@ Public Class BundleConfig
 
 
         bundles.Add(New ScriptBundle("~/bundles/dashboard").Include(
+             "~/Scripts/plugins/jquery/jquery.min.js",
                  "~/Scripts/plugins/bootstrap/js/bootstrap.bundle.min.js",
-                "~/Scripts/plugins/select2/js/select2.full.min.js",
-                "~/Scripts/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js",
-                "~/Scripts/plugins/moment/moment.min.js",
-                "~/Scripts/plugins/inputmask/jquery.inputmask.min.js",
-                 "~/Scripts/plugins/daterangepicker/daterangepicker.js",
-                 "~/Scripts/plugins/bootstrap-switch/js/bootstrap-switch.min.js",
-                "~/Scripts/plugins/bs-stepper/js/bs-stepper.min.js",
-                "~/Scripts/plugins/dropzone/min/dropzone.min.js",
                 "~/Scripts/dist/js/adminlte.min.js",
                 "~/Scripts/dist/js/demo.js"))
         ' Use la versión de desarrollo de Modernizr para desarrollar y aprender. Luego, cuando esté listo
