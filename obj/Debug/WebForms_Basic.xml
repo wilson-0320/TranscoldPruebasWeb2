@@ -37,6 +37,78 @@ TranscoldPruebasWeb2
  Devuelve el objeto de registro Asp.
  </summary>
 </member>
+<member name="F:TranscoldPruebasWeb2.Login._tbUsuario">
+<summary>
+Control tbUsuario.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Login._tbPassword">
+<summary>
+Control tbPassword.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Login._Button1">
+<summary>
+Control Button1.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.menu._Main2">
+<summary>
+Control Main2.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Registrar._tbUsuario">
+<summary>
+Control tbUsuario.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Registrar._tbPassword">
+<summary>
+Control tbPassword.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Registrar._tbPassVerificar">
+<summary>
+Control tbPassVerificar.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Registrar._lbtnRegistrar">
+<summary>
+Control lbtnRegistrar.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
 <member name="F:TranscoldPruebasWeb2.TranscoldPruebasWeb2.SiteMaster._MainContent">
 <summary>
 Control MainContent.

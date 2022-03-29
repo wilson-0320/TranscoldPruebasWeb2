@@ -46,6 +46,9 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -130,6 +133,8 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ComunesWeb\Login.aspx" />
+    <Content Include="ComunesWeb\Registrar.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -188,6 +193,7 @@
     <Content Include="Scripts\dist\js\pages\dashboard.js" />
     <Content Include="Scripts\dist\js\pages\dashboard2.js" />
     <Content Include="Scripts\dist\js\pages\dashboard3.js" />
+    <Content Include="Scripts\init.js" />
     <Content Include="Scripts\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Scripts\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="Scripts\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
@@ -2197,6 +2203,7 @@
     <Content Include="Scripts\dist\js\.eslintrc.json" />
     <Content Include="Scripts\dist\js\adminlte.js.map" />
     <Content Include="Scripts\dist\js\adminlte.min.js.map" />
+    <Content Include="ComunesWeb\menu.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2232,6 +2239,33 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Codigo\BLL\Login_BLL.vb" />
+    <Compile Include="Codigo\ComunesCodigo\AES_Encriptacion.vb" />
+    <Compile Include="Codigo\ComunesCodigo\TransacSQL.vb" />
+    <Compile Include="Codigo\ComunesCodigo\Utilidades.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComunesWeb\Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ComunesWeb\Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ComunesWeb\menu.Master.designer.vb">
+      <DependentUpon>menu.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ComunesWeb\menu.Master.vb">
+      <DependentUpon>menu.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComunesWeb\Registrar.aspx.designer.vb">
+      <DependentUpon>Registrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ComunesWeb\Registrar.aspx.vb">
+      <DependentUpon>Registrar.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -2307,7 +2341,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Codigo\ComunesCodigoWeb\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
