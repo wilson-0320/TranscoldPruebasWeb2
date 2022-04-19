@@ -27,10 +27,9 @@ Public Class BundleConfig
         bundles.Add(New ScriptBundle("~/bundles/dashboard").Include(
              "~/Scripts/plugins/jquery/jquery.min.js",
                  "~/Scripts/plugins/bootstrap/js/bootstrap.bundle.min.js",
-                "~/Scripts/dist/js/adminlte.min.js",
-                 "~/Scripts/plugins/sweetalert2/sweetalert2.min.js",
-                  "~/Scripts/init.js",
-                "~/Scripts/dist/js/demo.js"))
+                   "~/Scripts/dist/js/adminlte.min.js"))
+
+        ' "~/Scripts/init.js", "~/Scripts/dist/js/demo.js"
         ' Use la versión de desarrollo de Modernizr para desarrollar y aprender. Luego, cuando esté listo
         ' para la producción, use la herramienta de compilación disponible en https://modernizr.com para seleccionar solo las pruebas que necesite
         bundles.Add(New ScriptBundle("~/bundles/modernizr").Include(

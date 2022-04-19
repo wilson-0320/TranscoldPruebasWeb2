@@ -1,7 +1,16 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/ComunesWeb/Site.Master" CodeBehind="Login.aspx.vb" Inherits="TranscoldPruebasWeb2.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main1" runat="server">
-      <!-- /.login-logo -->
-   
+      <!-- /.login-logo 
+          .login-page  {
+  background-image: url("/Content/Estaticos/b.jpg");
+  background-repeat: no-repeat ;
+  min-height:100%;
+  background-size:cover;
+}
+          -->
+    <style>
+
+</style>
 <div class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
@@ -37,11 +46,12 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-              <asp:Button ID="Button1" runat="server" Text="Ingresar" CssClass="btn btn-primary btn-block" />
+              <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" Text="Login" CssClass="btn btn-primary btn-block" />
            
           </div>
           <!-- /.col -->
         </div>
+           <div><a href="Registrar.aspx">Registro de usuarios.</a></div>
       
      
     </div>

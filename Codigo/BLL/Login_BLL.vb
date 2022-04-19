@@ -3,6 +3,7 @@ Imports System.Data
 
 
 Public Class Login_BLL
+    Inherits Base_BLL
 
 
     Public Shared Function login(ByVal query As String, ByVal usuario As String, ByVal Pass As String, ByVal Estado As Boolean) As String
@@ -18,8 +19,8 @@ Public Class Login_BLL
             Return msj
         Catch ex As Exception
 
-            Return ex.Message
+            colocaError(ex)
         End Try
-
+        Return "Mensaje"
     End Function
 End Class

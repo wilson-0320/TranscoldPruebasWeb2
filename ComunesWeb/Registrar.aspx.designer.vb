@@ -41,11 +41,11 @@ Partial Public Class Registrar
     Protected WithEvents tbPassVerificar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control lbtnRegistrar.
+    '''Control btnRegistrar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lbtnRegistrar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnRegistrar As Global.System.Web.UI.WebControls.Button
 End Class
