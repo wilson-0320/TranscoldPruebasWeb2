@@ -5,19 +5,34 @@
 
         If Not Page.IsPostBack Then
 
-            inicializar()
-            cargarddlCatalogo(3)
-            cargarddlCatalogo(12)
             Try
+                inicializar()
+                cargarddlCatalogo(3)
+                cargarddlCatalogo(12)
+                If Not Request.QueryString("Codigo") Is Nothing Then
+                    tbCodigo.Text = Request.QueryString("Codigo")
+                    cargarReportePruebas(0)
+
+                End If
             Catch ex As Exception
 
             End Try
-            If Not Request.QueryString("Codigo") Is Nothing Then
 
-
-            End If
 
         End If
+
+    End Sub
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador,JefeLab,JefeRefri,SupLab,SupMet", 2)
+        Dim eli1 As Boolean = Roles("Administrador,JefeLab,JefeRefri,SupLab,SupMet", 3)
+
+        For index As Integer = 0 To repeaterPruebas.Items.Count - 1 Step 1
+            'Modificar
+            CType(repeaterPruebas.Items(index).FindControl("LinkButton1"), LinkButton).Visible = mod1
+            'Eliminar
+            CType(repeaterPruebas.Items(index).FindControl("LinkButton2"), LinkButton).Visible = eli1
+        Next
+
 
     End Sub
 
@@ -49,9 +64,15 @@
         tbComentarios.Text = ""
         hfID.Value = "-1"
 
-        lbtnGuardar.Enabled = True
+        lbtnGuardar.Enabled = Roles("Administrador,JefeLab,JefeRefri,SupLab,SupMet", 1)
         lbtnCancelar.Visible = False
+        Try
+            ddlAprobado.SelectedValue = ""
+            ddlTipoPrueba.SelectedValue = ""
+            ddlCamara.SelectedValue = ""
+        Catch ex As Exception
 
+        End Try
 
 
     End Sub
@@ -109,6 +130,7 @@ ddlAntiguo.SelectedValue, tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAproba
 
             repeaterPruebas.DataSource = DTorigin
             repeaterPruebas.DataBind()
+            controlesRepeater()
         Else
             Dim DTorigin As DataRow = BLL.Prueba_BLL.PorPruebaId(ID)
 
@@ -136,7 +158,18 @@ ddlAntiguo.SelectedValue, tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAproba
             tbTipoCon.Text = DTorigin.Item(16) + ""
             tbCapilar.Text = DTorigin.Item(17) + ""
             tbPrueba.Text = DTorigin.Item(18) + ""
-            ddlCamara.Text = DTorigin.Item(19) + ""
+            Try
+                ddlCamara.Text = DTorigin.Item(19) + ""
+            Catch ex As Exception
+
+            End Try
+
+            Try
+                ddlTipoPrueba.SelectedValue = DTorigin.Item(9) + ""
+            Catch ex As Exception
+
+            End Try
+
             tbCapacitor.Text = DTorigin.Item(20) + ""
             tbProtector.Text = DTorigin.Item(21) + ""
             tbMae.Text = DTorigin.Item(22) + ""
@@ -153,7 +186,7 @@ ddlAntiguo.SelectedValue, tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAproba
             tbCodigo.Text = DTorigin.Item(28) + ""
             tbCodigoCompresor.Text = DTorigin.Item(29) + ""
             tbPrueba2.Text = tbCodigo.Text
-            tbCarga.Text = DTorigin.Item(31) + ""
+            tbCarga.Text = DTorigin.Item(24) + ""
             tbComentarios.Text = DTorigin.Item(37) + ""
             ' tbFecha.Text = DTorigin.Item(38) + ""
             ddlAprobado.SelectedValue = DTorigin.Item(39)
@@ -162,6 +195,8 @@ ddlAntiguo.SelectedValue, tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAproba
                     ddlAprobado.SelectedValue = "Si"
                 Else
                     ddlAprobado.SelectedValue = "No"
+
+
                 End If
             End If
 
@@ -187,12 +222,20 @@ ddlAntiguo.SelectedValue, tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAproba
     End Sub
 
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
+        Dim aprobacion As Boolean = False
+        If (ddlAprobado.SelectedValue.Equals("Si")) Then
+            aprobacion = True
+        Else
+            aprobacion = False
+        End If
+
+
         If (validarCrud() And ddlCamara.SelectedValue.Length > 0 And ddlTipoPrueba.SelectedValue.Length > 0) Then
-            BLL.Prueba_BLL.Guardar(hfID.Value, tbPrueba.Text, tbWO.Text, tbSerie.Text, tbModelo.Text,
+            MuestraErrorToast(BLL.Prueba_BLL.Guardar(hfID.Value, tbPrueba.Text, tbWO.Text, tbSerie.Text, tbModelo.Text,
 tbCompresor.Text, "Archivo MPLV a la fecha", ddlTipoPrueba.SelectedValue, tbEvaporador.Text, tbCondensador.Text,
 tbTermostato.Text, tbVoltaje.Text, tbRelay.Text, tbTipoEv.Text, tbTipoCon.Text,
 tbCapilar.Text, tbPrueba.Text, ddlCamara.SelectedValue, tbCapacitor.Text, tbProtector.Text,
-tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAprobado.SelectedValue, tbComentarios.Text, tbCodigo.Text, tbFecha.Text, "")
+tbMae.Text, tbMac.Text, tbRefrigerante.Text, aprobacion, tbComentarios.Text, tbCodigo.Text, tbFecha.Text, ""), 1, True)
             Dim texto As String = tbCodigo.Text
             inicializar()
             tbCodigo.Text = texto
@@ -202,12 +245,12 @@ tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAprobado.SelectedValue, tbComent
     End Sub
 
     Protected Sub repeaterPruebas_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
-        If (e.CommandName = "Eli") And Roles("Administrador,JefeLab,JefeRefri,supLab", 3) Then
-            BLL.Prueba_BLL.Eliminar(Integer.Parse(e.CommandArgument))
+        If (e.CommandName = "Eli") Then
+            MuestraErrorToast(BLL.Prueba_BLL.Eliminar(Integer.Parse(e.CommandArgument)), 1, True)
             cargarReportePruebas(0)
-            MuestraErrorToast("Listo", 1, True)
         ElseIf (e.CommandName = "Edit") Then
             lbtnCancelar.Visible = True
+            lbtnGuardar.Enabled = True
             cargarReportePruebas(Integer.Parse(e.CommandArgument))
         ElseIf (e.CommandName = "Reporte") Then
             cargarReporteDetalles(Integer.Parse(e.CommandArgument))
@@ -252,7 +295,12 @@ tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAprobado.SelectedValue, tbComent
                         Case 14
                             tbCapilar.Text = fichaTec(index)
                         Case 15
-                        '  ddlCamara.Text = fichaTec(index)
+                            Try
+                                  ddlCamara.Text = fichaTec(index)
+                            Catch ex As Exception
+
+                            End Try
+                        '
                         Case 17
                             tbCapacitor.Text = fichaTec(index)
                         Case 20

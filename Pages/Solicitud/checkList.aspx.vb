@@ -33,7 +33,12 @@
         tbRayones.Text = ""
         tbGolpes.Text = ""
         '/**Editar aca *//
-        lblUser.Text = User.Identity.Name
+        Try
+             lblUser.Text = Session("Usuario")
+        Catch ex As Exception
+
+        End Try
+
         tbDespachos.Text = ""
         cbRotulo.Checked = False
         cbCubremotor.Checked = False

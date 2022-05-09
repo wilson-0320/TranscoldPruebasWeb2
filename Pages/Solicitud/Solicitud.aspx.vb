@@ -4,9 +4,13 @@ Imports System.IO
 
 Public Class Solicitud
     Inherits MiPageN
+    Dim rutaQR As String = "http://fogelonline.com/TranscoldPruebasWeb2/Pages/Solicitud/Reportes/tabPanel.aspx?Codigo="
+
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
+
+            '   check.r
 
             If Not Request.QueryString("Codigo") Is Nothing Then
                 lblCodigo.Text = Request.QueryString("Codigo")
@@ -36,7 +40,14 @@ Public Class Solicitud
                                                                  New Object() {"@Codigo", lblCodigo.Text}
                                                                  }, CommandType.Text).Tables(0)
 
-        Dim fin As String = DTOrig.Rows(0).Item(0).ToString
+        Dim fin As String = ""
+
+        Try
+            fin = DTOrig.Rows(0).Item(0).ToString
+        Catch ex As Exception
+
+        End Try
+
         'Si fin tienen texto, quiere decir que ya hay una fecha final
         If (fin.Length > 5) Then
 
@@ -48,11 +59,6 @@ Public Class Solicitud
             Return False
 
         Else
-            '   lbtnGuardarDivision.Enabled = True
-            '   lbtnGuardarEnsayos.Enabled = True
-            ' lbtnGuardarEnsayosContratos.Enabled = True
-            'lbtnGuardarSolicitud.Enabled = True
-            'lbtnEliminar.Enabled = True
             Return True
 
         End If
@@ -95,8 +101,12 @@ Public Class Solicitud
                     tbFechaEntrega.Text = fechas(2) + "-" + fechas(1) + "-" + fechas(0)
 
                 End If
+                Try
+                    ddlCarga.SelectedValue = DTOrig.Rows(0).Item(13)
+                Catch ex As Exception
 
-                ddlCarga.SelectedValue = DTOrig.Rows(0).Item(13)
+                End Try
+
                 tbParametroTermostato.Text = DTOrig.Rows(0).Item(14)
                 tbDisposisionFinal.Text = DTOrig.Rows(0).Item(15)
                 tbComentariosEspeciales.Text = DTOrig.Rows(0).Item(16)
@@ -153,8 +163,6 @@ Public Class Solicitud
             ibtnReportePruebas.Enabled = False
             lbtnEliminar.Visible = False
 
-            '   MuestraErrorToast(Roles("Administrador,JefeLab,JefeRefri", 3).ToString, 3, True)
-
         End If
 
 
@@ -165,6 +173,16 @@ Public Class Solicitud
         lbtnGuardarDivision.Enabled = agregarP
         lbtnGuardarEnsayosContratos.Enabled = agregarP
 
+        ''''''''''''''''''check list '''''''''''''''''''''
+        hfNum.Value = "1"
+        hfIDEnsayoPrueba.Value = "-1"
+        hfTipoInicioFin.Value = "INICIO"
+        hfIDRequerimiento.Value = "-1"
+        hfIDCheck.Value = "-1"
+        tbOpciones.Visible = False
+        ddlOpciones.Visible = False
+        lblRequisito.Text = False
+        lbtnSiguiente.Visible = False
 
     End Sub
 
@@ -210,7 +228,7 @@ Public Class Solicitud
 
 
     End Sub
-    'Devuelve el correlativo correspondiente
+    '''''''''''''''''''''''''''''Devolucion de codigo de solicitud'''''''''''''''''''''''''''''''''
     Private Sub cargarCodigoSolicitud()
         Try
             Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Solicitud_Consulta", New Object() {
@@ -304,50 +322,33 @@ Public Class Solicitud
         If (ddlEstadoB.Enabled) Then
             Estado = ddlEstadoB.SelectedValue.TrimEnd
         End If
-        BLL.Solicitud_BLL.crudSolicitud(Estado.TrimEnd, lblCodigo.Text, Session("Usuario").ToString, ddlLider.SelectedValue,
+        MuestraErrorToast(BLL.Solicitud_BLL.crudSolicitud(Estado.TrimEnd, lblCodigo.Text, Session("Usuario").ToString, ddlLider.SelectedValue,
 tbModelo.Text, ddlEncargado.SelectedValue, tbObjetivosSolicitud.Text, tbCantidad.Text, tbRProveedor.Text, tbRFogel.Text,
 tbModeloM.Text, tbSerieM.Text, tbWoM.Text, tbFechaEntrega.Text, ddlCarga.SelectedValue, tbParametroTermostato.Text,
-tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownList.SelectedValue)
+tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownList.SelectedValue), 1, True)
         iniciarControles(True, lblCodigo.Text)
-        MuestraErrorToast("Listo", 1, True)
     End Sub
 
     Protected Sub lbtnGuardarSolicitud_Click(sender As Object, e As EventArgs)
         If validarCrud() Then
             guardarCrudSolicitud("Nuevo")
-            MuestraErrorToast("Listo", 1, True)
         End If
     End Sub
     Protected Sub lbtnGuardarEnsayos_Click(sender As Object, e As EventArgs)
-        If (lblConsectivo.Text.Length > 0) Then
-            BLL.Solicitud_Ensayo_BLL.insertar(lblCodigo.Text, "Sol", ddlEnsayos.SelectedValue)
-            cargarEnsayosRepeater(1, "Sol")
-            MuestraErrorToast("Listo", 1, True)
-        Else
-            MuestraErrorToast("No es posible", 3, True)
-        End If
+
+        MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.insertar(lblCodigo.Text, "Sol", ddlEnsayos.SelectedValue), 1, True)
+        cargarEnsayosRepeater(1, "Sol")
 
     End Sub
     Protected Sub lbtnGuardarEnsayosContratos_Click(sender As Object, e As EventArgs)
-        If (lblConsectivo.Text.Length > 0) Then
-            BLL.Solicitud_Ensayo_BLL.insertar(lblCodigo.Text, "Ofr", ddlEnsayosOfrecidos.SelectedValue)
-            cargarEnsayosRepeater(2, "Ofr")
-            MuestraErrorToast("Listo", 1, True)
-        Else
-            MuestraErrorToast("No es posible", 3, True)
-        End If
+        MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.insertar(lblCodigo.Text, "Ofr", ddlEnsayos.SelectedValue), 1, True)
+        cargarEnsayosRepeater(2, "Ofr")
 
     End Sub
 
     Protected Sub lbtnGuardarDivision_Click(sender As Object, e As EventArgs)
-        If (lblConsectivo.Text.Length > 0) Then
-            BLL.Solicitud_Division_BLL.insertar(lblCodigo.Text, tbDivision.Text)
-            cargarDivisionReporte()
-            MuestraErrorToast("Listo", 1, True)
-        Else
-            MuestraErrorToast("No es posible", 3, True)
-
-        End If
+        MuestraErrorToast(BLL.Solicitud_Division_BLL.insertar(lblCodigo.Text, tbDivision.Text), 1, True)
+        cargarDivisionReporte()
     End Sub
 
     Protected Sub lbtnLimpiar_Click(sender As Object, e As EventArgs)
@@ -397,39 +398,37 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
     End Sub
 
 
-
     Protected Sub repeaterEnsayosContratados_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") And Roles("Administrador,JefeLab,JefeRefri", 3) And consultarFechaFin() Then
-            BLL.Solicitud_Ensayo_BLL.eliminar(Integer.Parse(e.CommandArgument))
+            MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.eliminar(Integer.Parse(e.CommandArgument)), 1, True)
             cargarEnsayosRepeater(2, "Ofr")
-            MuestraErrorToast("Listo", 1, True)
+            '            MuestraErrorToast("Listo", 1, True)
 
         End If
     End Sub
     Protected Sub repeaterEnsayos_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") And Roles("Administrador,JefeLab,JefeRefri", 3) And consultarFechaFin() Then
-            BLL.Solicitud_Ensayo_BLL.eliminar(Integer.Parse(e.CommandArgument))
+            MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.eliminar(Integer.Parse(e.CommandArgument)), 1, True)
             cargarEnsayosRepeater(1, "Sol")
-            MuestraErrorToast("Listo", 1, True)
+            '            MuestraErrorToast("Listo", 1, True)
 
         End If
     End Sub
 
     Protected Sub repeaterDivision_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") And Roles("Administrador,JefeLab,JefeRefri", 3) And consultarFechaFin() Then
-            BLL.Solicitud_Division_BLL.eliminar(Integer.Parse(e.CommandArgument))
+            MuestraErrorToast(BLL.Solicitud_Division_BLL.eliminar(Integer.Parse(e.CommandArgument)), 1, True)
             cargarDivisionReporte()
-            MuestraErrorToast("Listo", 1, True)
         ElseIf (e.CommandName = "QR") Then
             Codigoqr(e.CommandArgument)
         End If
     End Sub
 
-
+    '''G''''''''''''''''Generacion de codigo QR
     Private Sub Codigoqr(ByVal division As String)
         Dim encoder As QRCodeEncoder = New QRCodeEncoder()
         Dim img As Bitmap
-        img = encoder.Encode("www.fogelonline.com/TranscoldPruebasWeb2/Pages/Solicitud/Reportes/tabPanel.aspx?Codigo=" + lblCodigo.Text.TrimEnd + "&Division=" + division + "&Consecutivo=" + lblConsectivo.Text.TrimEnd)
+        img = encoder.Encode(rutaQR + lblCodigo.Text.TrimEnd + "&Division=" + division + "&Consecutivo=" + lblConsectivo.Text.TrimEnd)
         Dim qr As System.Drawing.Image
         qr = img
 
@@ -483,5 +482,155 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
 
     Protected Sub ibtnReporteSolicitud_Click(sender As Object, e As ImageClickEventArgs)
         Response.Redirect("~/Pages/Solicitud/Reportes/RepSolicitud.aspx?Codigo=" + lblCodigo.Text + "")
+    End Sub
+
+    '''''''''''''''''''''''''''''''''''''''''''''INICIO DE CHECK LIST '''''''''''''''''''''''''''''''''''''''''
+    Function CreateRow(Text As String, Value As String, dt As DataTable) As DataRow
+
+        Dim dr As DataRow = dt.NewRow()
+        dr(0) = Text
+        dr(1) = Value
+
+        Return dr
+
+    End Function
+    Private Sub cargarddlPruebas()
+        Dim DTOrigin As DataTable = BLL.Pru_Eventos_BLL.consultar_pruebas_y_eventos_2(lblCodigo.Text, ddlTipo.SelectedValue)
+        ddlPruebasEventos.DataSource = DTOrigin
+        ddlPruebasEventos.DataTextField = "Tipo_Ensayo"
+        ddlPruebasEventos.DataValueField = "id"
+        ddlPruebasEventos.DataBind()
+
+
+    End Sub
+    Private Sub cargarCheck()
+        Dim DTOrigin As DataTable = BLL.Solicitud_Check_Req_BLL.consulta_secuencia("consultar_secuencia", 0, lblCodigo.Text, hfNum.Value, hfIDEnsayoPrueba.Value, ddlTipo.SelectedValue)
+
+
+        Try
+            lblRequisito.Text = DTOrigin.Rows(0).Item(4)
+
+            If (DTOrigin.Rows(0).Item(3).ToString.Contains(",")) Then
+                Dim DTOriginValores As String() = DTOrigin.Rows(0).Item(3).ToString.Split(",")
+                ddlOpciones.Visible = True
+                tbOpciones.Visible = False
+
+                Dim dt As DataTable = New DataTable()
+                dt.Columns.Add(New DataColumn("ID", GetType(String)))
+                dt.Columns.Add(New DataColumn("Elementos", GetType(String)))
+                For Each datos As String In DTOriginValores
+                    dt.Rows.Add(CreateRow(datos, datos.TrimEnd, dt))
+                Next
+
+
+                ddlOpciones.DataSource = dt
+                ddlOpciones.DataTextField = "ID".TrimEnd
+                ddlOpciones.DataValueField = "ID".TrimEnd
+                ddlOpciones.DataBind()
+                Try
+                    ddlOpciones.SelectedValue = DTOrigin.Rows(0).Item(6).ToString.TrimEnd
+
+                Catch ex As Exception
+                    '  MuestraErrorToast(ex.Message, 3, True)
+                End Try
+
+            Else
+                tbOpciones.Text = DTOrigin.Rows(0).Item(3).ToString.TrimEnd
+                tbOpciones.Visible = True
+                ddlOpciones.Visible = False
+
+            End If
+            lbtnAnterior.Visible = True
+            lblEstadoCheck.Visible = True
+            lblRequisito.Visible = True
+
+            hfIDRequerimiento.Value = DTOrigin.Rows(0).Item(0).ToString.TrimEnd
+            hfIDCheck.Value = DTOrigin.Rows(0).Item(2).ToString.TrimEnd
+            lblEstadoCheck.Text = DTOrigin.Rows(0).Item(9).ToString.TrimEnd
+        Catch ex As Exception
+            hfNum.Value = Integer.Parse(hfNum.Value) - 1
+            MuestraErrorToast("Ya completo el checklist de la prueba", 3, True)
+            lbtnSiguiente.Enabled = False
+        End Try
+
+
+
+
+    End Sub
+
+    Protected Sub ibtnCheck_Click(sender As Object, e As ImageClickEventArgs)
+        cargarddlPruebas()
+        lbtnSiguiente.Visible = False
+        lbtnAnterior.Visible = False
+        lblEstadoCheck.Visible = False
+        lblRequisito.Visible = False
+        ddlOpciones.Visible = False
+        tbOpciones.Visible = False
+
+
+        Dim key As String = Guid.NewGuid.ToString
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, "abrir()", True)
+        MuestraErrorToast("Listo", 0, True)
+    End Sub
+
+    Protected Sub lbtnProcesar_Click(sender As Object, e As EventArgs)
+        If (ddlPruebasEventos.SelectedValue.Length > 0) Then
+            lbtnSiguiente.Visible = True
+            hfIDEnsayoPrueba.Value = ddlPruebasEventos.SelectedValue.Split("|")(0)
+            cargarCheck()
+            hfTipoInicioFin.Value = ddlTipo.SelectedValue
+            MuestraErrorToast("", 0, True)
+        Else
+            MuestraErrorToast("No es posible continuar sin elegir un ensayo", 3, True)
+            ddlOpciones.Visible = False
+            tbOpciones.Visible = False
+            lblRequisito.Visible = False
+            lblEstadoCheck.Visible = False
+            lbtnSiguiente.Visible = True
+
+
+        End If
+
+    End Sub
+
+    Protected Sub lbtnSiguiente_Click(sender As Object, e As EventArgs)
+        If (lblEstadoCheck.Text.Equals("Finalizado")) Then
+            hfQueryCheck.Value = "Modificar"
+        Else
+            hfQueryCheck.Value = "Insertar"
+        End If
+        Dim opcion As String = ""
+        If (ddlOpciones.Visible) Then
+            opcion = ddlOpciones.SelectedValue.TrimEnd
+        Else
+            opcion = tbOpciones.Text.TrimEnd
+        End If
+        Try
+            BLL.Solicitud_Check_Req_BLL.inserta_actualiza_elimina_(hfQueryCheck.Value, hfIDCheck.Value, lblCodigo.Text, hfIDRequerimiento.Value, ddlPruebasEventos.SelectedValue.Split("|")(0), opcion, Session("Usuario").ToString)
+
+        Catch ex As Exception
+
+        End Try
+        hfNum.Value = Integer.Parse(hfNum.Value) + 1
+        cargarCheck()
+
+        MuestraErrorToast("Agrego el cambio", 1, True)
+    End Sub
+
+    Protected Sub ddlTipo_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+        cargarddlPruebas()
+        MuestraErrorToast("Listo", 0, True)
+
+    End Sub
+
+    Protected Sub lbtnAnterior_Click(sender As Object, e As EventArgs)
+        If (hfNum.Value.Equals("1")) Then
+        Else
+            hfNum.Value = Integer.Parse(hfNum.Value) - 1
+        End If
+        lbtnSiguiente.Enabled = True
+        cargarCheck()
+        MuestraErrorToast("Listo", 0, True)
     End Sub
 End Class

@@ -222,7 +222,7 @@
                                                                     <td><%# Eval("Modelo") %></td>
                                                                     <td><%# Eval("TipoPrueba") %></td>
                                                                     <td><%# Eval("Notas") %></td>
-                                                                    <td><%# Eval("Aprobada") %></td>
+                                                                    <td><%# if(Eval("Aprobada") = "1", "Aprobado", "Fallida") %></td>
                                                                 </tr>
                                                             </ItemTemplate>
                                                         </asp:Repeater>

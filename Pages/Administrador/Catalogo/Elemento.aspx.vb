@@ -26,6 +26,20 @@
         lbtnCancelar.Visible = False
         lbtnGuardar.Enabled = Roles("Administrador", 1)
     End Sub
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador", 2)
+        Dim eli1 As Boolean = Roles("Administrador", 3)
+
+        For index As Integer = 0 To repeaterRegistrosProtitpos.Items.Count - 1 Step 1
+            'Modificar
+            CType(repeaterRegistrosProtitpos.Items(index).FindControl("LinkButton1"), LinkButton).Visible = mod1
+            'Eliminar
+            CType(repeaterRegistrosProtitpos.Items(index).FindControl("LinkButton3"), LinkButton).Visible = eli1
+        Next
+
+
+    End Sub
+
     Private Function validarCrud() As Boolean
 
         For Each CampoTexto As TextBox In New TextBox() {
@@ -34,6 +48,7 @@
 
             If CampoTexto.Text = "" Then
                 MuestraErrorToast("Debe especificar el valor del campo " + CampoTexto.ToolTip, 3, True)
+                CampoTexto.Focus()
                 Return False
             End If
 
@@ -43,20 +58,6 @@
 
     End Function
 
-
-    Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
-        If (validarCrud()) Then
-            BLL.Elemento_BLL.insertar_actualizar(hfQuery.Value, hfID.Value, hfIDElementos.Value, tbDescripcion.Text, cbPrecio.Checked,
-cbCantidad.Checked, cbUnico.Checked, tbValores.Text, cbExactus.Checked, ddlTipo.SelectedValue)
-            cargarRepeatElementos("Consultar", 0, hfIDElementos.Value)
-            inicializar()
-            hfIDElementos.Value = ddlCatalogo.SelectedValue
-            MuestraErrorToast("Listo", 1, True)
-        End If
-    End Sub
-    Protected Sub lbtnCancelar_Click(sender As Object, e As EventArgs)
-        inicializar()
-    End Sub
     Private Sub cargarddlCatalogo()
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Catalogo_Actualiza", New Object() {
                                                                   New Object() {"@Tipo", "consultarCat"},
@@ -80,6 +81,7 @@ cbCantidad.Checked, cbUnico.Checked, tbValores.Text, cbExactus.Checked, ddlTipo.
         If (querys.TrimEnd.Equals("Consultar")) Then
             repeaterRegistrosProtitpos.DataSource = DTOrig
             repeaterRegistrosProtitpos.DataBind()
+            controlesRepeater()
         Else
             hfID.Value = DTOrig.Rows(0).Item(0)
             tbDescripcion.Text = DTOrig.Rows(0).Item(1).ToString.TrimEnd
@@ -95,6 +97,19 @@ cbCantidad.Checked, cbUnico.Checked, tbValores.Text, cbExactus.Checked, ddlTipo.
 
     End Sub
 
+    Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
+        If (validarCrud()) Then
+            MuestraErrorToast(BLL.Elemento_BLL.insertar_actualizar(hfQuery.Value, hfID.Value, hfIDElementos.Value, tbDescripcion.Text, cbPrecio.Checked, cbCantidad.Checked, cbUnico.Checked, tbValores.Text, cbExactus.Checked, ddlTipo.SelectedValue), 1, True)
+            cargarRepeatElementos("Consultar", 0, hfIDElementos.Value)
+            inicializar()
+            hfIDElementos.Value = ddlCatalogo.SelectedValue
+        End If
+    End Sub
+    Protected Sub lbtnCancelar_Click(sender As Object, e As EventArgs)
+        inicializar()
+        MuestraErrorToast("", 0, True)
+    End Sub
+
 
     Protected Sub ddlCatalogo_SelectedIndexChanged(sender As Object, e As EventArgs)
 
@@ -106,18 +121,27 @@ cbCantidad.Checked, cbUnico.Checked, tbValores.Text, cbExactus.Checked, ddlTipo.
         MuestraErrorToast("", 0, True)
     End Sub
     Protected Sub repeaterRegistrosProtitpos_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
-        If (e.CommandName = "Eli" And Roles("Administrador", 3)) Then
-            BLL.Elemento_BLL.eliminar(Integer.Parse(e.CommandArgument))
+        If (e.CommandName = "Eli") Then
+
+
+            MuestraErrorToast(BLL.Elemento_BLL.eliminar(Integer.Parse(e.CommandArgument)), 2, True)
+
+            BLL.Elemento_BLL.insertar_actualizar("Reordenar", Integer.Parse(e.CommandArgument), ddlCatalogo.SelectedValue, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
             cargarRepeatElementos("Consultar", Integer.Parse(hfID.Value), Integer.Parse(hfIDElementos.Value))
-            MuestraErrorToast("Listo", 2, True)
-        ElseIf (e.CommandName = "Edit" And Roles("Administrador", 2)) Then
+
+        ElseIf (e.CommandName = "Edit") Then
             lbtnCancelar.Visible = True
-            lbtnGuardar.Enabled = Roles("Administrador", 2)
+            lbtnGuardar.Enabled = True
             hfID.Value = (e.CommandArgument).ToString.TrimEnd
             hfQuery.Value = "Actualizar"
             cargarRepeatElementos("Consultar_id", Integer.Parse(hfID.Value), Integer.Parse(hfIDElementos.Value))
             MuestraErrorToast("", 0, True)
+        ElseIf (e.CommandName = ("Arriba") Or e.CommandName = "Abajo") Then
+            BLL.Elemento_BLL.insertar_actualizar(e.CommandName, Integer.Parse(e.CommandArgument), ddlCatalogo.SelectedValue, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
+            cargarRepeatElementos("Consultar", Integer.Parse(hfID.Value), Integer.Parse(hfIDElementos.Value))
+            MuestraErrorToast("Listo", 1, True)
         End If
+
     End Sub
 
 

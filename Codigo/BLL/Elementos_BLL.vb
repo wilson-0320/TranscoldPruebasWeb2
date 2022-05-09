@@ -9,7 +9,7 @@ Namespace BLL
         Public Shared Function insertar_actualizar(ByVal querys As String, ByVal ID As Integer, ByVal idCategoria As Integer, ByVal Descripcion As String,
                                    ByVal Precio As Boolean, ByVal Cantidad As Boolean, ByVal Unico As Boolean,
                                         ByVal Valores As String, ByVal Exactus As Boolean, ByVal Tipo As String)
-
+            MsjError = "Cambios realizado"
             Dim TrSql As New TransacSQL
             Try
                 TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Elemento_Actualiza", New Object() {
@@ -30,23 +30,29 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-
+            Return MsjError
         End Function
 
 
 
 
 
-        Public Shared Sub eliminar(ByVal id As Integer)
-            MsjError = Nothing
-            Dim TrSql As New TransacSQL
-
-            TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Elemento_Actualiza", New Object() {
+        Public Shared Function eliminar(ByVal id As Integer) As String
+            MsjError = "Cambios realizado"
+            Try
+                Dim TrSql As New TransacSQL
+                TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Elemento_Actualiza", New Object() {
                                             New Object() {"@Tipo", "Eliminar"},
                                             New Object() {"@ID", id}
                                             }, Data.CommandType.StoredProcedure)
 
-        End Sub
+            Catch ex As Exception
+                colocaError(ex)
+            End Try
+
+            Return MsjError
+
+        End Function
 
     End Class
 

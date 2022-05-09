@@ -24,7 +24,7 @@
                     </div>
 
                   
-                    <div class="card-body">
+                    <div class="card-body text-sm">
                         <asp:UpdatePanel ID="upInstrumentos" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
 
@@ -480,7 +480,7 @@
                              </div>
                              
                 </div>
-                  <div class="table-responsive">
+                  <div class="table-responsive text-sm">
                       <table class="table table-bordered table-sm table-hover">
                                 <thead class="bg-gradient-navy">
                                     <th></th>

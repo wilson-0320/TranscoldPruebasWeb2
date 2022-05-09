@@ -18,49 +18,49 @@
                         </div>
                     </div>
                     <div class="card-body">
-                    
-                    
+
+
                         <div class="card-header bg-gradient-navy ">
                             <div class="row">
 
                                 <div class="col-lg-1">
                                     <small>Codigo</small>
 
-                                        <asp:TextBox ID="tbCodigoFiltro" runat="server"  CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="tbCodigoFiltro" runat="server" CssClass="form-control"></asp:TextBox>
 
                                 </div>
                                 <div class="col-lg-2">
                                     <small>Modelo</small>
-                                        <asp:TextBox ID="tbModeloFiltro" runat="server"  CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="tbModeloFiltro" runat="server" CssClass="form-control"></asp:TextBox>
 
                                 </div>
                                 <div class="col-lg-2">
                                     <small>WO.</small>
-                                        <asp:TextBox ID="tbWOFiltro" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="tbWOFiltro" runat="server" CssClass="form-control"></asp:TextBox>
 
                                 </div>
                                 <div class="col-lg-2">
                                     <small>Serie</small>
-                                        <asp:TextBox ID="tbSerieFiltro" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="tbSerieFiltro" runat="server" CssClass="form-control"></asp:TextBox>
 
                                 </div>
                                 <div class="col-lg-2">
                                     <small>Camara</small>
 
-                                        <asp:TextBox ID="tbCamaraFiltro" runat="server"  CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="tbCamaraFiltro" runat="server" CssClass="form-control"></asp:TextBox>
 
                                 </div>
 
 
                                 <div class="col-lg-1">
-                                   <br />
-                                        <asp:LinkButton ID="btnGenerar" runat="server" ToolTip="Filtrar" CssClass="fa fa-2x fa-retweet" OnClick="btnGenerar_Click">
+                                    <br />
+                                    <asp:LinkButton ID="btnGenerar" runat="server" ToolTip="Filtrar" CssClass="fa fa-2x fa-retweet" OnClick="btnGenerar_Click">
                                         
 
-                                        </asp:LinkButton>
+                                    </asp:LinkButton>
 
 
-                                        &nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;
 
                                    
                                 </div>
@@ -74,7 +74,7 @@
 
 
                             </div>
-                            </div>
+                        </div>
 
                         <asp:UpdatePanel ID="upCrudVerificacion" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
@@ -88,19 +88,19 @@
                                     <div class="row">
                                         <div class="col-lg-2">
                                             <small>Tipo</small>
-                                                <asp:DropDownList ID="ddlTipoEntrada" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoEntrada_SelectedIndexChanged">
-                                                    <asp:ListItem></asp:ListItem>
-                                                    <asp:ListItem>Electrico</asp:ListItem>
-                                                    <asp:ListItem>Flujo de aire</asp:ListItem>
+                                            <asp:DropDownList ID="ddlTipoEntrada" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoEntrada_SelectedIndexChanged">
+                                                <asp:ListItem></asp:ListItem>
+                                                <asp:ListItem>Electrico</asp:ListItem>
+                                                <asp:ListItem>Flujo de aire</asp:ListItem>
 
-                                                </asp:DropDownList>
-                                            
+                                            </asp:DropDownList>
+
                                         </div>
 
                                         <div class="col-lg-2">
-                                            
+
                                             <small>Solicitud</small>
-                                                <asp:TextBox ID="tbCodigo" runat="server" Placeholder="Codigo" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="tbCodigo" runat="server"  CssClass="form-control"></asp:TextBox>
 
                                         </div>
 
@@ -152,7 +152,7 @@
                                     <hr />
                                     <div class="row">
                                         <div class="col-lg-2">
-                                            <asp:Label ID="lblP5"  CssClass="text-sm" runat="server"></asp:Label>
+                                            <asp:Label ID="lblP5" CssClass="text-sm" runat="server"></asp:Label>
                                             <asp:TextBox ID="tbP5" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
 
                                         </div>
@@ -163,7 +163,7 @@
                                         </div>
                                         <div class="col-lg-2">
                                             <asp:Label ID="lblP7" CssClass="text-sm" runat="server"></asp:Label>
-                                            <asp:TextBox ID="tbP7"  CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                                            <asp:TextBox ID="tbP7" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
 
                                         </div>
                                         <div class="col-lg-2">
@@ -189,7 +189,7 @@
                        
                                             </asp:LinkButton>
 
-                                            <asp:LinkButton ID="lbtnCancelar" runat="server" CssClass=" fa fa-2x fa-minus"  OnClick="lbtnCancelar_Click">
+                                            <asp:LinkButton ID="lbtnCancelar" runat="server" CssClass=" fa fa-2x fa-minus" OnClick="lbtnCancelar_Click">
                    
                                             </asp:LinkButton>
                                         </div>
@@ -197,8 +197,8 @@
                                     </div>
                                 </div>
 
-                                <div class="card-body">
-                                    <table id="" class="table-responsive table table-bordered table-hover">
+                                <div class="card-body text-sm">
+                                    <table  class="table-responsive table table-bordered table-hover table-sm">
 
                                         <tbody>
 
@@ -206,7 +206,7 @@
                                                 <ItemTemplate>
 
 
-                                                    <tr class="bg-dark text-white" runat="server" visible='<%# If(Eval("ID") = "0", True, False)%>'>
+                                                    <tr class="bg-gradient-navy text-white" runat="server" visible='<%# If(Eval("ID") = "0", True, False)%>'>
                                                         <td></td>
                                                         <td>Codigo </td>
                                                         <td>Camara</td>
@@ -223,7 +223,7 @@
                                                         <td>Voltaje Off Patron</td>
                                                         <td>Voltaje On Equipo</td>
                                                         <td>Voltaje Off Equipo</td>
-                                                     
+
 
                                                         <td>Comentario</td>
                                                         <td>Tipo</td>
@@ -233,7 +233,7 @@
                                                     </tr>
 
 
-                                                    <tr class="bg-dark text-white" runat="server" visible='<%# If(Eval("ID") = "-1", True, False)%>'>
+                                                    <tr class="bg-gradient-navy text-white" runat="server" visible='<%# If(Eval("ID") = "-1", True, False)%>'>
                                                         <td></td>
                                                         <td>Codigo </td>
                                                         <td>Camara</td>
@@ -245,7 +245,7 @@
                                                         <td colspan="3">ft/min</td>
                                                         <td colspan="3">ft/min</td>
                                                         <td colspan="2">ft/min</td>
-                                                       
+
 
                                                         <td>Comentario</td>
                                                         <td>Tipo</td>
@@ -257,11 +257,11 @@
 
                                                     <tr runat="server" visible='<%# If(Eval("Tipo_Entrada").ToString.TrimEnd = "Electrico", True, False)%>'>
                                                         <td>
-                                                            <asp:LinkButton runat="server" CssClass="fa fa-2x fa-trash" ID="lbtnEliminarRepeat" CommandArgument='<%# Eval("ID") %>' CommandName="eliminarVerificacion" OnClientClick="return confirm('¿Realmente desea eliminar el registro?')">
+                                                            <asp:LinkButton runat="server" CssClass="fa  fa-trash" ID="lbtnEliminarRepeat" CommandArgument='<%# Eval("ID") %>' CommandName="eliminarVerificacion" OnClientClick="return confirm('¿Realmente desea eliminar el registro?')">
 
                                                             </asp:LinkButton>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                       <asp:LinkButton runat="server" CssClass="fa fa-2x fa-edit " ID="lbtnModificarRepeat" CommandArgument='<%# Eval("ID") %>' CommandName="editarVerificacion">
+                       <asp:LinkButton runat="server" CssClass="fa  fa-edit " ID="lbtnModificarRepeat" CommandArgument='<%# Eval("ID") %>' CommandName="editarVerificacion">
 
                        </asp:LinkButton>
 
@@ -288,13 +288,13 @@
 
                                                     </tr>
 
-                                                     <tr runat="server" visible='<%# If(Eval("Tipo_Entrada").ToString.TrimEnd = "Flujo de aire", True, False)%>'>
+                                                    <tr runat="server" visible='<%# If(Eval("Tipo_Entrada").ToString.TrimEnd = "Flujo de aire", True, False)%>'>
                                                         <td>
-                                                            <asp:LinkButton runat="server" CssClass="fa fa-2x fa-trash" ID="LinkButton1" CommandArgument='<%# Eval("ID") %>' CommandName="eliminarVerificacion" OnClientClick="return confirm('¿Realmente desea eliminar el registro?')">
+                                                            <asp:LinkButton runat="server" CssClass="fa  fa-trash" ID="LinkButton1" CommandArgument='<%# Eval("ID") %>' CommandName="eliminarVerificacion" OnClientClick="return confirm('¿Realmente desea eliminar el registro?')">
 
                                                             </asp:LinkButton>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                       <asp:LinkButton runat="server" CssClass="fa fa-2x fa-edit " ID="LinkButton2" CommandArgument='<%# Eval("ID") %>' CommandName="editarVerificacion">
+                       <asp:LinkButton runat="server" CssClass="fa  fa-edit " ID="LinkButton2" CommandArgument='<%# Eval("ID") %>' CommandName="editarVerificacion">
 
                        </asp:LinkButton>
 

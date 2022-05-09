@@ -9,16 +9,17 @@
             cargarddlCatalogo(3)
             cargarddlCatalogo(12)
             Try
+                If Not Request.QueryString("Codigo") Is Nothing Then
+
+
+                End If
             Catch ex As Exception
 
             End Try
 
 
         End If
-        If Not Request.QueryString("Codigo") Is Nothing Then
 
-
-        End If
     End Sub
 
     Private Sub inicializar()

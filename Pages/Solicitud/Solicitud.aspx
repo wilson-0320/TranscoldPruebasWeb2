@@ -1,16 +1,27 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/ComunesWeb/menu.Master" CodeBehind="Solicitud.aspx.vb" Inherits="TranscoldPruebasWeb2.Solicitud" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Main2" runat="server">
     <script>
-        function abrirModal()
-        {
-            
+        function abrirModal() {
+
             try {
                 $('#modal').modal('show');
             } catch (e) {
                 alert(e + "");
             }
-            
+
+        }
+
+        function abrir() {
+
+            try {
+                $('#modalCheck').modal('show');
+            } catch (e) {
+                alert(e + "");
+            }
+
+            return false;
         }
 
     </script>
@@ -30,55 +41,62 @@
                             </button>
 
                         </div>
-                    <div class="row">
+                        <div class="row">
+                            <div class="cols-sm-2 btn btn-default">
+                                <small>Cambios</small><br />
+                                <asp:ImageButton ID="ibtnCambios" runat="server" ImageUrl="~/Content/Estaticos/cambios.png" OnClick="ibtnCambios_Click" ToolTip="linea de tiempo" />
+
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                         <div class="cols-sm-2 btn btn-default">
+                             <small>Linea de tiempo</small><br />
+                             <asp:ImageButton ID="ibtnLinea" runat="server" ImageUrl="~/Content/Estaticos/linea.png" OnClick="ibtnLinea_Click" ToolTip="linea de tiempo" />
+
+                         </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                         <div class="cols-sm-2 btn btn-default">
+                             <small>Termopares</small><br />
+                             <asp:ImageButton ID="ibtnTermopares" OnClick="ibtnTermopares_Click" runat="server" ImageUrl="~/Content/Estaticos/termopares.png" ToolTip="Asignacion de termopares" />
+
+                         </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                         <div class="cols-sm-2 btn btn-default">
+                             <small>Panel</small><br />
+                             <asp:ImageButton ID="ibtnTab" runat="server" OnClick="ibtnTab_Click" ImageUrl="~/Content/Estaticos/dashboard.png" ToolTip="Tab Panel" />
+
+                         </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="cols-sm-2 btn btn-default">
-                            <small>Cambios</small><br /> 
-                                             <asp:ImageButton ID="ibtnCambios" runat="server"  ImageUrl="~/Content/Estaticos/cambios.png" OnClick="ibtnCambios_Click"  ToolTip="linea de tiempo" />
-                                   
+                            <small>Rep. Prueba</small><br />
+                            <asp:ImageButton ID="ibtnReportePruebas" runat="server" OnClick="ibtnReportePruebas_Click" ImageUrl="~/Content/Estaticos/reportePruebas.png" ToolTip="Visor de pruebas" />
+
                         </div>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                          <div class="cols-sm-2 btn btn-default">
-                            <small>Linea de tiempo</small><br /> 
-                                           <asp:ImageButton ID="ibtnLinea" runat="server"  ImageUrl="~/Content/Estaticos/linea.png" OnClick="ibtnLinea_Click" ToolTip="linea de tiempo"/>
-                                       
-                        </div>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
+                             <small>Rep. Solicitud</small><br />
+                             <asp:ImageButton ID="ibtnReporteSolicitud" runat="server" OnClick="ibtnReporteSolicitud_Click" ImageUrl="~/Content/Estaticos/reporteSolicitud.jpg" ToolTip="reporte solicitud" />
+
+                         </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                          <div class="cols-sm-2 btn btn-default">
-                            <small>Termopares</small><br /> 
-                                           <asp:ImageButton ID="ibtnTermopares" OnClick="ibtnTermopares_Click" runat="server"  ImageUrl="~/Content/Estaticos/termopares.png" ToolTip="Asignacion de termopares"/>
-                                       
-                        </div>
-                         &nbsp;&nbsp;&nbsp;&nbsp;
-                         <div class="cols-sm-2 btn btn-default">
-                            <small>Panel</small><br /> 
-                                           <asp:ImageButton ID="ibtnTab" runat="server" OnClick="ibtnTab_Click"  ImageUrl="~/Content/Estaticos/dashboard.png" ToolTip="Tab Panel"/>
-                                       
-                        </div>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
+                             <small>Pruebas</small><br />
+                             <asp:ImageButton ID="ibtnGraficas" runat="server" OnClick="ibtnGraficas_Click" ImageUrl="~/Content/Estaticos/02.jpg" ToolTip="Visor de pruebas" />
+
+                         </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="cols-sm-2 btn btn-default">
-                            <small>Rep. Prueba</small><br /> 
-                                           <asp:ImageButton ID="ibtnReportePruebas" runat="server"  OnClick="ibtnReportePruebas_Click" ImageUrl="~/Content/Estaticos/reportePruebas.png" ToolTip="Visor de pruebas"/>
-                                       
+                            <small>CheckList</small><br />
+                             <asp:ImageButton ID="ibtnCheck"  data-target="#modal-default" runat="server" OnClick="ibtnCheck_Click" ImageUrl="~/Content/Estaticos/02.jpg" ToolTip="Visor de pruebas" />
+
+
                         </div>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                         <div class="cols-sm-2 btn btn-default">
-                            <small>Rep. Solicitud</small><br /> 
-                                           <asp:ImageButton ID="ibtnReporteSolicitud" runat="server"  OnClick="ibtnReporteSolicitud_Click" ImageUrl="~/Content/Estaticos/reporteSolicitud.jpg" ToolTip="reporte solicitud"/>
-                                       
+
+
                         </div>
-                       &nbsp;&nbsp;&nbsp;&nbsp;
-                         <div class="cols-sm-2 btn btn-default">
-                            <small>Pruebas</small><br /> 
-                                           <asp:ImageButton ID="ibtnGraficas" runat="server"  OnClick="ibtnGraficas_Click" ImageUrl="~/Content/Estaticos/02.jpg" ToolTip="Visor de pruebas"/>
-                                       
-                        </div>
-                         
+
 
                     </div>
-                                          
-                                      
-                         </div>    
-                       <div class="card-body">
+                    <div class="card-body">
                         <asp:UpdatePanel ID="upSolicitud" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
 
@@ -90,48 +108,48 @@
                                     </div>
                                     <div class="col-sm-1">
                                         <small>Estado</small>
-                                        
-                                        <asp:DropDownList ID="ddlEstadoB" runat="server" OnSelectedIndexChanged="ddlEstadoB_SelectedIndexChanged" CssClass="form-control" AutoPostBack="True"  AppendDataBoundItems="True">
-                                            
-                                            <asp:ListItem >Pruebas</asp:ListItem>
-                                            <asp:ListItem >Finalizacion</asp:ListItem>
+
+                                        <asp:DropDownList ID="ddlEstadoB" runat="server" OnSelectedIndexChanged="ddlEstadoB_SelectedIndexChanged" CssClass="form-control" AutoPostBack="True" AppendDataBoundItems="True">
+
+                                            <asp:ListItem>Pruebas</asp:ListItem>
+                                            <asp:ListItem>Finalizacion</asp:ListItem>
                                         </asp:DropDownList>
-                                                
+
 
                                     </div>
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-2">
                                         <small>Locacion</small>
                                         <asp:DropDownList ID="LocacionDropDownList" runat="server" Width="115px"
-                                                Enabled="False">
-                                                <asp:ListItem></asp:ListItem>
-                                                <asp:ListItem Selected="True">Guatemala</asp:ListItem>
-                                                <asp:ListItem>Colombia</asp:ListItem>
-                                            </asp:DropDownList>
-                                     </div>
-                                        <div class="col-sm-4 form-inline">
-                                  
-                                        
-                                            <asp:LinkButton ID="lbtnNotificarCreacion" runat="server" CssClass="fa fa-2x fa-mail-bulk" ToolTip="Notificar Creacion"></asp:LinkButton>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <asp:LinkButton ID="lbtnNotificarModificacion" runat="server" CssClass="fa fa-2x fa-mail-bulk" ToolTip="Notificar Modificacion"></asp:LinkButton>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            Enabled="False">
+                                            <asp:ListItem></asp:ListItem>
+                                            <asp:ListItem Selected="True">Guatemala</asp:ListItem>
+                                            <asp:ListItem>Colombia</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="col-sm-4 form-inline">
+
+
+                                        <asp:LinkButton ID="lbtnNotificarCreacion" Visible="FALSE" runat="server" CssClass="fa fa-2x fa-mail-bulk" ToolTip="Notificar Creacion"></asp:LinkButton>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <asp:LinkButton ID="lbtnNotificarModificacion" Visible="FALSE" runat="server" CssClass="fa fa-2x fa-mail-bulk" ToolTip="Notificar Modificacion"></asp:LinkButton>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <asp:LinkButton ID="lbtnLimpiar" runat="server" CssClass="fa fa-2x fa-minus" ToolTip="Limpiar" OnClick="lbtnLimpiar_Click"></asp:LinkButton>
-                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <asp:LinkButton ID="lbtnGuardarSolicitud" runat="server" CssClass="fa fa-2x fa-save"   ToolTip="Guardar Solicitud" OnClick="lbtnGuardarSolicitud_Click"></asp:LinkButton>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <asp:LinkButton ID="lbtnGuardarSolicitud" runat="server" CssClass="fa fa-2x fa-save" ToolTip="Guardar Solicitud" OnClick="lbtnGuardarSolicitud_Click"></asp:LinkButton>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <asp:LinkButton ID="lbtnEliminar" runat="server" CssClass="fa fa-2x fa-trash " ToolTip="Eliminar" OnClick="lbtnEliminar_Click"></asp:LinkButton>
 
-                                          </div>
-                                  
-                           
+                                    </div>
+
+
 
 
                                 </div>
 
                                 <div class="row">
 
-                                    <div class="col-sm-2">
-                                        <small>Consecutivo</small>
+                                    <div class="col-sm-1">
+                                        <small>Consec.</small>
                                         <asp:Label ID="lblConsectivo" runat="server" Text="-" CssClass="form-control"></asp:Label>
                                     </div>
                                     <div class="col-sm-2">
@@ -139,17 +157,17 @@
                                         <asp:Label ID="lblFechaCreacion" runat="server" Text="" CssClass="form-control"></asp:Label>
                                     </div>
                                     <div class="col-sm-2">
-                                        <small>Modelo de equipo</small>
+                                        <small>Modelo</small>
                                         <asp:TextBox ID="tbModelo" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
-                                    <div class="col-sm-2">
-                                        <small>Lider de proyecto</small>
+                                    <div class="col-sm-3">
+                                        <small>Lider de proy.</small>
                                         <asp:DropDownList ID="ddlLider" runat="server" CssClass="js-example-theme-single form-control" AutoPostBack="false" AppendDataBoundItems="True">
                                         </asp:DropDownList>
                                     </div>
                                     &nbsp;&nbsp;&nbsp;
-                            <div class="col-sm-2">
-                                <small>Encargado muestra</small>
+                            <div class="col-sm-3">
+                                <small>Encargado</small>
                                 <asp:DropDownList ID="ddlEncargado" runat="server" CssClass="js-example-theme-single  form-control" AutoPostBack="false" AppendDataBoundItems="True">
                                 </asp:DropDownList>
 
@@ -263,26 +281,26 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                                             </thead>
                                             <tbody>
 
-                                            
-                                        <asp:Repeater ID="repeaterEnsayos" runat="server" OnItemCommand="repeaterEnsayos_ItemCommand">
-                                            <ItemTemplate>
-                                                <tr>
-                                                     <td>
-                                                         <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Eli" CommandArgument='<%# Eval("ID") %>' CssClass="fa fa-trash"></asp:LinkButton>
-                                                    </td>
-                                                    <td>
-                                                        <%# Eval("Descripcion") %>
-                                                    </td>
-                                                     <td>
-                                                        <%# Eval("Prueba") %>
-                                                    </td>
-                                                     <td>
-                                                      <a href="<%# Eval("Archivo") %>" target="_blank">Archivo</a>  
-                                                    </td>
-                                                </tr>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                                </tbody>
+
+                                                <asp:Repeater ID="repeaterEnsayos" runat="server" OnItemCommand="repeaterEnsayos_ItemCommand">
+                                                    <ItemTemplate>
+                                                        <tr>
+                                                            <td>
+                                                                <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Eli" CommandArgument='<%# Eval("ID") %>' CssClass="fa fa-trash"></asp:LinkButton>
+                                                            </td>
+                                                            <td>
+                                                                <%# Eval("Descripcion") %>
+                                                            </td>
+                                                            <td>
+                                                                <%# Eval("Prueba") %>
+                                                            </td>
+                                                            <td>
+                                                                <a href="<%# Eval("Archivo") %>" target="_blank">Archivo</a>
+                                                            </td>
+                                                        </tr>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -294,7 +312,7 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                             </Triggers>
                         </asp:UpdatePanel>
                         <br />
-                        <asp:UpdatePanel ID="upEnsayosOfrecidos" runat="server" UpdateMode="Conditional" >
+                        <asp:UpdatePanel ID="upEnsayosOfrecidos" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <div>
                                     <div class="row">
@@ -316,7 +334,7 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                                         </div>
                                     </div>
                                     <div class="row table-responsive">
-                                          <table class="table table-sm table-bordered">
+                                        <table class="table table-sm table-bordered">
                                             <thead class="bg-gradient-navy">
                                                 <th></th>
                                                 <th>Descripcion</th>
@@ -324,26 +342,26 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                                                 <th>Archivo</th>
                                             </thead>
                                             <tbody>
-                                        <asp:Repeater ID="repeaterEnsayosContratados" OnItemCommand="repeaterEnsayosContratados_ItemCommand" runat="server">
-                                            <ItemTemplate>
-                                                  <tr>
-                                                     <td>
-                                                         <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Eli" CommandArgument='<%# Eval("ID") %>' CssClass="fa  fa-trash"></asp:LinkButton>
-                                                    </td>
-                                                    <td>
-                                                        <%# Eval("Descripcion") %>
-                                                    </td>
-                                                     <td>
-                                                        <%# Eval("Prueba") %>
-                                                    </td>
-                                                     <td>
-                                                         <a href="<%# Eval("Archivo") %>" target="_blank">Archivo</a> 
-                                                    </td>
-                                                </tr>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                                </tbody>
-                                              </table>
+                                                <asp:Repeater ID="repeaterEnsayosContratados" OnItemCommand="repeaterEnsayosContratados_ItemCommand" runat="server">
+                                                    <ItemTemplate>
+                                                        <tr>
+                                                            <td>
+                                                                <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Eli" CommandArgument='<%# Eval("ID") %>' CssClass="fa  fa-trash"></asp:LinkButton>
+                                                            </td>
+                                                            <td>
+                                                                <%# Eval("Descripcion") %>
+                                                            </td>
+                                                            <td>
+                                                                <%# Eval("Prueba") %>
+                                                            </td>
+                                                            <td>
+                                                                <a href="<%# Eval("Archivo") %>" target="_blank">Archivo</a>
+                                                            </td>
+                                                        </tr>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </tbody>
+                                        </table>
 
                                     </div>
                                 </div>
@@ -354,7 +372,7 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                             </Triggers>
                         </asp:UpdatePanel>
                         <br />
-                        <asp:UpdatePanel ID="upDivision" runat="server"  UpdateMode="Conditional">
+                        <asp:UpdatePanel ID="upDivision" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
 
 
@@ -383,57 +401,63 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                                     <div class="row table-responsive">
                                         <table class="table table-sm table-bordered">
                                             <thead class="bg-gradient-navy">
-                                                <th></th>
-                                                <th>Division</th>
-                                                <th>QR</th>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Division</th>
+                                                    <th>QR</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
 
-                                            
-                                        <asp:Repeater ID="repeaterDivision" OnItemCommand="repeaterDivision_ItemCommand" runat="server">
-                                            <ItemTemplate>
-                                                <tr>
-                                                    <td>
-                                                        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="fa fa-trash" CommandArgument='<%# Eval("id") %>' CommandName="Eli"></asp:LinkButton>
-                                                    </td>
-                                                    <td>
-                                                        <%# Eval("Descripcion") %>
-                                                    </td>
-                                                    <td>
-                                                        <asp:LinkButton ID="LinkButton3"  runat="server" CssClass="fa fa-qrcode" data-target="#modal-default" CommandArgument='<%# Eval("id") %>' CommandName="QR"></asp:LinkButton>
-                                                    </td>
-                                                </tr>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                                </tbody>
+
+                                                <asp:Repeater ID="repeaterDivision" OnItemCommand="repeaterDivision_ItemCommand" runat="server">
+                                                    <ItemTemplate>
+                                                        <tr>
+                                                            <td>
+                                                                <asp:LinkButton ID="LinkButton2" runat="server" CssClass="fa fa-trash" CommandArgument='<%# Eval("id") %>' CommandName="Eli"></asp:LinkButton>
+                                                            </td>
+                                                            <td>
+                                                                <%# Eval("Descripcion") %>
+                                                            </td>
+                                                            <td>
+                                                                <asp:LinkButton ID="LinkButton3" runat="server" CssClass="fa fa-qrcode" data-target="#modal-default" CommandArgument='<%# Eval("id") %>' CommandName="QR"></asp:LinkButton>
+                                                            </td>
+                                                        </tr>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                  
-                                      <div class="modal fade" id="modal" name="modal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">QR</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body text-center">
-                <h5><%= lblCodigo.Text %></h5>
-                <small><%= tbModeloM.Text %></small> <br />
-                <small><%= tbSerieM.Text %></small> <br />
-              <asp:Image ID="imgqr"  runat="server" />
-            </div>
-            <div class="modal-footer justify-content-between">
-          <small class="text-danger">Recorta la imagen, imprime y pega en el equipo</small>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-       
+
+                                <div class="modal fade" id="modal" name="modal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">QR</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <h5><%= lblCodigo.Text %></h5>
+                                                <small><%= tbModeloM.Text %></small>
+                                                <br />
+                                                <small><%= tbSerieM.Text %></small>
+                                                <br />
+                                                <asp:Image ID="imgqr" runat="server" />
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <small class="text-danger">Recorta la imagen, imprime y pega en el equipo</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                               
+
+
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="lbtnGuardarDivision" EventName="Click" />
@@ -441,20 +465,107 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                             </Triggers>
                         </asp:UpdatePanel>
 
+                         <div class="modal fade" id="modalCheck" name="modal">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">CheckList</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <asp:UpdatePanel ID="upCheck" runat="server" UpdateMode="Conditional">
+                                                    <ContentTemplate>
+                                                        <asp:HiddenField ID="hfIDEnsayoPrueba" runat="server" />
+                                                        <asp:HiddenField ID="hfTipoInicioFin" runat="server" />
+                                                        <asp:HiddenField ID="hfNum" runat="server" />
+                                                        <asp:HiddenField ID="hfIDRequerimiento" runat="server" />
+                                                        <asp:HiddenField ID="hfIDCheck" runat="server" />
+                                                        <asp:HiddenField ID="hfQueryCheck" runat="server" />
+                                                        <div id="0">
+                                                            <div class="row">
 
-                    
+
+                                                                <div class="col-sm-7">
+
+                                                                    <small>Ensayos</small>
+                                                                    <asp:DropDownList ID="ddlPruebasEventos"  CssClass="js-example-theme-single form-control " runat="server"></asp:DropDownList>
+
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <small>Tipo</small>
+                                                                    <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="true"  CssClass="js-example-theme-single form-control" OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged">
+                                                                        <asp:ListItem>INICIO</asp:ListItem>
+                                                                        <asp:ListItem>FIN</asp:ListItem>
+                                                                    </asp:DropDownList>
+                                                                </div>
+                                                                 <div class="col-sm-2">
+
+                                                                     <asp:LinkButton ID="lbtnProcesar" OnClick="lbtnProcesar_Click" runat="server" CssClass="fa fa-2x fa-running"></asp:LinkButton>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="row">
+                                                            <div class="col-sm-10">
+                                                                <asp:Label ID="lblRequisito" CssClass="text-sm text-info" runat="server" Text=""></asp:Label>
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <asp:Label ID="lblEstadoCheck" CssClass="text-sm text-success" runat="server" Text=""></asp:Label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+
+                                                                <asp:DropDownList ID="ddlOpciones" CssClass="js-example-theme-single form-control"  runat="server"></asp:DropDownList>
+                                                                <asp:TextBox ID="tbOpciones" CssClass="form-control" runat="server"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-footer ">
+                                                           <div class="justify-content-between">
+
+                                                            
+                                                            <asp:LinkButton ID="lbtnAnterior" OnClick="lbtnAnterior_Click" CssClass="fa fa-2x  fa-arrow-alt-circle-left"  runat="server"></asp:LinkButton>
+                                                        </div>
+                                                            <div class="justify-content-md-end">
+
+                                                            
+                                                            <asp:LinkButton ID="lbtnSiguiente" OnClick="lbtnSiguiente_Click" CssClass="fa fa-2x  fa-arrow-alt-circle-right"  runat="server"></asp:LinkButton>
+                                                        </div>
+                                                            
+                                                        </div>
+
+
+                                                    </ContentTemplate>
+
+                                                    <Triggers>
+                                                        <asp:AsyncPostBackTrigger ControlID="ibtnCheck" EventName="Click" />
+                                                        <asp:AsyncPostBackTrigger ControlID="lbtnProcesar" EventName="Click" />
+                                                        <asp:AsyncPostBackTrigger ControlID="lbtnSiguiente" EventName="Click" />
+                                                        <asp:AsyncPostBackTrigger ControlID="ddlTipo" EventName="SelectedIndexChanged" />
+                                                        <asp:AsyncPostBackTrigger ControlID="lbtnAnterior" EventName="Click" />
+                                                    </Triggers>
+
+                                                </asp:UpdatePanel>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                     </div>
-                    </div>
-                    <!-- /.card-header -->
-                 
-               
-                    <!-- /.card-body -->
-
-                
-                
+                </div>
 
 
+                <!-- /.card-header -->
+
+
+                <!-- /.card-body -->
 
             </div>
             <!-- /.container-fluid -->

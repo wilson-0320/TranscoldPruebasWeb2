@@ -48,6 +48,7 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
+
         End Sub
 
     End Class

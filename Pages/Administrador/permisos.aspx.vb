@@ -100,12 +100,8 @@
     Protected Sub lbtnGuardarPermisos_Click(sender As Object, e As EventArgs)
 
 
-        Dim msj As String = Login_Roles_BLL.CrudRoles(hfquery.Value, Int32.Parse(hfID.Value), Int32.Parse(hfIDUsuario.Value), Int32.Parse(ddlApartados.SelectedValue), cbEscritura.Checked, cbEditar.Checked,
-                                  cbEliminar.Checked, cbLectura.Checked)
-
-
-
-        MuestraErrorToast(msj, 2, True)
+        MuestraErrorToast(Login_Roles_BLL.CrudRoles(hfquery.Value, Int32.Parse(hfID.Value), Int32.Parse(hfIDUsuario.Value), Int32.Parse(ddlApartados.SelectedValue), cbEscritura.Checked, cbEditar.Checked,
+                                  cbEliminar.Checked, cbLectura.Checked), 2, True)
         cargarTablaElementos(1, hfIDUsuario.Value, "consulta", hfID.Value)
 
     End Sub
@@ -117,6 +113,7 @@
             hfID.Value = e.CommandArgument
             lbtnGuardarPermisos.Enabled = Roles("Administrador", 2)
             lbntCancelar.Visible = True
+            hfquery.Value = "modificar"
             MuestraErrorToast("Listo", -1, True)
 
         ElseIf e.CommandName = "Eli" And Roles("Administrador", 3) Then

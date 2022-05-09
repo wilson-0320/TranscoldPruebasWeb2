@@ -20,47 +20,50 @@ Namespace BLL
             End Try
         End Function
 
-        Public Shared Sub eliminar(ByVal id As Integer)
-            MsjError = Nothing
+        Public Shared Function eliminar(ByVal id As Integer) As String
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() { _
-                                            New Object() {"@query", "eliminar"}, _
-                                            New Object() {"@id", id} _
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() {
+                                            New Object() {"@query", "eliminar"},
+                                            New Object() {"@id", id}
                                             }, CommandType.StoredProcedure)
             Catch ex As Exception
                 colocaError(ex)
             End Try
-        End Sub
+            Return MsjError
+        End Function
 
-        Public Shared Sub insertar(ByVal Solicitud_Cod As String, ByVal Tipo As String, ByVal Ensayo_ID As Integer)
-            MsjError = Nothing
+        Public Shared Function insertar(ByVal Solicitud_Cod As String, ByVal Tipo As String, ByVal Ensayo_ID As Integer) As String
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() { _
-                                            New Object() {"@query", "insertar"}, _
-                                            New Object() {"@Solicitud_Cod", Solicitud_Cod}, _
-                                            New Object() {"@Tipo", Tipo}, _
-                                            New Object() {"@Ensayo_ID", Ensayo_ID} _
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() {
+                                            New Object() {"@query", "insertar"},
+                                            New Object() {"@Solicitud_Cod", Solicitud_Cod},
+                                            New Object() {"@Tipo", Tipo},
+                                            New Object() {"@Ensayo_ID", Ensayo_ID}
                                             }, CommandType.StoredProcedure)
             Catch ex As Exception
                 colocaError(ex)
             End Try
-        End Sub
+            Return MsjError
+        End Function
 
-        Public Shared Sub modificar(ByVal ID As Integer, ByVal Prueba As String)
-            MsjError = Nothing
+        Public Shared Function cmodificar(ByVal ID As Integer, ByVal Prueba As String) As String
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() { _
-                                            New Object() {"@query", "modificar"}, _
-                                            New Object() {"@ID", ID}, _
-                                            New Object() {"@Prueba", Prueba} _
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() {
+                                            New Object() {"@query", "modificar"},
+                                            New Object() {"@ID", ID},
+                                            New Object() {"@Prueba", Prueba}
                                             }, CommandType.StoredProcedure)
             Catch ex As Exception
                 colocaError(ex)
             End Try
-        End Sub
+            Return MsjError
+        End Function
 
     End Class
 

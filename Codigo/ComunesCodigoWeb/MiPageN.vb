@@ -14,6 +14,9 @@ Public Class MiPageN
         End If
     End Sub
 
+
+
+
     Protected Sub Page_Error(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Error
         'If HabilitaMensError Then
         '    Dim ex As Exception = Server.GetLastError()
@@ -44,20 +47,26 @@ Public Class MiPageN
                 Return MapaMensajesError(llave)
             End If
         Next
-        Dim Palabras As String() = Message.Split(" ")
-        If Message.Contains("Cannot insert duplicate key") Then
-            Return "No se pueden insertar registros duplicados"
-        ElseIf Message.Contains("conflicted with TABLE REFERENCE") Then
-            Return "Existe un registro en otra tabla relacionado con ese registro"
-        ElseIf Message.Contains("UPDATE statement conflicted") Then
-            Return "Registro no tiene registro relacionado en tabla " + Palabras(Palabras.Length - 7).Replace("'", "").Replace(",", "")
-        ElseIf Message.Contains("DELETE statement conflicted with") Then
-            Return "Registro no se puede eliminar pues tiene registros relacionados"
-        ElseIf Message.Contains("Cannot insert the value NULL") Then
-            Return "Hay campos vacios que deben tener un valor"
-        Else
-            Return "Notificacion: " + Message
-        End If
+        Try
+
+
+            Dim Palabras As String() = Message.Split(" ")
+            If Message.Contains("Cannot insert duplicate key") Then
+                Return "No se pueden insertar registros duplicados"
+            ElseIf Message.Contains("conflicted with TABLE REFERENCE") Then
+                Return "Existe un registro en otra tabla relacionado con ese registro"
+            ElseIf Message.Contains("UPDATE statement conflicted") Then
+                Return "Registro no tiene registro relacionado en tabla " + Palabras(Palabras.Length - 7).Replace("'", "").Replace(",", "")
+            ElseIf Message.Contains("DELETE statement conflicted with") Then
+                Return "Registro no se puede eliminar pues tiene registros relacionados"
+            ElseIf Message.Contains("Cannot insert the value NULL") Then
+                Return "Hay campos vacios que deben tener un valor"
+            Else
+                Return "Notificacion: " + Message
+            End If
+        Catch ex As Exception
+
+        End Try
     End Function
 
     Public Function TransformaMensError(ByVal ex As Exception) As String
@@ -80,7 +89,7 @@ Public Class MiPageN
         Notificacion(TransformaMensError(s), tipo, DentroDeUpdatePanel)
     End Sub
 
-    Public Overridable Sub Javascript(ByVal Script As String, Optional ByVal DentroDeUpdatePanel As Boolean = False)
+    Public Overridable Sub Javascript(ByVal Script As String, Optional ByVal DentroDeUpdatePanel As Boolean = True)
         'If Not DentroDeUpdatePanel Then
         '    Dim strscript As String = "<script language=javascript>" + Script + "</script>"
         '    If (Not ClientScript.IsStartupScriptRegistered("clientScript")) Then

@@ -6,46 +6,49 @@ Namespace BLL
     Public Class Solicitud_Division_BLL
         Inherits Base_BLL
 
-        Public Shared Sub insertar(ByVal Codigo As String, ByVal Descripcion As String)
-            MsjError = Nothing
+        Public Shared Function insertar(ByVal Codigo As String, ByVal Descripcion As String) As String
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Division_ABCD", New Object() { _
-                                            New Object() {"@query", "insertar"}, _
-                                            New Object() {"@codigo", Codigo}, _
-                                            New Object() {"@descripcion", Descripcion} _
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Division_ABCD", New Object() {
+                                            New Object() {"@query", "insertar"},
+                                            New Object() {"@codigo", Codigo},
+                                            New Object() {"@descripcion", Descripcion}
                                             }, CommandType.StoredProcedure)
             Catch ex As Exception
                 colocaError(ex)
             End Try
-        End Sub
+            Return MsjError
+        End Function
 
-        Public Shared Sub modificar(ByVal id As Integer, ByVal Descripcion As String)
-            MsjError = Nothing
+        Public Shared Function modificar(ByVal id As Integer, ByVal Descripcion As String) As String
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Division_ABCD", New Object() { _
-                                            New Object() {"@query", "modificar"}, _
-                                            New Object() {"@id", id}, _
-                                            New Object() {"@descripcion", Descripcion} _
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Division_ABCD", New Object() {
+                                            New Object() {"@query", "modificar"},
+                                            New Object() {"@id", id},
+                                            New Object() {"@descripcion", Descripcion}
                                             }, CommandType.StoredProcedure)
             Catch ex As Exception
                 colocaError(ex)
             End Try
-        End Sub
+            Return MsjError
+        End Function
 
-        Public Shared Sub eliminar(ByVal id As Integer)
-            MsjError = Nothing
+        Public Shared Function eliminar(ByVal id As Integer) As String
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Division_ABCD", New Object() { _
-                                            New Object() {"@query", "eliminar"}, _
-                                            New Object() {"@id", id} _
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Division_ABCD", New Object() {
+                                            New Object() {"@query", "eliminar"},
+                                            New Object() {"@id", id}
                                             }, CommandType.StoredProcedure)
             Catch ex As Exception
                 colocaError(ex)
             End Try
-        End Sub
+            Return MsjError
+        End Function
 
         Public Shared Function consultar_por_id(ByVal id As Integer) As DataRow
             MsjError = Nothing

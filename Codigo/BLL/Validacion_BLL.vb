@@ -15,19 +15,19 @@ Namespace BLL
                                          ByVal comentarios As String,
                                          ByVal tecnico As String,
                                          ByVal tipo As String,
-                                         ByVal p1 As Decimal,
-                                        ByVal p2 As Decimal,
-                                        ByVal p3 As Decimal,
-                                        ByVal p4 As Decimal,
-                                        ByVal p5 As Decimal,
-                                        ByVal p6 As Decimal,
-                                        ByVal p7 As Decimal,
-                                        ByVal p8 As Decimal,
-                                        ByVal p9 As Decimal) As String
-            MsjError = Nothing
+                                         ByVal p1 As Double,
+                                        ByVal p2 As Double,
+                                        ByVal p3 As Double,
+                                        ByVal p4 As Double,
+                                        ByVal p5 As Double,
+                                        ByVal p6 As Double,
+                                        ByVal p7 As Double,
+                                        ByVal p8 As Double,
+                                        ByVal p9 As Double) As String
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                Dim msj As String = trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Verificacion_ABCD", New Object() {
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Verificacion_ABCD", New Object() {
                                                 New Object() {"@query", query.TrimEnd},
                                                 New Object() {"@Id_Catalogo", Id_Catalogo},
                                                  New Object() {"@Id_Instrumento", Id_Instrumento},
@@ -45,28 +45,30 @@ Namespace BLL
                                                             New Object() {"@Comentario", comentarios.TrimEnd},
                                                              New Object() {"@Tecnico", tecnico},
                                                               New Object() {"@TipoEntrada", tipo.TrimEnd}
-                                                  }, Data.CommandType.StoredProcedure).Tables(0).Rows(0)(0)
-                Return msj '    Dim a As Int16 = ex + codigo
+                                                  }, Data.CommandType.StoredProcedure)
+
             Catch ex As Exception
                 Return ex.ToString '
-                ' colocaError(ex)
+                colocaError(ex)
             End Try
+            Return MsjError
         End Function
 
 
         Public Shared Function eliminar(ByVal ID As Int32) As String
-            MsjError = Nothing
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                Dim msj As String = trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Verificacion_ABCD", New Object() {
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Verificacion_ABCD", New Object() {
                                                 New Object() {"@query", "eliminar"},
                                                 New Object() {"@ID", ID}
-                                                  }, Data.CommandType.StoredProcedure).Tables(0).Rows(0)(0)
-                Return msj '    Dim a As Int16 = ex + codigo
+                                                  }, Data.CommandType.StoredProcedure)
+
             Catch ex As Exception
-                Return ex.ToString '
-                ' colocaError(ex)
+
+                colocaError(ex)
             End Try
+            Return MsjError
         End Function
 
 

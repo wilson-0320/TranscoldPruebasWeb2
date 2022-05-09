@@ -6,11 +6,11 @@ Namespace BLL
     Public Class Prueba_BLL
         Inherits Base_BLL
 
-        Public Shared Sub Guardar(ByVal Prueba_id, ByVal Prueba, ByVal WO, ByVal Serie, ByVal Modelo, ByVal Compresor, ByVal Folder, ByVal TipoPrueba, ByVal Evaporador,
+        Public Shared Function Guardar(ByVal Prueba_id, ByVal Prueba, ByVal WO, ByVal Serie, ByVal Modelo, ByVal Compresor, ByVal Folder, ByVal TipoPrueba, ByVal Evaporador,
                                     ByVal Condensador, ByVal Termostato, ByVal Voltaje, ByVal Relay, ByVal TipoEvaporador, ByVal TipoCondensador, ByVal Capilar, ByVal PruebaNo,
                                     ByVal CamaraAmbiental, ByVal Capacitor, ByVal ProtectorTermico, ByVal MAE, ByVal MAC, ByVal Refrigerante, ByVal Aprobada, ByVal Notas, ByVal CodSolicitud,
-                                    ByVal Fecha, ByVal Usuario)
-            MsjError = Nothing
+                                    ByVal Fecha, ByVal Usuario) As String
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
                 trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Prueba_ABCD", New Object() {
@@ -47,10 +47,11 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-        End Sub
+            Return MsjError
+        End Function
 
-        Public Shared Sub Eliminar(ByVal id As Integer)
-            MsjError = Nothing
+        Public Shared Function Eliminar(ByVal id As Integer) As String
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
                 trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Prueba_ABCD", New Object() {
@@ -60,7 +61,8 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-        End Sub
+            Return MsjError
+        End Function
 
         Public Shared Function PorPruebaId(ByVal prueba_id As Integer) As DataRow
             MsjError = Nothing

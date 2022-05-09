@@ -26,6 +26,18 @@
         lbtnGuardar.Enabled = Roles("Administrador", 1)
     End Sub
 
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador", 2)
+        Dim eli1 As Boolean = Roles("Administrador", 3)
+        For index As Integer = 0 To repeaterElementos.Items.Count - 1 Step 1
+            'Modificar
+            CType(repeaterElementos.Items(index).FindControl("LinkButton1"), LinkButton).Visible = mod1
+            'Eliminar
+            CType(repeaterElementos.Items(index).FindControl("LinkButton3"), LinkButton).Visible = eli1
+        Next
+
+    End Sub
+
     Private Sub cargarddlCategorias()
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Catalogo_Actualiza", New Object() {
                                                                  New Object() {"@Tipo", "consultarCat"},
@@ -63,6 +75,7 @@
         If (querys.Equals("consultar")) Then
             repeaterElementos.DataSource = DTOrig
             repeaterElementos.DataBind()
+            controlesRepeater()
         Else
             tbValor.Text = DTOrig.Rows(0).Item(1)
             tbValorRelacionado.Text = DTOrig.Rows(0).Item(2)
@@ -91,11 +104,11 @@
 
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
         If (validarCrud() And ddlElemento.SelectedValue > 0) Then
-            BLL.Valor_Rel_BLL.insertar_modificar(hfQuery.Value, hfIDElemento.Value, tbValor.Text, tbValorRelacionado.Text, hfID.Value)
+            MuestraErrorToast(BLL.Valor_Rel_BLL.insertar_modificar(hfQuery.Value, hfIDElemento.Value, tbValor.Text, tbValorRelacionado.Text, hfID.Value), 1, True)
             cargarRepeatValores("consultar")
             inicializar()
             hfIDElemento.Value = ddlElemento.SelectedValue
-            MuestraErrorToast("Listo", 1, True)
+
         End If
 
     End Sub
@@ -130,17 +143,15 @@
 
 
     Protected Sub repeaterElementos_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
-        If (e.CommandName = "Eli" And Roles("Administrador", 3)) Then
-            BLL.Valor_Rel_BLL.eliminar(Integer.Parse(e.CommandArgument))
+        If (e.CommandName = "Eli") Then
+            MuestraErrorToast(BLL.Valor_Rel_BLL.eliminar(Integer.Parse(e.CommandArgument)), 1, True)
             cargarRepeatValores("consultar")
-            '  cargarRepeatElementos("Consultar", Integer.Parse(hfID.Value), Integer.Parse(hfIDElementos.Value))
-            MuestraErrorToast("Listo", 1, True)
         ElseIf (e.CommandName = "Edit") Then
 
             hfID.Value = (e.CommandArgument)
             hfQuery.Value = "modificar"
             lbtnCancelar.Visible = True
-            lbtnGuardar.Enabled = Roles("Administrador", 2)
+            lbtnGuardar.Enabled = True
             cargarRepeatValores("consultar_id")
             MuestraErrorToast("", 0, True)
         End If

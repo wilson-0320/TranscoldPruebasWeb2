@@ -43,6 +43,19 @@
         lbtnGuardarLaboratorios.Enabled = Roles("Administrador,JefeLab,SupMet", 1)
         lbtnGuardar.Enabled = Roles("Administrador,JefeLab,SupMet", 1)
     End Sub
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador,JefeLab,SupMet", 2)
+        Dim eli1 As Boolean = Roles("Administrador,JefeLab,SupMet", 3)
+
+        For index As Integer = 0 To repeaterInstrumentos.Items.Count - 1 Step 1
+            'Modificar
+            CType(repeaterInstrumentos.Items(index).FindControl("LinkButton2"), LinkButton).Visible = mod1
+            'Eliminar
+            CType(repeaterInstrumentos.Items(index).FindControl("LinkButton1"), LinkButton).Visible = eli1
+        Next
+
+
+    End Sub
 
     Private Sub chargeListCatalogos(ByVal ID_Categoria As Integer)
 
@@ -138,6 +151,7 @@
             tbGuiaEnvio.Text = DTOrig.Rows(0).Item(2).ToString.TrimEnd
             tbGuiaRetorno.Text = DTOrig.Rows(0).Item(3).ToString.TrimEnd
             tbCertificado.Text = DTOrig.Rows(0).Item(4).ToString.TrimEnd
+
 
             If ((DTOrig.Rows(0).Item(5).ToString().Length) > 0) Then
                 Dim fechas() As String = Split((DTOrig.Rows(0).Item(5)).ToString.Substring(0, DTOrig.Rows(0).Item(5).ToString.IndexOf(" ")).Replace("/", "-"), "-")

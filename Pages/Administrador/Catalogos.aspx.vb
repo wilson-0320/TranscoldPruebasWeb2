@@ -20,11 +20,27 @@
         hfID.Value = "-1"
         hfIDCategoria.Value = "-1"
         lbtnCancelar.Visible = False
-        'MuestraErrorToast(Roles("Administrador", 3).ToString, 1, True)
         lbtnGuardar.Enabled = Roles("Administrador", 1)
-        '   repeaterCatalogo.EnableTheming = False
+
+
     End Sub
 
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador", 2)
+        Dim eli1 As Boolean = Roles("Administrador", 1)
+
+        For index As Integer = 0 To repeaterCatalogo.Items.Count - 1 Step 1
+            'Modificar
+            CType(repeaterCatalogo.Items(index).FindControl("LinkButton1"), LinkButton).Visible = mod1
+
+            'Eliminar
+            CType(repeaterCatalogo.Items(index).FindControl("LinkButton3"), LinkButton).Visible = eli1
+        Next
+
+
+    End Sub
+
+    '''''''''''Carga de repeat y listados ''''''''''''''''''''''''''''
     Private Sub cargarddlCategorias()
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Catalogo_Categoria_ABCD", New Object() {
                                                                   New Object() {"@Tipo", "Consultar"}
@@ -52,12 +68,12 @@
         Else
             repeaterCatalogo.DataSource = DTOrig
             repeaterCatalogo.DataBind()
+            controlesRepeater()
         End If
 
     End Sub
-
+    ''''''''''''''''''''''''Click de botones ''''''''''''''''''''''''''''
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
-        Dim msj As String
         Dim UltID, ext As String
         ext = Nothing
         If fuArchivo.HasFile Then
@@ -105,18 +121,19 @@
     End Sub
 
     Protected Sub repeaterCatalogo_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
-        If (e.CommandName = "Eli" And Roles("Administrador", 3)) Then
+        If (e.CommandName = "Eli") Then
             BLL.Catalogo_Categoria_BLL.eliminar(Int32.Parse(e.CommandArgument))
             cargarRepeatCatalogoCategorias(hfIDCategoria.Value, "Con_ID_Cat2")
 
+            MuestraErrorToast("Si el elemento no fue eliminado, el registro tiene registros vinculados", 2, True)
         ElseIf (e.CommandName = "Edit") Then
             lbtnCancelar.Visible = True
-            lbtnGuardar.Enabled = Roles("Administrador", 2)
+            lbtnGuardar.Enabled = True
             cargarRepeatCatalogoCategorias(Int32.Parse(e.CommandArgument), "Cons_id")
-
+            MuestraErrorToast("", 0, True)
 
         End If
-        MuestraErrorToast("", 0, True)
+
 
     End Sub
 End Class

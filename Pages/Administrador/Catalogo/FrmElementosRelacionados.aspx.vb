@@ -36,6 +36,7 @@
 
             If CampoTexto.Text = "" Then
                 MuestraErrorToast("Debe especificar el valor del campo " + CampoTexto.ToolTip, 3, True)
+                CampoTexto.Focus()
                 Return False
             End If
 
@@ -44,29 +45,18 @@
         Return True
 
     End Function
-    Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
-        If (validarCrud()) Then
-            If (hfQuery.Value.Equals("Actualizar")) Then
-                BLL.Elemento_Relacion_DAL.modificar(hfID.Value, tbValor.Text, tbValorRelacionado.Text)
-            Else
-                BLL.Elemento_Relacion_DAL.insertar(ddlElemento.SelectedValue, ddlElementoRelacionado.SelectedValue,
-         tbValor.Text, tbValorRelacionado.Text)
-            End If
-            cargarRepeaterRelaciones("consultar_por_filtro", 0)
-            inicializar()
-            hfIDElemento.Value = ddlElemento.SelectedValue
-            hfIDElementoRelacionado.Value = ddlElementoRelacionado.SelectedValue
-            MuestraErrorToast("Listo", 1, True)
-        End If
+
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador", 2)
+        Dim eli1 As Boolean = Roles("Administrador", 3)
+        For index As Integer = 0 To repeaterElementos.Items.Count - 1 Step 1
+            'Modificar
+            CType(repeaterElementos.Items(index).FindControl("LinkButton1"), LinkButton).Visible = mod1
+            'Eliminar
+            CType(repeaterElementos.Items(index).FindControl("LinkButton3"), LinkButton).Visible = eli1
+        Next
 
     End Sub
-    Protected Sub lbtnCancelar_Click(sender As Object, e As EventArgs)
-        inicializar()
-        MuestraErrorToast("", 0, True)
-    End Sub
-
-
-
 
     Private Sub cargarddlElementos()
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Elemento_Consulta", New Object() {
@@ -94,6 +84,7 @@
         If (querys.Equals("consultar_por_filtro")) Then
             repeaterElementos.DataSource = DTOrig
             repeaterElementos.DataBind()
+            controlesRepeater()
         Else
             hfID.Value = DTOrig.Rows(0).Item(0)
             ddlElemento.SelectedValue = DTOrig.Rows(0).Item(1)
@@ -106,6 +97,27 @@
         End If
 
     End Sub
+    Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
+        If (validarCrud()) Then
+            If (hfQuery.Value.Equals("Actualizar")) Then
+                MuestraErrorToast(BLL.Elemento_Relacion_DAL.modificar(hfID.Value, tbValor.Text, tbValorRelacionado.Text), 1, True)
+            Else
+                MuestraErrorToast(BLL.Elemento_Relacion_DAL.insertar(ddlElemento.SelectedValue, ddlElementoRelacionado.SelectedValue,
+         tbValor.Text, tbValorRelacionado.Text), 1, True)
+            End If
+            cargarRepeaterRelaciones("consultar_por_filtro", 0)
+            inicializar()
+            hfIDElemento.Value = ddlElemento.SelectedValue
+            hfIDElementoRelacionado.Value = ddlElementoRelacionado.SelectedValue
+
+        End If
+
+    End Sub
+    Protected Sub lbtnCancelar_Click(sender As Object, e As EventArgs)
+        inicializar()
+        MuestraErrorToast("", 0, True)
+    End Sub
+
 
 
     Protected Sub ddlElemento_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -127,17 +139,15 @@
     End Sub
 
     Protected Sub repeaterElementos_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
-        If (e.CommandName = "Eli" And Roles("Administrador", 3)) Then
-            BLL.Elemento_Relacion_DAL.eliminar(Integer.Parse(e.CommandArgument))
+        If (e.CommandName = "Eli") Then
+            MuestraErrorToast(BLL.Elemento_Relacion_DAL.eliminar(Integer.Parse(e.CommandArgument)), 1, True)
             cargarRepeaterRelaciones("consultar_por_filtro", 0)
             MuestraErrorToast("listo", 1, True)
-            '  cargarRepeatElementos("Consultar", Integer.Parse(hfID.Value), Integer.Parse(hfIDElementos.Value))
-            '  MuestraErrorToast("Cambios efectuados", 1, True)
         ElseIf (e.CommandName = "Edit") Then
 
             hfID.Value = (e.CommandArgument)
             hfQuery.Value = "Actualizar"
-            lbtnGuardar.Enabled = Roles("Administrador", 2)
+            lbtnGuardar.Enabled = True
             lbtnCancelar.Visible = True
             cargarRepeaterRelaciones("consultar_por_id", Integer.Parse(e.CommandArgument))
             MuestraErrorToast("", 0, True)

@@ -5,7 +5,7 @@
         google.charts.load('current', { 'packages': ['line', 'corechart'] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
-            alert("");
+       
             var button = document.getElementById('change-chart');
             var chartDiv = document.getElementById('chart_div');
 

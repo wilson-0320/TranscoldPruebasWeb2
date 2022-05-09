@@ -16,10 +16,10 @@ Namespace BLL
                                         ByVal Capacitor As String,
                                         ByVal ID As Int32
                                           ) As String
-            MsjError = Nothing
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                Dim msj As String = trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Compresor_Componentes_ABCD", New Object() {
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Compresor_Componentes_ABCD", New Object() {
                                                 New Object() {"@query", query.TrimEnd},
                                                        New Object() {"@Voltaje", Voltaje},
                                                         New Object() {"@CodigoComp", Codigo},
@@ -29,28 +29,29 @@ Namespace BLL
                                                           New Object() {"@Protector", Protector},
                                                           New Object() {"@Capacitor", Capacitor},
                                                            New Object() {"@ID", ID}
-                                                  }, Data.CommandType.StoredProcedure).Tables(0).Rows(0)(0)
-                Return msj '    Dim a As Int16 = ex + codigo
+                                                  }, Data.CommandType.StoredProcedure)
             Catch ex As Exception
-                Return ex.ToString '
-                ' colocaError(ex)
+
+                colocaError(ex)
             End Try
+            Return MsjError
         End Function
 
 
         Public Shared Function eliminar(ByVal ID As Integer) As String
-            MsjError = Nothing
+            MsjError = "Realizado"
             Try
                 Dim trsql As New TransacSQL
-                Dim msj As String = trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Compresor_Componentes_ABCD", New Object() {
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Compresor_Componentes_ABCD", New Object() {
                                                 New Object() {"@query", "Eliminar"},
                                                            New Object() {"@ID", ID}
-                                                  }, Data.CommandType.StoredProcedure).Tables(0).Rows(0)(0)
-                Return msj '    Dim a As Int16 = ex + codigo
+                                                  }, Data.CommandType.StoredProcedure)
+
             Catch ex As Exception
-                Return "Error:" + +ex.ToString '
-                ' colocaError(ex)
+
+                colocaError(ex)
             End Try
+            Return MsjError
         End Function
 
 

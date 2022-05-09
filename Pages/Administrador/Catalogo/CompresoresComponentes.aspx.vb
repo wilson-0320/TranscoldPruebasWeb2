@@ -26,7 +26,17 @@
         lbtnGuardar.Enabled = Roles("Administrador", 1)
         lbtnCancelar.Visible = False
     End Sub
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador", 2)
+        Dim eli1 As Boolean = Roles("Administrador", 3)
+        For index As Integer = 0 To repeaterComponentes.Items.Count - 1 Step 1
+            'Modificar
+            CType(repeaterComponentes.Items(index).FindControl("LinkButton1"), LinkButton).Visible = mod1
+            'Eliminar
+            CType(repeaterComponentes.Items(index).FindControl("LinkButton3"), LinkButton).Visible = eli1
+        Next
 
+    End Sub
     Private Function validarCrud() As Boolean
 
         For Each CampoTexto As TextBox In New TextBox() {
@@ -43,23 +53,6 @@
         Return True
 
     End Function
-
-
-    Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
-        If (validarCrud()) Then
-            BLL.Componentes_Compresor_BLL.insertar_modificar(hfQuery.Value, tbVoltaje.Text, tbCodigoComp.Text, tbCompresor.Text,
-tbCaballaje.Text, tbRelay.Text, tbProtectorTermico.Text, tbCapacitor.Text, hfID.Value)
-            inicializar()
-            cargarRepeaterCompresorComponentes("Consultar", 0)
-            MuestraErrorToast("Listo", 1, True)
-        End If
-    End Sub
-
-    Protected Sub lbtnCancelar_Click(sender As Object, e As EventArgs)
-        inicializar()
-        MuestraErrorToast("", 0, True)
-    End Sub
-
     Private Sub cargarRepeaterCompresorComponentes(ByVal quer As String, ByVal ID As Integer)
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Compresor_Componentes_ABCD", New Object() {
                                                                 New Object() {"@query", quer.TrimEnd},
@@ -69,6 +62,7 @@ tbCaballaje.Text, tbRelay.Text, tbProtectorTermico.Text, tbCapacitor.Text, hfID.
         If (quer.TrimEnd.Equals("Consultar")) Then
             repeaterComponentes.DataSource = DTOrig
             repeaterComponentes.DataBind()
+            controlesRepeater()
         Else
             hfID.Value = DTOrig.Rows(0).Item(0)
             tbVoltaje.Text = DTOrig.Rows(0).Item(1).ToString.TrimEnd
@@ -81,16 +75,33 @@ tbCaballaje.Text, tbRelay.Text, tbProtectorTermico.Text, tbCapacitor.Text, hfID.
         End If
     End Sub
 
+    Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
+        If (validarCrud()) Then
+            MuestraErrorToast(BLL.Componentes_Compresor_BLL.insertar_modificar(hfQuery.Value, tbVoltaje.Text, tbCodigoComp.Text, tbCompresor.Text, tbCaballaje.Text, tbRelay.Text, tbProtectorTermico.Text, tbCapacitor.Text, hfID.Value), 1, True)
+            inicializar()
+            cargarRepeaterCompresorComponentes("Consultar", 0)
+
+        End If
+    End Sub
+
+    Protected Sub lbtnCancelar_Click(sender As Object, e As EventArgs)
+        inicializar()
+        MuestraErrorToast("", 0, True)
+    End Sub
+
+
+
     Protected Sub repeaterComponentes_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
-        If (e.CommandName = "Eli" And Roles("Administrador", 3)) Then
-            BLL.Componentes_Compresor_BLL.eliminar((Integer.Parse(e.CommandArgument)))
+        If (e.CommandName = "Eli") Then
+
+            MuestraErrorToast(BLL.Componentes_Compresor_BLL.eliminar((Integer.Parse(e.CommandArgument))), 1, True)
             cargarRepeaterCompresorComponentes("Consultar", Integer.Parse(hfID.Value))
-            MuestraErrorToast("Listo", 1, True)
+
         ElseIf (e.CommandName = "Edit") Then
             hfID.Value = (e.CommandArgument)
+            lbtnGuardar.Enabled = True
             hfQuery.Value = "Actualizar"
             lbtnCancelar.Visible = True
-            lbtnGuardar.Enabled = Roles("Administrador", 2)
             cargarRepeaterCompresorComponentes("Consultar_por_id", Integer.Parse(hfID.Value))
             MuestraErrorToast("", 0, True)
         End If

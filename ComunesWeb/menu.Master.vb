@@ -9,19 +9,19 @@ Public Class menu
             If (Session("Roles") Is Nothing) Then
 
 
-                '   Session.Abandon()
+                Session.Abandon()
                 Dim v As String = Request.Url.AbsoluteUri
                 Dim RetornoUrl As String = v(0) + "//" + v(1) +
                    "/" + v(2) + "/" + v(3) + "/" + v(4)
                 '  Response.Redirect("~/ComunesWeb/Login.aspx?responder=" + v)
             Else
-                'Session("Roles") = Session("Roles").ToString
+                Session("Roles") = Session("Roles").ToString
 
                 If (repeatMenu(Session("Roles").ToString)) Then
                 Else
-                    '  Session.Abandon()
-                    Dim v1 As String = Request.Url.AbsoluteUri
-                    '  Response.Redirect("~/ComunesWeb/Login.aspx?responder=" + v1)
+                    '   Session.Abandon()
+                    '  Dim v1 As String = Request.Url.AbsoluteUri
+                    '    Response.Redirect("~/ComunesWeb/Login.aspx?responder=" + v1)
 
                 End If
 
@@ -75,8 +75,8 @@ Public Class menu
     End Function
 
     Protected Sub lbtnSalir_Click(sender As Object, e As EventArgs)
-        Session.Abandon()
+        ' Session.Abandon()
 
-        Response.Redirect("~/ComunesWeb/Login.aspx")
+        ' Response.Redirect("~/ComunesWeb/Login.aspx")
     End Sub
 End Class

@@ -284,12 +284,12 @@
 
                                 <tr>
                                     <td class="bg-gradient-navy">
-                                        <asp:LinkButton ID="LinkButton1" runat="server" ToolTip="Modificar" CssClass=" fa fa-2x fa-edit" CommandArgument='<%# Eval("ID") %>' CommandName="ModificarRecepcion">
+                                        <asp:LinkButton ID="LinkButton1" runat="server" ToolTip="Modificar" CssClass=" fa fa-edit" CommandArgument='<%# Eval("ID") %>' CommandName="ModificarRecepcion">
                                         </asp:LinkButton>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-              <asp:LinkButton ID="lbtnEliminarCrud" runat="server" ToolTip="Eliminar" CssClass=" fa fa-2x fa-trash" CommandArgument='<%# Eval("ID") %>' OnClientClick="return confirm('¿Realmente desea eliminar el registro?')" CommandName="EliminarRecepcion">
+              <asp:LinkButton ID="lbtnEliminarCrud" runat="server" ToolTip="Eliminar" CssClass=" fa  fa-trash" CommandArgument='<%# Eval("ID") %>' OnClientClick="return confirm('¿Realmente desea eliminar el registro?')" CommandName="EliminarRecepcion">
                                      
 
               </asp:LinkButton>

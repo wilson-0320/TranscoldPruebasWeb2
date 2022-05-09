@@ -77,6 +77,15 @@ Partial Public Class Solicitud
     Protected WithEvents ibtnGraficas As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
+    '''Control ibtnCheck.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ibtnCheck As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
     '''Control upSolicitud.
     '''</summary>
     '''<remarks>
@@ -435,4 +444,148 @@ Partial Public Class Solicitud
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents imgqr As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
+    '''Control upCheck.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents upCheck As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''Control hfIDEnsayoPrueba.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents hfIDEnsayoPrueba As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control hfTipoInicioFin.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents hfTipoInicioFin As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control hfNum.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents hfNum As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control hfIDRequerimiento.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents hfIDRequerimiento As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control hfIDCheck.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents hfIDCheck As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control hfQueryCheck.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents hfQueryCheck As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control ddlPruebasEventos.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlPruebasEventos As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control ddlTipo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlTipo As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control lbtnProcesar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbtnProcesar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control lblRequisito.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblRequisito As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control lblEstadoCheck.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblEstadoCheck As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control ddlOpciones.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlOpciones As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control tbOpciones.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbOpciones As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control lbtnAnterior.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbtnAnterior As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control lbtnSiguiente.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbtnSiguiente As Global.System.Web.UI.WebControls.LinkButton
 End Class

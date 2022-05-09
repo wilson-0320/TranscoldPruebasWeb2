@@ -177,6 +177,7 @@
     <Content Include="Pages\Administrador\Catalogo\CompresoresComponentes.aspx" />
     <Content Include="Pages\Administrador\Catalogo\Elemento.aspx" />
     <Content Include="Pages\Administrador\Catalogo\FrmElementosRelacionados.aspx" />
+    <Content Include="Pages\Administrador\Catalogo\FrmRequerimientosPruebas.aspx" />
     <Content Include="Pages\Administrador\Catalogo\FrmValoresRel.aspx" />
     <Content Include="Pages\Administrador\permisos.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
@@ -184,8 +185,12 @@
     <Content Include="Pages\Metrologia\Equipo.aspx" />
     <Content Include="Pages\Metrologia\Retenidos.aspx" />
     <Content Include="Pages\Metrologia\Solicitud\Verificaciones.aspx" />
+    <Content Include="Pages\Prueba\PrubasLab.aspx" />
+    <Content Include="Pages\Prueba\PruebasLab.aspx" />
     <Content Include="Pages\Solicitud\checkList.aspx" />
+    <Content Include="Pages\Solicitud\Entregas\FrmSolicitudEntregas.aspx" />
     <Content Include="Pages\Solicitud\HistorialSolicitudes.aspx" />
+    <Content Include="Pages\Solicitud\Pruebas\checkListProcedimientos.aspx" />
     <Content Include="Pages\Solicitud\Pruebas\frmTermopares.aspx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucAdicionales.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucElectric.ascx" />
@@ -194,8 +199,12 @@
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrig.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucVidrios.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\Pruebas.aspx" />
+    <Content Include="Pages\Solicitud\Pruebas\PruEventos.aspx" />
+    <Content Include="Pages\Solicitud\Reportes\Controles\check.ascx" />
+    <Content Include="Pages\Solicitud\Reportes\Controles\checkList.ascx" />
     <Content Include="Pages\Solicitud\Reportes\Informe.aspx" />
     <Content Include="Pages\Solicitud\Reportes\LineaTiempo.aspx" />
+    <Content Include="Pages\Solicitud\Reportes\RepGaleria.aspx" />
     <Content Include="Pages\Solicitud\Reportes\RepPruebas.aspx" />
     <Content Include="Pages\Solicitud\Reportes\RepSolicitud.aspx" />
     <Content Include="Pages\Solicitud\Reportes\tabPanel.aspx" />
@@ -2475,6 +2484,7 @@
     <Compile Include="Codigo\AuthHelper.vb" />
     <Compile Include="Codigo\BLL\Archivo_BLL.vb" />
     <Compile Include="Codigo\BLL\Base_BLL.vb" />
+    <Compile Include="Codigo\BLL\Elementos_Requerimientos_BLL.vb" />
     <Compile Include="Codigo\BLL\Elementos_BLL.vb" />
     <Compile Include="Codigo\BLL\Catalogo_Categoria_BLL.vb" />
     <Compile Include="Codigo\BLL\Certificados_Calibracion_BLL.vb" />
@@ -2497,6 +2507,7 @@
     <Compile Include="Codigo\BLL\Recepcion_BLL.vb" />
     <Compile Include="Codigo\BLL\Solicitud_BLL.vb" />
     <Compile Include="Codigo\BLL\Solicitud_Division_BLL.vb" />
+    <Compile Include="Codigo\BLL\Solicitud_Check_Req_BLL.vb" />
     <Compile Include="Codigo\BLL\Solicitud_Elemento_BLL.vb" />
     <Compile Include="Codigo\BLL\Solicitud_Ensayo_BLL.vb" />
     <Compile Include="Codigo\BLL\Solicitud_Hist_BLL.vb" />
@@ -2580,76 +2591,97 @@
     </Compile>
     <Compile Include="Pages\Administrador\Catalogos.aspx.vb">
       <DependentUpon>Catalogos.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogo\CompresoresComponentes.aspx.designer.vb">
       <DependentUpon>CompresoresComponentes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogo\CompresoresComponentes.aspx.vb">
       <DependentUpon>CompresoresComponentes.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogo\Elemento.aspx.designer.vb">
       <DependentUpon>Elemento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogo\Elemento.aspx.vb">
       <DependentUpon>Elemento.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogo\FrmElementosRelacionados.aspx.designer.vb">
       <DependentUpon>FrmElementosRelacionados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogo\FrmElementosRelacionados.aspx.vb">
       <DependentUpon>FrmElementosRelacionados.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrador\Catalogo\FrmRequerimientosPruebas.aspx.designer.vb">
+      <DependentUpon>FrmRequerimientosPruebas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrador\Catalogo\FrmRequerimientosPruebas.aspx.vb">
+      <DependentUpon>FrmRequerimientosPruebas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogo\FrmValoresRel.aspx.designer.vb">
       <DependentUpon>FrmValoresRel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogo\FrmValoresRel.aspx.vb">
       <DependentUpon>FrmValoresRel.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Administrador\permisos.aspx.designer.vb">
       <DependentUpon>permisos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Administrador\permisos.aspx.vb">
       <DependentUpon>permisos.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Dashboard.aspx.designer.vb">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Dashboard.aspx.vb">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Metrologia\camaras\lecturas.aspx.designer.vb">
       <DependentUpon>lecturas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Metrologia\camaras\lecturas.aspx.vb">
       <DependentUpon>lecturas.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Metrologia\Equipo.aspx.designer.vb">
       <DependentUpon>Equipo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Metrologia\Equipo.aspx.vb">
       <DependentUpon>Equipo.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Metrologia\Retenidos.aspx.designer.vb">
       <DependentUpon>Retenidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Metrologia\Retenidos.aspx.vb">
       <DependentUpon>Retenidos.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Metrologia\Solicitud\Verificaciones.aspx.designer.vb">
       <DependentUpon>Verificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Metrologia\Solicitud\Verificaciones.aspx.vb">
       <DependentUpon>Verificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Prueba\PrubasLab.aspx.designer.vb">
+      <DependentUpon>PrubasLab.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Prueba\PrubasLab.aspx.vb">
+      <DependentUpon>PrubasLab.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Prueba\PruebasLab.aspx.designer.vb">
+      <DependentUpon>PruebasLab.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Prueba\PruebasLab.aspx.vb">
+      <DependentUpon>PruebasLab.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\checkList.aspx.designer.vb">
@@ -2657,21 +2689,35 @@
     </Compile>
     <Compile Include="Pages\Solicitud\checkList.aspx.vb">
       <DependentUpon>checkList.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Entregas\FrmSolicitudEntregas.aspx.designer.vb">
+      <DependentUpon>FrmSolicitudEntregas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Entregas\FrmSolicitudEntregas.aspx.vb">
+      <DependentUpon>FrmSolicitudEntregas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\HistorialSolicitudes.aspx.designer.vb">
       <DependentUpon>HistorialSolicitudes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Solicitud\HistorialSolicitudes.aspx.vb">
       <DependentUpon>HistorialSolicitudes.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\checkListProcedimientos.aspx.designer.vb">
+      <DependentUpon>checkListProcedimientos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\checkListProcedimientos.aspx.vb">
+      <DependentUpon>checkListProcedimientos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Pruebas\frmTermopares.aspx.designer.vb">
       <DependentUpon>frmTermopares.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Solicitud\Pruebas\frmTermopares.aspx.vb">
       <DependentUpon>frmTermopares.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucAdicionales.ascx.designer.vb">
       <DependentUpon>wucAdicionales.ascx</DependentUpon>
@@ -2720,42 +2766,70 @@
     </Compile>
     <Compile Include="Pages\Solicitud\Pruebas\Pruebas.aspx.vb">
       <DependentUpon>Pruebas.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PruEventos.aspx.designer.vb">
+      <DependentUpon>PruEventos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PruEventos.aspx.vb">
+      <DependentUpon>PruEventos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Reportes\Controles\check.ascx.designer.vb">
+      <DependentUpon>check.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Reportes\Controles\check.ascx.vb">
+      <DependentUpon>check.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Reportes\Controles\checkList.ascx.designer.vb">
+      <DependentUpon>checkList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Reportes\Controles\checkList.ascx.vb">
+      <DependentUpon>checkList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\Informe.aspx.designer.vb">
       <DependentUpon>Informe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\Informe.aspx.vb">
       <DependentUpon>Informe.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\LineaTiempo.aspx.designer.vb">
       <DependentUpon>LineaTiempo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\LineaTiempo.aspx.vb">
       <DependentUpon>LineaTiempo.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Reportes\RepGaleria.aspx.designer.vb">
+      <DependentUpon>RepGaleria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Reportes\RepGaleria.aspx.vb">
+      <DependentUpon>RepGaleria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\RepPruebas.aspx.designer.vb">
       <DependentUpon>RepPruebas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\RepPruebas.aspx.vb">
       <DependentUpon>RepPruebas.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\RepSolicitud.aspx.designer.vb">
       <DependentUpon>RepSolicitud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\RepSolicitud.aspx.vb">
       <DependentUpon>RepSolicitud.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\tabPanel.aspx.designer.vb">
       <DependentUpon>tabPanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\tabPanel.aspx.vb">
       <DependentUpon>tabPanel.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Solicitud.aspx.designer.vb">
       <DependentUpon>Solicitud.aspx</DependentUpon>

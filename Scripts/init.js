@@ -37,7 +37,7 @@ function metodo(mensaje,tipo) {
         theme: "classic"
     });
 
-
+    $('.multi-select').select2();
 
     $(".js-example-theme-multiple").select2({
         theme: "classic"

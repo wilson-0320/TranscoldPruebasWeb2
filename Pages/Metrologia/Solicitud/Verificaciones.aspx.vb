@@ -1,7 +1,5 @@
 ﻿Public Class Verificaciones
     Inherits MiPageN
-
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
 
@@ -33,8 +31,26 @@
         tbCodigo.Text = ""
         hfQuery.Value = "insertar"
         lbtnCancelar.Visible = False
-        lbtnGuardar.Enabled = True
+        lbtnGuardar.Enabled = Roles("Administrador,JefeLab,JefeRefri,SupMet,SupLab", 1)
 
+
+
+    End Sub
+
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador,JefeLab,JefeRefri,SupMet,SupLab", 2)
+        Dim eli1 As Boolean = Roles("Administrador,JefeLab,JefeRefri,SupMet,SupLab", 3)
+
+        For index As Integer = 0 To RepeaterTabla.Items.Count - 1 Step 1
+            'Modificar
+            CType(RepeaterTabla.Items(index).FindControl("LinkButton1"), LinkButton).Visible = eli1
+            'Eliminar
+            CType(RepeaterTabla.Items(index).FindControl("LinkButton2"), LinkButton).Visible = mod1
+
+            CType(RepeaterTabla.Items(index).FindControl("lbtnEliminarRepeat"), LinkButton).Visible = eli1
+            'Eliminar
+            CType(RepeaterTabla.Items(index).FindControl("lbtnModificarRepeat"), LinkButton).Visible = mod1
+        Next
 
 
     End Sub
@@ -70,15 +86,12 @@
             tbP9.Text = DTOrig.Rows(0).Item(12)
             tbComentarios.Text = DTOrig.Rows(0).Item(13).ToString.TrimEnd
             ddlTipoEntrada.SelectedValue = DTOrig.Rows(0).Item(14).ToString().TrimEnd
-            If (User.Identity.Name.Equals(DTOrig.Rows(0).Item(15).ToString.TrimEnd)) Then
-                lbtnGuardar.Enabled = True
+
+            lbtnGuardar.Enabled = Roles("Administrador,JefeLab,JefeRefri,SupLab,SupMet", 1)
+
+
+
             Else
-                lbtnGuardar.Enabled = False
-                ' llamarFuncionesJavascript("No podras realizar modificaciones, tu no has creado el registro.", "Error")
-            End If
-
-
-        Else
             RepeaterTabla.DataSource = DTOrig
             RepeaterTabla.DataBind()
             ' llamarFuncionesJavascript("", "")
@@ -170,15 +183,16 @@
             tbP9.Text = "01"
 
         End If
-
+        MuestraErrorToast("Campos inicializados", 0, True)
     End Sub
     Protected Sub btnGenerar_Click(sender As Object, e As EventArgs)
         cargarResumenVerificaciones("consultarfiltro", -1)
-
+        MuestraErrorToast("Campos inicializados", 0, True)
     End Sub
 
     Protected Sub lbtnCancelar_Click(sender As Object, e As EventArgs)
         inicializar()
+        MuestraErrorToast("Campos inicializados", 0, True)
     End Sub
 
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
@@ -190,24 +204,23 @@
          tbP1.Text > 0 And tbP2.Text > 0 And tbP3.Text > 0 And tbP4.Text > 0 And tbP5.Text > 0 And
          tbP6.Text > 0 And tbP7.Text > 0 And tbP8.Text > 0) Then
 
-                Dim msj As String = BLL.Validacion_BLL.insertar(hfQuery.Value, Int32.Parse(hfID.Value), "", ddlEstacionCamara.SelectedValue, ddlInstrumentos.SelectedValue, tbCodigo.Text,
-    tbComentarios.Text, User.Identity.Name, ddlTipoEntrada.SelectedValue, tbP1.Text, tbP2.Text, tbP3.Text, tbP4.Text, tbP5.Text, tbP6.Text, tbP7.Text, tbP8.Text, tbP9.Text)
-                If msj.StartsWith("Error:") Then
-                    'llamarFuncionesJavascript(msj, "Error")
+                MuestraErrorToast(BLL.Validacion_BLL.insertar(hfQuery.Value, Int32.Parse(hfID.Value), "", ddlEstacionCamara.SelectedValue, ddlInstrumentos.SelectedValue, tbCodigo.Text,
+    tbComentarios.Text, Session("Usuario").ToString, ddlTipoEntrada.SelectedValue, tbP1.Text, tbP2.Text, tbP3.Text, tbP4.Text, tbP5.Text, tbP6.Text, tbP7.Text, tbP8.Text, tbP9.Text), 1, True)
 
-                Else
-                    'llamarFuncionesJavascript("Se realizo el cambio", "Satisfactorio")
-                    tbCodigoFiltro.Text = tbCodigo.Text
-                    cargarResumenVerificaciones("consultarfiltro", -1)
-                    inicializar()
+                'llamarFuncionesJavascript("Se realizo el cambio", "Satisfactorio")
+                tbCodigoFiltro.Text = tbCodigo.Text
+                cargarResumenVerificaciones("consultarfiltro", -1)
+                inicializar()
 
 
-                End If
+
+            Else
+                MuestraErrorToast("Complete los campos", 1, True)
             End If
         Catch ex As Exception
-            ' llamarFuncionesJavascript("No completo todos los campos", "Error")
-
+            MuestraErrorToast(ex.Message, 1, True)
         End Try
+
     End Sub
 
     Protected Sub ddlTipoEntrada_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -232,24 +245,13 @@
             hfID.Value = e.CommandArgument
 
             cargarResumenVerificaciones("consultar_por_id", Int32.Parse(e.CommandArgument))
-
+            MuestraErrorToast("Realizado", 0, True)
 
         ElseIf e.CommandName = "eliminarVerificacion" Then
-
-
-            Dim msj As String = BLL.Validacion_BLL.eliminar(Int32.Parse(e.CommandArgument))
-            If msj.StartsWith("Error:") Then
-
-                'llamarFuncionesJavascript("" + msj + "", "Error")
-
-            Else
-                inicializar()
-                cargarResumenVerificaciones("consultarfiltro", -1)
-
-            End If
-
-
+            MuestraErrorToast(BLL.Validacion_BLL.eliminar(Int32.Parse(e.CommandArgument)), 1, True)
+            cargarResumenVerificaciones("consultarfiltro", -1)
         End If
-        ' llamarFuncionesJavascript("", "")
+
+
     End Sub
 End Class

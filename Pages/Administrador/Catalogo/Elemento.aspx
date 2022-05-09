@@ -84,6 +84,7 @@
                                     <th>Exactus</th>
                                     <th>Valores</th>
                                     <th>Estado</th>
+                                    <th></th>
                                     
 
                                 </thead>
@@ -107,6 +108,11 @@
                                                
                                                 <td><%# Eval("Valores")  %></td>
                                                 <td><input type="checkbox"  class="form-check" <%# if(Eval("Estado") = "1", "Checked", "")  %>/>  </td>
+                                               <td>      
+                                                    <asp:LinkButton ID="LinkButton2" runat="server"  CommandArgument='<%# Eval("ID")  %>' CommandName="Arriba" CssClass="fa fa-arrow-up" ></asp:LinkButton>
+                                                       &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <asp:LinkButton ID="LinkButton4" runat="server"  CommandArgument='<%# Eval("ID")  %>' CommandName="Abajo" CssClass="fa fa-arrow-down" ></asp:LinkButton>
+                                                      </td>
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>
