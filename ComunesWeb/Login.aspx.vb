@@ -8,13 +8,8 @@
     Protected Sub btnLogin_Click(sender As Object, e As EventArgs)
 
 
-        Dim msj As String = Login_BLL.login("login", tbUsuario.Text, AES_Encriptacion.AES_Encrypt("TranscoldPruebasWeb", tbPassword.Text), False)
+        Dim DTOrig As DataTable = Login_BLL.consulta("login", tbUsuario.Text, AES_Encriptacion.AES_Encrypt("TranscoldPruebasWeb", tbPassword.Text), "", False)
 
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Usuario_ABCD", New Object() {
-                                                                  New Object() {"@query", "login"},
-                                                                  New Object() {"@Usuario", tbUsuario.Text},
-                                                                  New Object() {"@Pass", AES_Encriptacion.AES_Encrypt("TranscoldPruebasWeb", tbPassword.Text)}
-                                                                  }, CommandType.StoredProcedure).Tables(0)
 
         Try
             Dim retorno As String = ""
@@ -42,7 +37,7 @@
                 MuestraErrorToast("No existen las credenciales de inicio de sesion", 3, True)
             End If
         Catch ex As Exception
-            MuestraErrorToast("Error", 3, True)
+            MuestraErrorToast("No existen las credenciales de inicio de sesion", 3, True)
         End Try
 
 

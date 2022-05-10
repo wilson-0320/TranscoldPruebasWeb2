@@ -14,13 +14,14 @@ Public Class Registrar
         If (tbPassword.Text.Equals(tbPassVerificar.Text) And tbPassword.Text.Length > 0) Then
             Dim pass As String = AES_Encriptacion.AES_Encrypt("TranscoldPruebasWeb", tbPassword.Text)
             ' Dim errdr As Int16 = Int16.Parse(pass)
-            Dim msj As String = Login_BLL.login("insertar", tbUsuario.Text, pass, True)
+            Login_BLL.crud("insertar", tbUsuario.Text, pass, "", True)
 
-            If msj.StartsWith("Error:") Then
-                MuestraErrorToast(msj, 4, True)
+            If Not Login_BLL.MsjError Is Nothing Then
+                MuestraErrorToast(Login_BLL.MsjError, 4, True)
             Else
                 MuestraErrorToast("Usuario creado", 1, True)
             End If
+
 
         End If
 
