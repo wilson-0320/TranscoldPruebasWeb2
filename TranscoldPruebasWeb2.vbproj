@@ -19,8 +19,8 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44305</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -2494,7 +2494,8 @@
     <Compile Include="Codigo\BLL\Equipos_BLL.vb" />
     <Compile Include="Codigo\BLL\Laboratorios_Calibracion_BLL.vb" />
     <Compile Include="Codigo\BLL\Lec_BLL.vb" />
-    <Compile Include="Codigo\BLL\Login_Roles_BLL.vb" />
+    <Compile Include="Codigo\BLL\Pag_Paginas_BLl.vb" />
+    <Compile Include="Codigo\BLL\Pag_Usuarios_Permisos_BLL.vb" />
     <Compile Include="Codigo\BLL\Login_BLL.vb" />
     <Compile Include="Codigo\BLL\Prueba_BLL.vb" />
     <Compile Include="Codigo\BLL\Prueba_Resultado_BLL.vb" />

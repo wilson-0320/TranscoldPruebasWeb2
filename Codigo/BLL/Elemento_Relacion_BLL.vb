@@ -6,7 +6,7 @@ Namespace BLL
     Public Class Elemento_Relacion_DAL
         Inherits Base_BLL
 
-        Public Shared Function insertar(ByVal elemento_id As Integer, ByVal elemento_rel_id As Integer, ByVal valor As String, ByVal valor_rel As String) As String
+        Public Shared Sub insertar(ByVal elemento_id As Integer, ByVal elemento_rel_id As Integer, ByVal valor As String, ByVal valor_rel As String)
             MsjError = "Realizado"
             If elemento_id = -1 Then
                 MsjError = "Debe escoger el elemento"
@@ -28,11 +28,11 @@ Namespace BLL
                     colocaError(ex)
                 End Try
             End If
-            Return MsjError
-        End Function
 
-        Public Shared Function modificar(ByVal id As Integer, ByVal valor As String, ByVal valor_rel As String) As String
-            MsjError = "Realizado"
+        End Sub
+
+        Public Shared Sub modificar(ByVal id As Integer, ByVal valor As String, ByVal valor_rel As String)
+            MsjError = Nothing
             Dim TrSql As New TransacSQL
             Try
                 TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Elemento_Relacion_ABCD", New Object() {
@@ -44,11 +44,11 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
 
-        Public Shared Function eliminar(ByVal id As Integer) As String
-            MsjError = "Realizado"
+        End Sub
+
+        Public Shared Sub eliminar(ByVal id As Integer)
+            MsjError = Nothing
             Dim TrSql As New TransacSQL
             Try
                 TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Elemento_Relacion_ABCD", New Object() {
@@ -58,8 +58,7 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
+        End Sub
 
         Public Shared Function consultar_por_id(ByVal id As Integer) As DataRow
             MsjError = Nothing

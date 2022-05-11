@@ -57,7 +57,13 @@
         Next
 
     End Sub
-
+    Private Sub msjNot()
+        If Not BLL.Elemento_Relacion_DAL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Elemento_Relacion_DAL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("", 0, True)
+        End If
+    End Sub
     Private Sub cargarddlElementos()
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Elemento_Consulta", New Object() {
                                                                  New Object() {"@Tipo", "ConTitulosCat"}
@@ -100,11 +106,11 @@
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
         If (validarCrud()) Then
             If (hfQuery.Value.Equals("Actualizar")) Then
-                MuestraErrorToast(BLL.Elemento_Relacion_DAL.modificar(hfID.Value, tbValor.Text, tbValorRelacionado.Text), 1, True)
+                BLL.Elemento_Relacion_DAL.modificar(hfID.Value, tbValor.Text, tbValorRelacionado.Text)
             Else
-                MuestraErrorToast(BLL.Elemento_Relacion_DAL.insertar(ddlElemento.SelectedValue, ddlElementoRelacionado.SelectedValue,
-         tbValor.Text, tbValorRelacionado.Text), 1, True)
+                BLL.Elemento_Relacion_DAL.insertar(ddlElemento.SelectedValue, ddlElementoRelacionado.SelectedValue, tbValor.Text, tbValorRelacionado.Text)
             End If
+            msjNot()
             cargarRepeaterRelaciones("consultar_por_filtro", 0)
             inicializar()
             hfIDElemento.Value = ddlElemento.SelectedValue
@@ -140,7 +146,8 @@
 
     Protected Sub repeaterElementos_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") Then
-            MuestraErrorToast(BLL.Elemento_Relacion_DAL.eliminar(Integer.Parse(e.CommandArgument)), 1, True)
+            BLL.Elemento_Relacion_DAL.eliminar(Integer.Parse(e.CommandArgument))
+            msjNot()
             cargarRepeaterRelaciones("consultar_por_filtro", 0)
             MuestraErrorToast("listo", 1, True)
         ElseIf (e.CommandName = "Edit") Then

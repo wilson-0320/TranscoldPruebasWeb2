@@ -23,7 +23,7 @@
                 Session("Usuario") = DTOrig.Rows(0).Item(1)
                 Dim roles As String = ""
                 For index As Int32 = 0 To DTOrig.Rows.Count - 1 Step 1
-                    roles = roles + DTOrig.Rows(index).Item(2) + "!" + DTOrig.Rows(index).Item(3).ToString + "!" + DTOrig.Rows(index).Item(4).ToString + "!" + DTOrig.Rows(index).Item(5).ToString + "$"
+                    roles = roles + DTOrig.Rows(index).Item(2).ToString.TrimEnd + "!" + DTOrig.Rows(index).Item(3).ToString + "!" + DTOrig.Rows(index).Item(4).ToString + "!" + DTOrig.Rows(index).Item(5).ToString + "$"
                 Next
                 Session("Roles") = roles
                 If (retorno.Length > 0) Then

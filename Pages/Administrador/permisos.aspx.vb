@@ -7,7 +7,7 @@
             iniciarControles()
             hf()
             cargarddlUsuario()
-            cargarddlCatalogo()
+            cargarddlRoles()
 
 
             Try
@@ -24,14 +24,35 @@
         hfquery.Value = "insertar"
     End Sub
 
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador", 2)
+        Dim eli1 As Boolean = Roles("Administrador", 3)
+
+        For index As Integer = 0 To repeaterPermisos.Items.Count - 1 Step 1
+            'Modificar
+            CType(repeaterPermisos.Items(index).FindControl("LinkButton1"), LinkButton).Visible = mod1
+            'Eliminar
+            CType(repeaterPermisos.Items(index).FindControl("LinkButton2"), LinkButton).Visible = eli1
+        Next
+
+
+    End Sub
+
     Private Sub iniciarControles()
         cbEditar.Checked = False
         cbEliminar.Checked = False
         cbEscritura.Checked = False
-        cbLectura.Checked = False
         lbtnGuardarPermisos.Enabled = Roles("Administrador", 1)
         lbntCancelar.Visible = False
 
+    End Sub
+
+    Private Sub msjNot()
+        If Not Pag_Usuarios_Permisos_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(Pag_Usuarios_Permisos_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("", 0, True)
+        End If
     End Sub
 
     Protected Sub ddlUsuario_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -49,22 +70,19 @@
 
     Private Sub cargarTablaElementos(ByVal tipo As Int32, ByVal IDUsuario As Int32, ByVal query As String, ByVal ID As Int32)
 
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Usuarios_Roles_ABCD", New Object() {
-                                                                    New Object() {"@query", query},
-                                                                     New Object() {"@ID_Usuario", IDUsuario},
-                                                                      New Object() {"@ID", ID}
-                                                                    }, CommandType.StoredProcedure).Tables(0)
+        Dim DTOrig As DataTable = Pag_Usuarios_Permisos_BLL.consultar(query, ID, IDUsuario, 0)
+
 
         Select Case tipo
             Case 1
                 repeaterPermisos.DataSource = DTOrig
                 repeaterPermisos.DataBind()
+                controlesRepeater()
             Case 2
                 ddlApartados.SelectedValue = DTOrig.Rows(0).Item(0)
                 cbEscritura.Checked = DTOrig.Rows(0).Item(2)
                 cbEditar.Checked = DTOrig.Rows(0).Item(3)
                 cbEliminar.Checked = DTOrig.Rows(0).Item(4)
-                cbLectura.Checked = DTOrig.Rows(0).Item(5)
 
 
         End Select
@@ -73,9 +91,8 @@
 
     Private Sub cargarddlUsuario()
 
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Usuario_ABCD", New Object() {
-                                                                    New Object() {"@query", "enlistar"}
-                                                                    }, CommandType.StoredProcedure).Tables(0)
+        Dim DTOrig As DataTable = Login_BLL.consulta("enlistar", "", "", "", False)
+
         ddlUsuario.DataSource = DTOrig
         ddlUsuario.DataValueField = "ID"
         ddlUsuario.DataTextField = "Usuario"
@@ -83,11 +100,10 @@
 
 
     End Sub
-    Private Sub cargarddlCatalogo()
+    Private Sub cargarddlRoles()
         '16 es la categoria de apartados
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Catalogo_Actualiza", New Object() {
-                                                                    New Object() {"@Tipo", "consultarCat"},
-                                                                    New Object() {"@Categoria_ID", 16}
+        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pag_Roles_ABCD", New Object() {
+                                                                    New Object() {"@query", "ddlListaRol"}
                                                                     }, CommandType.StoredProcedure).Tables(0)
         ddlApartados.DataSource = DTOrig
         ddlApartados.DataValueField = "ID"
@@ -100,26 +116,27 @@
     Protected Sub lbtnGuardarPermisos_Click(sender As Object, e As EventArgs)
 
 
-        MuestraErrorToast(Login_Roles_BLL.CrudRoles(hfquery.Value, Int32.Parse(hfID.Value), Int32.Parse(hfIDUsuario.Value), Int32.Parse(ddlApartados.SelectedValue), cbEscritura.Checked, cbEditar.Checked,
-                                  cbEliminar.Checked, cbLectura.Checked), 2, True)
+        Pag_Usuarios_Permisos_BLL.crudPermisos(hfquery.Value, Int32.Parse(hfID.Value), Int32.Parse(hfIDUsuario.Value), Int32.Parse(ddlApartados.SelectedValue), cbEscritura.Checked, cbEditar.Checked, cbEliminar.Checked)
         cargarTablaElementos(1, hfIDUsuario.Value, "consulta", hfID.Value)
+        msjNot()
+
 
     End Sub
 
     Protected Sub repeaterPermisos_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
-        If (e.CommandName = "Edit") And Roles("Administrador", 2) Then
+        If (e.CommandName = "Edit") Then
 
             cargarTablaElementos(2, hfIDUsuario.Value, "consulta_ID", Integer.Parse(e.CommandArgument))
             hfID.Value = e.CommandArgument
-            lbtnGuardarPermisos.Enabled = Roles("Administrador", 2)
             lbntCancelar.Visible = True
             hfquery.Value = "modificar"
             MuestraErrorToast("Listo", -1, True)
 
-        ElseIf e.CommandName = "Eli" And Roles("Administrador", 3) Then
+        ElseIf e.CommandName = "Eli" Then
 
-            MuestraErrorToast(Login_Roles_BLL.Eliminar(Integer.Parse(e.CommandArgument)), 2, True)
+            Pag_Usuarios_Permisos_BLL.crudPermisos("Eliminar", Integer.Parse(e.CommandArgument), 0, 0, False, False, False)
             cargarTablaElementos(1, Int32.Parse(hfIDUsuario.Value), "consulta", hfID.Value)
+            msjNot()
         End If
 
 

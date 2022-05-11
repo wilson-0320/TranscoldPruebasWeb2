@@ -37,7 +37,13 @@
         Next
 
     End Sub
-
+    Private Sub msjNot()
+        If Not BLL.Elemento_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Elemento_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("", 0, True)
+        End If
+    End Sub
     Private Sub cargarddlCategorias()
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Catalogo_Actualiza", New Object() {
                                                                  New Object() {"@Tipo", "consultarCat"},
@@ -93,6 +99,7 @@
 
             If CampoTexto.Text = "" Then
                 MuestraErrorToast("Debe especificar el valor del campo " + CampoTexto.ToolTip, 3, True)
+                CampoTexto.Focus()
                 Return False
             End If
 
@@ -104,7 +111,8 @@
 
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
         If (validarCrud() And ddlElemento.SelectedValue > 0) Then
-            MuestraErrorToast(BLL.Valor_Rel_BLL.insertar_modificar(hfQuery.Value, hfIDElemento.Value, tbValor.Text, tbValorRelacionado.Text, hfID.Value), 1, True)
+            BLL.Valor_Rel_BLL.insertar_modificar(hfQuery.Value, hfIDElemento.Value, tbValor.Text, tbValorRelacionado.Text, hfID.Value)
+            msjNot()
             cargarRepeatValores("consultar")
             inicializar()
             hfIDElemento.Value = ddlElemento.SelectedValue
@@ -144,7 +152,8 @@
 
     Protected Sub repeaterElementos_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") Then
-            MuestraErrorToast(BLL.Valor_Rel_BLL.eliminar(Integer.Parse(e.CommandArgument)), 1, True)
+            BLL.Valor_Rel_BLL.eliminar(Integer.Parse(e.CommandArgument))
+            msjNot()
             cargarRepeatValores("consultar")
         ElseIf (e.CommandName = "Edit") Then
 

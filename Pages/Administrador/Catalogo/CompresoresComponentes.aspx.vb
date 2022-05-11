@@ -37,6 +37,13 @@
         Next
 
     End Sub
+    Private Sub msjNot()
+        If Not BLL.Componentes_Compresor_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Componentes_Compresor_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("Cambio Realizado", 1, True)
+        End If
+    End Sub
     Private Function validarCrud() As Boolean
 
         For Each CampoTexto As TextBox In New TextBox() {
@@ -53,11 +60,13 @@
         Return True
 
     End Function
+
     Private Sub cargarRepeaterCompresorComponentes(ByVal quer As String, ByVal ID As Integer)
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Compresor_Componentes_ABCD", New Object() {
                                                                 New Object() {"@query", quer.TrimEnd},
                                                                 New Object() {"@ID", ID}
                                                                 }, CommandType.StoredProcedure).Tables(0)
+
 
         If (quer.TrimEnd.Equals("Consultar")) Then
             repeaterComponentes.DataSource = DTOrig
@@ -77,9 +86,11 @@
 
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
         If (validarCrud()) Then
-            MuestraErrorToast(BLL.Componentes_Compresor_BLL.insertar_modificar(hfQuery.Value, tbVoltaje.Text, tbCodigoComp.Text, tbCompresor.Text, tbCaballaje.Text, tbRelay.Text, tbProtectorTermico.Text, tbCapacitor.Text, hfID.Value), 1, True)
+            BLL.Componentes_Compresor_BLL.crudComponente(hfQuery.Value, tbVoltaje.Text, tbCodigoComp.Text, tbCompresor.Text, tbCaballaje.Text, tbRelay.Text, tbProtectorTermico.Text, tbCapacitor.Text, hfID.Value)
             inicializar()
+            msjNot()
             cargarRepeaterCompresorComponentes("Consultar", 0)
+
 
         End If
     End Sub
@@ -93,8 +104,9 @@
 
     Protected Sub repeaterComponentes_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") Then
+            BLL.Componentes_Compresor_BLL.crudComponente(hfQuery.Value, tbVoltaje.Text, tbCodigoComp.Text, tbCompresor.Text, tbCaballaje.Text, tbRelay.Text, tbProtectorTermico.Text, tbCapacitor.Text, (Integer.Parse(e.CommandArgument)))
 
-            MuestraErrorToast(BLL.Componentes_Compresor_BLL.eliminar((Integer.Parse(e.CommandArgument))), 1, True)
+            msjNot()
             cargarRepeaterCompresorComponentes("Consultar", Integer.Parse(hfID.Value))
 
         ElseIf (e.CommandName = "Edit") Then

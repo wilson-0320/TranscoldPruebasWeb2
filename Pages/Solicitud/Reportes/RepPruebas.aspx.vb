@@ -36,6 +36,14 @@
 
     End Sub
 
+    Private Sub msjNot()
+        If Not BLL.Prueba_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Prueba_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("Cambios realizado", 1, True)
+        End If
+    End Sub
+
     Private Sub inicializar()
         tbCodigo.Text = ""
         tbFecha.Text = ""
@@ -109,13 +117,14 @@
             }
 
             If CampoTexto.Text = "" Then
-                MuestraErrorToast("Debe especificar el valor del campo " + CampoTexto.ToolTip, 3, True)
+
                 CampoTexto.CssClass = "border-danger form-control"
                 CampoTexto.Focus()
                 Return False
+
             End If
 
-
+            CampoTexto.CssClass = "border-default form-control"
         Next
         Return True
 
@@ -189,7 +198,11 @@ ddlAntiguo.SelectedValue, tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAproba
             tbCarga.Text = DTorigin.Item(24) + ""
             tbComentarios.Text = DTorigin.Item(37) + ""
             ' tbFecha.Text = DTorigin.Item(38) + ""
-            ddlAprobado.SelectedValue = DTorigin.Item(39)
+            'ddlAprobado.SelectedValue =
+            If Not DTorigin.Item(39) Is Nothing Then
+                ddlAprobado.SelectedValue = "No"
+            End If
+
             If (DTorigin.Item(39).ToString.Length > 0) Then
                 If (Boolean.Parse(DTorigin.Item(39))) Then
                     ddlAprobado.SelectedValue = "Si"
@@ -215,10 +228,12 @@ ddlAntiguo.SelectedValue, tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAproba
     End Sub
     Protected Sub lbtnFiltrar_Click(sender As Object, e As EventArgs)
         cargarReportePruebas(0)
+        MuestraErrorToast("", 0, True)
     End Sub
 
     Protected Sub lbtnCancelar_Click(sender As Object, e As EventArgs)
         inicializar()
+        MuestraErrorToast("", 0, True)
     End Sub
 
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
@@ -231,29 +246,38 @@ ddlAntiguo.SelectedValue, tbMae.Text, tbMac.Text, tbRefrigerante.Text, ddlAproba
 
 
         If (validarCrud() And ddlCamara.SelectedValue.Length > 0 And ddlTipoPrueba.SelectedValue.Length > 0) Then
-            MuestraErrorToast(BLL.Prueba_BLL.Guardar(hfID.Value, tbPrueba.Text, tbWO.Text, tbSerie.Text, tbModelo.Text,
+            BLL.Prueba_BLL.Guardar(hfID.Value, tbPrueba.Text, tbWO.Text, tbSerie.Text, tbModelo.Text,
 tbCompresor.Text, "Archivo MPLV a la fecha", ddlTipoPrueba.SelectedValue, tbEvaporador.Text, tbCondensador.Text,
 tbTermostato.Text, tbVoltaje.Text, tbRelay.Text, tbTipoEv.Text, tbTipoCon.Text,
 tbCapilar.Text, tbPrueba.Text, ddlCamara.SelectedValue, tbCapacitor.Text, tbProtector.Text,
-tbMae.Text, tbMac.Text, tbRefrigerante.Text, aprobacion, tbComentarios.Text, tbCodigo.Text, tbFecha.Text, ""), 1, True)
+tbMae.Text, tbMac.Text, tbRefrigerante.Text, aprobacion, tbComentarios.Text, tbCodigo.Text, tbFecha.Text, "")
+
             Dim texto As String = tbCodigo.Text
             inicializar()
             tbCodigo.Text = texto
             cargarReportePruebas(0)
+            msjNot()
+        Else
+            MuestraErrorToast("Debe especificar el valor del campo,camara y el tipo de prueba ", 3, True)
+            '  MuestraErrorToast("", 1, True)
         End If
         'Session("Usuario")
     End Sub
 
     Protected Sub repeaterPruebas_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") Then
-            MuestraErrorToast(BLL.Prueba_BLL.Eliminar(Integer.Parse(e.CommandArgument)), 1, True)
+            BLL.Prueba_BLL.Eliminar(Integer.Parse(e.CommandArgument))
+
+            msjNot()
             cargarReportePruebas(0)
         ElseIf (e.CommandName = "Edit") Then
             lbtnCancelar.Visible = True
             lbtnGuardar.Enabled = True
             cargarReportePruebas(Integer.Parse(e.CommandArgument))
+            MuestraErrorToast("", 0, True)
         ElseIf (e.CommandName = "Reporte") Then
             cargarReporteDetalles(Integer.Parse(e.CommandArgument))
+            MuestraErrorToast("", 0, True)
         End If
     End Sub
 
@@ -324,7 +348,7 @@ tbMae.Text, tbMac.Text, tbRefrigerante.Text, aprobacion, tbComentarios.Text, tbC
             End Try
         End If
 
-
+        MuestraErrorToast("", 0, True)
     End Sub
 
 End Class

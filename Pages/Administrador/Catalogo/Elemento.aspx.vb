@@ -39,6 +39,13 @@
 
 
     End Sub
+    Private Sub msjNot()
+        If Not BLL.Elemento_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Elemento_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("", 0, True)
+        End If
+    End Sub
 
     Private Function validarCrud() As Boolean
 
@@ -91,6 +98,7 @@
             cbUnico.Checked = DTOrig.Rows(0).Item(5)
             tbValores.Text = DTOrig.Rows(0).Item(6).ToString.TrimEnd
             cbExactus.Checked = DTOrig.Rows(0).Item(7)
+            tbValores.Focus()
         End If
 
 
@@ -99,10 +107,11 @@
 
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
         If (validarCrud()) Then
-            MuestraErrorToast(BLL.Elemento_BLL.insertar_actualizar(hfQuery.Value, hfID.Value, hfIDElementos.Value, tbDescripcion.Text, cbPrecio.Checked, cbCantidad.Checked, cbUnico.Checked, tbValores.Text, cbExactus.Checked, ddlTipo.SelectedValue), 1, True)
+            BLL.Elemento_BLL.insertar_actualizar(hfQuery.Value, hfID.Value, hfIDElementos.Value, tbDescripcion.Text, cbPrecio.Checked, cbCantidad.Checked, cbUnico.Checked, tbValores.Text, cbExactus.Checked, ddlTipo.SelectedValue)
             cargarRepeatElementos("Consultar", 0, hfIDElementos.Value)
             inicializar()
             hfIDElementos.Value = ddlCatalogo.SelectedValue
+            msjNot()
         End If
     End Sub
     Protected Sub lbtnCancelar_Click(sender As Object, e As EventArgs)
@@ -124,8 +133,8 @@
         If (e.CommandName = "Eli") Then
 
 
-            MuestraErrorToast(BLL.Elemento_BLL.eliminar(Integer.Parse(e.CommandArgument)), 2, True)
-
+            BLL.Elemento_BLL.eliminar(Integer.Parse(e.CommandArgument))
+            msjNot()
             BLL.Elemento_BLL.insertar_actualizar("Reordenar", Integer.Parse(e.CommandArgument), ddlCatalogo.SelectedValue, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
             cargarRepeatElementos("Consultar", Integer.Parse(hfID.Value), Integer.Parse(hfIDElementos.Value))
 
@@ -139,7 +148,7 @@
         ElseIf (e.CommandName = ("Arriba") Or e.CommandName = "Abajo") Then
             BLL.Elemento_BLL.insertar_actualizar(e.CommandName, Integer.Parse(e.CommandArgument), ddlCatalogo.SelectedValue, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
             cargarRepeatElementos("Consultar", Integer.Parse(hfID.Value), Integer.Parse(hfIDElementos.Value))
-            MuestraErrorToast("Listo", 1, True)
+            msjNot()
         End If
 
     End Sub

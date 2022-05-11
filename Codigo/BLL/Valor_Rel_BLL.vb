@@ -6,8 +6,8 @@ Namespace BLL
     Public Class Valor_Rel_BLL
         Inherits Base_BLL
 
-        Public Shared Function insertar_modificar(ByVal querys As String, ByVal elemento_id As Integer, ByVal valor As String, ByVal valor_rel As String, ByVal ID As Integer) As String
-            MsjError = "Realizado"
+        Public Shared Sub insertar_modificar(ByVal querys As String, ByVal elemento_id As Integer, ByVal valor As String, ByVal valor_rel As String, ByVal ID As Integer)
+            MsjError = Nothing
             Try
                 Dim TrSql As New TransacSQL
                 TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Valor_Relacionado_ABCD", New Object() {
@@ -20,11 +20,10 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
+        End Sub
 
-        Public Shared Function modificar(ByVal id As Integer, ByVal valor As String, ByVal valor_rel As String) As String
-            MsjError = "Realizado"
+        Public Shared Sub modificar(ByVal id As Integer, ByVal valor As String, ByVal valor_rel As String)
+            MsjError = Nothing
             Try
                 Dim TrSql As New TransacSQL
                 TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Valor_Relacionado_ABCD", New Object() {
@@ -36,11 +35,11 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
 
-        Public Shared Function eliminar(ByVal id As Integer) As String
-            MsjError = "Realizado"
+        End Sub
+
+        Public Shared Sub eliminar(ByVal id As Integer)
+            MsjError = Nothing
             Try
                 Dim TrSql As New TransacSQL
                 TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Valor_Relacionado_ABCD", New Object() {
@@ -50,8 +49,8 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
+
+        End Sub
 
         Public Shared Function consultar_categorias() As DataTable
             MsjError = Nothing

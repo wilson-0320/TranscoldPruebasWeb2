@@ -96,7 +96,7 @@
                 Dim Path As String = "E:\\EstaticosWeb\\TranscoldPruebasWeb\\Catalogo\\"
                 fuArchivo.SaveAs(Path + "\\" + UltID + ext)
             Catch ex As Exception
-                'Alerta(ex.Message)
+                MuestraErrorToast(ex.Message, 3, True)
             End Try
         End If
         cargarRepeatCatalogoCategorias(ddlCategoria.SelectedValue, "Con_ID_Cat2")
@@ -125,7 +125,7 @@
             BLL.Catalogo_Categoria_BLL.eliminar(Int32.Parse(e.CommandArgument))
             cargarRepeatCatalogoCategorias(hfIDCategoria.Value, "Con_ID_Cat2")
 
-            MuestraErrorToast("Si el elemento no fue eliminado, el registro tiene registros vinculados", 2, True)
+            '  MuestraErrorToast("Si el elemento no fue eliminado, el registro tiene registros vinculados", 2, True)
         ElseIf (e.CommandName = "Edit") Then
             lbtnCancelar.Visible = True
             lbtnGuardar.Enabled = True

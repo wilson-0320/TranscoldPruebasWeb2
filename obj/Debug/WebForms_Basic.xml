@@ -1144,15 +1144,6 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:TranscoldPruebasWeb2.permisos._cbLectura">
-<summary>
-Control cbLectura.
-</summary>
-<remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-</remarks>
-</member>
 <member name="F:TranscoldPruebasWeb2.permisos._lbtnGuardarPermisos">
 <summary>
 Control lbtnGuardarPermisos.

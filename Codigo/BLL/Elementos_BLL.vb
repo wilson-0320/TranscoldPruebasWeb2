@@ -6,10 +6,10 @@ Namespace BLL
     Public Class Elemento_BLL
         Inherits Base_BLL
 
-        Public Shared Function insertar_actualizar(ByVal querys As String, ByVal ID As Integer, ByVal idCategoria As Integer, ByVal Descripcion As String,
+        Public Shared Sub insertar_actualizar(ByVal querys As String, ByVal ID As Integer, ByVal idCategoria As Integer, ByVal Descripcion As String,
                                    ByVal Precio As Boolean, ByVal Cantidad As Boolean, ByVal Unico As Boolean,
                                         ByVal Valores As String, ByVal Exactus As Boolean, ByVal Tipo As String)
-            MsjError = "Cambios realizado"
+            MsjError = Nothing
             Dim TrSql As New TransacSQL
             Try
                 TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Elemento_Actualiza", New Object() {
@@ -30,15 +30,15 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
+
+        End Sub
 
 
 
 
 
-        Public Shared Function eliminar(ByVal id As Integer) As String
-            MsjError = "Cambios realizado"
+        Public Shared Sub eliminar(ByVal id As Integer)
+            MsjError = Nothing
             Try
                 Dim TrSql As New TransacSQL
                 TrSql.EjecutarActualizacion("TranscoldPruebas", "Pru_Elemento_Actualiza", New Object() {
@@ -50,9 +50,9 @@ Namespace BLL
                 colocaError(ex)
             End Try
 
-            Return MsjError
 
-        End Function
+
+        End Sub
 
     End Class
 

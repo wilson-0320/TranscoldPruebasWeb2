@@ -126,3 +126,17 @@ D:\wuzpa\visual studio\TranscoldPruebasWeb2\bin\TransPruebCons.XmlSerializers.dl
 D:\wuzpa\visual studio\TranscoldPruebasWeb2\bin\DevExpress.Data.v18.1.dll
 D:\wuzpa\visual studio\TranscoldPruebasWeb2\bin\PanelManager.dll
 D:\wuzpa\visual studio\TranscoldPruebasWeb2\bin\DevExpress.Data.v18.1.xml
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\AjaxControlToolkit.dll
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\DevExpress.Data.v18.1.dll
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\MessagingToolkit.QRCode.dll
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\PanelManager.dll
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\QRCoder.dll
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\TransPruebCons.dll
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\Ionic.Zip.dll
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\DevExpress.Data.v18.1.xml
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\DLL2.pdb
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\TransPruebCons.pdb
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\TransPruebCons.xml
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\TransPruebCons.dll.config
+C:\Users\user\source\repos\TranscoldPruebasWeb2\bin\TransPruebCons.XmlSerializers.dll
+C:\Users\user\source\repos\TranscoldPruebasWeb2\obj\Debug\TranscoldPruebasWeb2.TransWebService.resources

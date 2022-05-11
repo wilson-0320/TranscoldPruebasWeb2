@@ -19,9 +19,9 @@ Public Class menu
 
                 If (repeatMenu(Session("Roles").ToString)) Then
                 Else
-                    '   Session.Abandon()
-                    '  Dim v1 As String = Request.Url.AbsoluteUri
-                    '    Response.Redirect("~/ComunesWeb/Login.aspx?responder=" + v1)
+                    Session.Abandon()
+                    ' Dim v1 As String = Request.Url.AbsoluteUri
+                    ' Response.Redirect("~/ComunesWeb/Login.aspx?responder=" + v1)
 
                 End If
 
@@ -50,15 +50,8 @@ Public Class menu
         Next
         Dim v As String = Request.Url.AbsoluteUri
 
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Paginas_ABCD", New Object() {
-                                                                    New Object() {"@query", "consultar"},
-                                                                    New Object() {"@op1", PermisosDetalle(0)},
-                                                                     New Object() {"@op2", PermisosDetalle(1)},
-                                                                      New Object() {"@op3", PermisosDetalle(2)},
-                                                                       New Object() {"@op4", PermisosDetalle(3)},
-                                                                        New Object() {"@op5", PermisosDetalle(4)},
-                                                                        New Object() {"@op6", PermisosDetalle(5)}
-                                                                    }, CommandType.StoredProcedure).Tables(0)
+        Dim DTOrig As DataTable = Pag_Paginas_BLL.consulta("consultar", 0, Integer.Parse(Session("ID").ToString), "", "", 0)
+
 
         repeaterMenu.DataSource = DTOrig
         repeaterMenu.DataBind()
@@ -75,8 +68,8 @@ Public Class menu
     End Function
 
     Protected Sub lbtnSalir_Click(sender As Object, e As EventArgs)
-        ' Session.Abandon()
+        Session.Abandon()
 
-        ' Response.Redirect("~/ComunesWeb/Login.aspx")
+        Response.Redirect("~/ComunesWeb/Login.aspx")
     End Sub
 End Class
