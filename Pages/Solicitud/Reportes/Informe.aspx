@@ -518,21 +518,21 @@
 
                                                 <ItemTemplate>
 
-                                                    <!-- timeline time label -->
-                                                    <div class="time-label ">
+                                                  <!-- timeline time label -->
+                                                    <div class="time-label " style="display:none;">
                                                     </div>
                                                     <!-- /.timeline-label -->
                                                     <!-- timeline item -->
-                                                    <div>
+                                                    <div runat="server"  Style='<%# If(Eval("Observaciones_Revision") Is DBNull.Value, "display:none;", "display:Block;")%>'>
 
-                                                        <i class="  <%#If(Eval("Estado").Equals("Aprobado"), " fa fa-check bg-success", "fas  fa-exclamation-triangle  bg-danger")  %>"></i>
+                                                        <i class="  <%#If(Eval("Estado").Equals("Aprobado") Or Eval("Estado").Equals("Revisada"), " fa fa-check bg-success", "fas  fa-exclamation-triangle  bg-danger")  %>"></i>
                                                         <div class="timeline-item">
 
                                                             <span class="time"><i class="fas fa-clock"></i><%# Eval("Fecha_Enviado", "{0:dd/MM/yyyy hh:mm tt}")%> <%#  Eval("Observaciones_Revision") %></span>
                                                             <h3 class="timeline-header"><%# Eval("cat") %></h3>
                                                             <div class="timeline-body">
-                                                                <div class="row">
-                                                                    <div class="col-sm-10">
+                                                            
+                                                                    <div class="col-sm-12">
 
                                                                         <%#  Eval("elem")  %>
 
@@ -548,59 +548,26 @@
 
                                                                                     </div>
                                                                                 </div>
+                                                                                <a href='https://www.fogelonline.com<%# Eval("Arch")%>' target="_blank">  
+                                                                                    <%# Eval("ArchDescr")%>                
+
+                                                                                </a>
 
 
                                                                             </td>
 
                                                                         </tr>
-                                                                        <tr runat="server" id="trAbre" visible='<%# Not Eval("elem") Is DBNull.Value AndAlso (Left(Eval("elem"), 6) = "INICIO" Or Left(Eval("elem"), 3) = "FIN")%>'>
+                                                                        <tr runat="server"   id="trAbre" visible='<%# Not Eval("elem") Is DBNull.Value AndAlso (Left(Eval("elem"), 6) = "INICIO" Or Left(Eval("elem"), 3) = "FIN")%>'>
                                                                             <td style="border-left-style: solid;"></td>
-                                                                            <td colspan="3" style="color: #00DF00" class="LinkGuardaReporte"><%# Eval("Folder")%></td>
+                                                                            <td colspan="3" style="color: #00DF00" onclick="abrirReportes();" class="LinkGuardaReporte"><button class="btn btn-sm text-primary " onclick="abrirReportes('<%# Eval("Folder")%>');"  ><%# Eval("Folder")%></button></td>
+                                                                            
                                                                         </tr>
                                                                     </div>
-                                                                    <div class="col-sm-2">
-
-                                                                        <!--
-                                                                       
-                                                                        -->
-                                                                        <tr runat="server" id="tr3" visible='<%# cbPresentacion.Checked %>'>
-                                                                            <td>
-                                                                                <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="editarHistoricos" CssClass=" fa fa-2x fa-edit btn btn-warning" runat="server"></asp:LinkButton>
-
-
-                                                                                &nbsp;&nbsp;
-                                                    
-                                                          <tr runat="server" id="tr1" visible='<%# Eval("Estado") = "Aprobado"%>'>
-                                                              <td>
-                                                                  <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="rechazarHistorico" CssClass=" fa fa-2x fa-exclamation-triangle" runat="server"></asp:LinkButton>
-
-                                                              </td>
-                                                          </tr>
-                                                                                <tr runat="server" id="tr2" visible='<%#  Eval("Estado") = "Ingresado"%>'>
-                                                                                    <td>
-                                                                                        <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="aprobarHistorico" CssClass=" fa fa-2x fa-check " runat="server"></asp:LinkButton>
-
-
-                                                                                    </td>
-                                                                                </tr>
-
-                                                                            </td>
-                                                                        </tr>
-
-                                                                    </div>
-
-
-
-
-
-
-                                                                </div>
+                                                                   
 
                                                             </div>
                                                         </div>
                                                     </div>
-
-
 
 
                                                 </ItemTemplate>

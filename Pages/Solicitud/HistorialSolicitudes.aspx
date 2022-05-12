@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                    <div class="card-header bg-gradient-dark">
+                    <div class="card-header bg-gradient-dark " style="display:none;">
                         <div class="row">
                             <div class="col-sm-2">
                                 <small>Codigo</small>

@@ -8,7 +8,7 @@
                 tbCodigo.Text = Request.QueryString("Codigo")
 
 
-                cargarReportRepeatet("LineaTiempoIntegradoPruebas")
+                cargarReportRepeatet("LineaTiempoIntegrado2")
 
 
             End If
@@ -38,7 +38,7 @@
                                                                     New Object() {"@minutos", 1440},
                                                                     New Object() {"@TiposRegistro", obtTiposReg()}
                                                                     }, CommandType.StoredProcedure).Tables(0)
-        If (cualRep.Equals("LineaTiempoIntegradoPruebas")) Then
+        If (cualRep.Equals("LineaTiempoIntegrado2")) Then
             repeaterReporte.DataSource = DTOrig
             repeaterReporte.DataBind()
         Else
@@ -61,7 +61,7 @@
         If (tbCodigo.Text().Length > 0) Then
 
 
-            cargarReportRepeatet("LineaTiempoIntegradoPruebas")
+            cargarReportRepeatet("LineaTiempoIntegrado2")
 
         Else
             MuestraErrorToast("", 0, True)

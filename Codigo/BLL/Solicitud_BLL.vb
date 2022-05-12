@@ -30,8 +30,8 @@ Namespace BLL
             End Try
         End Function
 
-        Public Shared Function actu_estado(ByVal Codigo As String, ByVal Estado As String, ByVal Usuario As String) As String
-            MsjError = "Realizado"
+        Public Shared Sub actu_estado(ByVal Codigo As String, ByVal Estado As String, ByVal Usuario As String)
+            MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
                 trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_ABCD", New Object() {
@@ -43,11 +43,11 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
 
-        Public Shared Function guarda_fecha_finaliz(ByVal Codigo As String, ByVal Fecha As Object, ByVal Usuario As String) As String
-            MsjError = "Realizado"
+        End Sub
+
+        Public Shared Sub guarda_fecha_finaliz(ByVal Codigo As String, ByVal Fecha As Object, ByVal Usuario As String)
+            MsjError = Nothing
             Try
                 Try
                     Fecha = DateTime.ParseExact(Fecha, "dd/MM/yyyy", Nothing)
@@ -64,18 +64,18 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-        End Function
+        End Sub
 
 
-        Public Shared Function crudSolicitud(ByVal Estado As String, ByVal Codigo As String, ByVal Usuario As String,
+        Public Shared Sub crudSolicitud(ByVal Estado As String, ByVal Codigo As String, ByVal Usuario As String,
                                         ByVal LiderProyID As Integer, ByVal Modelo As String, ByVal EncargadoEquipo As String,
                                              ByVal Objetivos As String, ByVal Cantidad As String, ByVal refProv As String,
                                              ByVal refFogel As String, ByVal NomTecnico As String, ByVal Serie As String,
                                              ByVal WO As String, ByVal FechaEntrega As String, ByVal TipoCargaID As String,
                                              ByVal DatosTermostato As String, ByVal DisposionFinal As String,
                                              ByVal ObservacionesPrueba As String, ByVal ObservacionesPruebas As String,
-                                             ByVal ObservacionesRevision As String, ByVal Locaciones As String) As String
-            MsjError = "Realizado"
+                                             ByVal ObservacionesRevision As String, ByVal Locaciones As String)
+            MsjError = Nothing
             Dim TrSql As New TransacSQL
             Try
 
@@ -109,12 +109,12 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
+
+        End Sub
 
 
-        Public Shared Function Eliminar(ByVal Codigo As String, ByVal Estado As String) As String
-            MsjError = "Realizado"
+        Public Shared Sub Eliminar(ByVal Codigo As String, ByVal Estado As String)
+            MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
 
@@ -126,8 +126,8 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
+
+        End Sub
 
 
     End Class

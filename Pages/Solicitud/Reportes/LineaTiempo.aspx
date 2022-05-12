@@ -1,5 +1,24 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/ComunesWeb/menu.Master" CodeBehind="LineaTiempo.aspx.vb" Inherits="TranscoldPruebasWeb2.LineaTiempo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main2" runat="server">
+        <style type="text/css">
+
+        span.LinkGuardaReporte:hover {
+            text-decoration:none;
+            text-shadow: 1px 1px 1px #555;
+        }
+    </style>
+        <script type="text/javascript">
+        $(document).ready(function() {
+           
+
+            //$("span.LinkGuardaReporte").click(function () {
+           
+            //$(".PanelContenedorReportViewer").find("iframe").contents().find('span[class*="ConAlerta|"]').each(function (i, e) {
+            //    var comentario = $(this).attr('class').split('ConAlerta|')[1].split('|')[0]
+            //    $(this).attr('title', comentario);
+            //});
+        });
+        </script>
       <div class="content-wrapper">
         <section class="content">
          
@@ -30,7 +49,7 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <small>Computadora</small>
-                                        <asp:TextBox ID="tbComputadora" placeholder="Computadora" runat="server" CssClass="NombreCompu form-control "></asp:TextBox>
+                                        <asp:TextBox ID="tbComputadora"  placeholder="Computadora" runat="server" CssClass="NombreCompu" name="NombreCompu"></asp:TextBox>
 
                                     </div>
                                     <div class="col-sm-5">
@@ -72,13 +91,13 @@
                                                 <ItemTemplate>
 
                                                     <!-- timeline time label -->
-                                                    <div class="time-label ">
+                                                    <div class="time-label " style="display:none;">
                                                     </div>
                                                     <!-- /.timeline-label -->
                                                     <!-- timeline item -->
-                                                    <div>
+                                                    <div runat="server"  Style='<%# If(Eval("Observaciones_Revision") Is DBNull.Value, "display:none;", "display:Block;")%>'>
 
-                                                        <i class="  <%#If(Eval("Estado").Equals("Aprobado"), " fa fa-check bg-success", "fas  fa-exclamation-triangle  bg-danger")  %>"></i>
+                                                        <i class="  <%#If(Eval("Estado").Equals("Aprobado") Or Eval("Estado").Equals("Revisada"), " fa fa-check bg-success", "fas  fa-exclamation-triangle  bg-danger")  %>"></i>
                                                         <div class="timeline-item">
 
                                                             <span class="time"><i class="fas fa-clock"></i><%# Eval("Fecha_Enviado", "{0:dd/MM/yyyy hh:mm tt}")%> <%#  Eval("Observaciones_Revision") %></span>
@@ -101,14 +120,19 @@
 
                                                                                     </div>
                                                                                 </div>
+                                                                                <a href='https://www.fogelonline.com<%# Eval("Arch")%>' target="_blank">  
+                                                                                    <%# Eval("ArchDescr")%>                
+
+                                                                                </a>
 
 
                                                                             </td>
 
                                                                         </tr>
-                                                                        <tr runat="server" id="trAbre" visible='<%# Not Eval("elem") Is DBNull.Value AndAlso (Left(Eval("elem"), 6) = "INICIO" Or Left(Eval("elem"), 3) = "FIN")%>'>
+                                                                        <tr runat="server"   id="trAbre" visible='<%# Not Eval("elem") Is DBNull.Value AndAlso (Left(Eval("elem"), 6) = "INICIO" Or Left(Eval("elem"), 3) = "FIN")%>'>
                                                                             <td style="border-left-style: solid;"></td>
-                                                                            <td colspan="3" style="color: #00DF00" class="LinkGuardaReporte"><%# Eval("Folder")%></td>
+                                                                            <td colspan="3" style="color: #00DF00" onclick="abrirReportes();" class="LinkGuardaReporte"><button class="btn btn-sm text-primary " onclick="abrirReportes('<%# Eval("Folder")%>');"  ><%# Eval("Folder")%></button></td>
+                                                                            
                                                                         </tr>
                                                                     </div>
                                                                    

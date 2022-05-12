@@ -86,7 +86,7 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="cols-sm-2 btn btn-default">
                             <small>CheckList</small><br />
-                             <asp:ImageButton ID="ibtnCheck"  data-target="#modal-default" runat="server" OnClick="ibtnCheck_Click" ImageUrl="~/Content/Estaticos/02.jpg" ToolTip="Visor de pruebas" />
+                            <asp:ImageButton ID="ibtnCheck" data-target="#modal-default" runat="server" OnClick="ibtnCheck_Click" ImageUrl="~/Content/Estaticos/02.jpg" ToolTip="Visor de pruebas" />
 
 
                         </div>
@@ -455,7 +455,7 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                                 </div>
 
 
-                               
+
 
 
                             </ContentTemplate>
@@ -465,96 +465,96 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                             </Triggers>
                         </asp:UpdatePanel>
 
-                         <div class="modal fade" id="modalCheck" name="modal">
-                                    <div class="modal-dialog modal-xl">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">CheckList</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <asp:UpdatePanel ID="upCheck" runat="server" UpdateMode="Conditional">
-                                                    <ContentTemplate>
-                                                        <asp:HiddenField ID="hfIDEnsayoPrueba" runat="server" />
-                                                        <asp:HiddenField ID="hfTipoInicioFin" runat="server" />
-                                                        <asp:HiddenField ID="hfNum" runat="server" />
-                                                        <asp:HiddenField ID="hfIDRequerimiento" runat="server" />
-                                                        <asp:HiddenField ID="hfIDCheck" runat="server" />
-                                                        <asp:HiddenField ID="hfQueryCheck" runat="server" />
-                                                        <div id="0">
-                                                            <div class="row">
-
-
-                                                                <div class="col-sm-7">
-
-                                                                    <small>Ensayos</small>
-                                                                    <asp:DropDownList ID="ddlPruebasEventos"  CssClass="js-example-theme-single form-control " runat="server"></asp:DropDownList>
-
-                                                                </div>
-                                                                <div class="col-sm-3">
-                                                                    <small>Tipo</small>
-                                                                    <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="true"  CssClass="js-example-theme-single form-control" OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged">
-                                                                        <asp:ListItem>INICIO</asp:ListItem>
-                                                                        <asp:ListItem>FIN</asp:ListItem>
-                                                                    </asp:DropDownList>
-                                                                </div>
-                                                                 <div class="col-sm-2">
-
-                                                                     <asp:LinkButton ID="lbtnProcesar" OnClick="lbtnProcesar_Click" runat="server" CssClass="fa fa-2x fa-running"></asp:LinkButton>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <hr />
-                                                        <div class="row">
-                                                            <div class="col-sm-10">
-                                                                <asp:Label ID="lblRequisito" CssClass="text-sm text-info" runat="server" Text=""></asp:Label>
-                                                            </div>
-                                                            <div class="col-sm-2">
-                                                                <asp:Label ID="lblEstadoCheck" CssClass="text-sm text-success" runat="server" Text=""></asp:Label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-12">
-
-                                                                <asp:DropDownList ID="ddlOpciones" CssClass="js-example-theme-single form-control"  runat="server"></asp:DropDownList>
-                                                                <asp:TextBox ID="tbOpciones" CssClass="form-control" runat="server"></asp:TextBox>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="modal-footer ">
-                                                           <div class="justify-content-between">
-
-                                                            
-                                                            <asp:LinkButton ID="lbtnAnterior" OnClick="lbtnAnterior_Click" CssClass="fa fa-2x  fa-arrow-alt-circle-left"  runat="server"></asp:LinkButton>
-                                                        </div>
-                                                            <div class="justify-content-md-end">
-
-                                                            
-                                                            <asp:LinkButton ID="lbtnSiguiente" OnClick="lbtnSiguiente_Click" CssClass="fa fa-2x  fa-arrow-alt-circle-right"  runat="server"></asp:LinkButton>
-                                                        </div>
-                                                            
-                                                        </div>
-
-
-                                                    </ContentTemplate>
-
-                                                    <Triggers>
-                                                        <asp:AsyncPostBackTrigger ControlID="ibtnCheck" EventName="Click" />
-                                                        <asp:AsyncPostBackTrigger ControlID="lbtnProcesar" EventName="Click" />
-                                                        <asp:AsyncPostBackTrigger ControlID="lbtnSiguiente" EventName="Click" />
-                                                        <asp:AsyncPostBackTrigger ControlID="ddlTipo" EventName="SelectedIndexChanged" />
-                                                        <asp:AsyncPostBackTrigger ControlID="lbtnAnterior" EventName="Click" />
-                                                    </Triggers>
-
-                                                </asp:UpdatePanel>
-                                            </div>
-
-                                        </div>
+                        <div class="modal fade" id="modalCheck" name="modal">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">CheckList</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
+                                    <div class="modal-body">
+                                        <asp:UpdatePanel ID="upCheck" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <asp:HiddenField ID="hfIDEnsayoPrueba" runat="server" />
+                                                <asp:HiddenField ID="hfTipoInicioFin" runat="server" />
+                                                <asp:HiddenField ID="hfNum" runat="server" />
+                                                <asp:HiddenField ID="hfIDRequerimiento" runat="server" />
+                                                <asp:HiddenField ID="hfIDCheck" runat="server" />
+                                                <asp:HiddenField ID="hfQueryCheck" runat="server" />
+                                                <div id="0">
+                                                    <div class="row">
+
+
+                                                        <div class="col-sm-7">
+
+                                                            <small>Ensayos</small>
+                                                            <asp:DropDownList ID="ddlPruebasEventos" CssClass="js-example-theme-single form-control " runat="server"></asp:DropDownList>
+
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <small>Tipo</small>
+                                                            <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="true" CssClass="js-example-theme-single form-control" OnSelectedIndexChanged="ddlTipo_SelectedIndexChanged">
+                                                                <asp:ListItem>INICIO</asp:ListItem>
+                                                                <asp:ListItem>FIN</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </div>
+                                                        <div class="col-sm-2">
+
+                                                            <asp:LinkButton ID="lbtnProcesar" OnClick="lbtnProcesar_Click" runat="server" CssClass="fa fa-2x fa-running"></asp:LinkButton>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        <asp:Label ID="lblRequisito" CssClass="text-sm text-info" runat="server" Text=""></asp:Label>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <asp:Label ID="lblEstadoCheck" CssClass="text-sm text-success" runat="server" Text=""></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+
+                                                        <asp:DropDownList ID="ddlOpciones" CssClass="js-example-theme-single form-control" runat="server"></asp:DropDownList>
+                                                        <asp:TextBox ID="tbOpciones" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer ">
+                                                    <div class="justify-content-between">
+
+
+                                                        <asp:LinkButton ID="lbtnAnterior" OnClick="lbtnAnterior_Click" CssClass="fa fa-2x  fa-arrow-alt-circle-left" runat="server"></asp:LinkButton>
+                                                    </div>
+                                                    <div class="justify-content-md-end">
+
+
+                                                        <asp:LinkButton ID="lbtnSiguiente" OnClick="lbtnSiguiente_Click" CssClass="fa fa-2x  fa-arrow-alt-circle-right" runat="server"></asp:LinkButton>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </ContentTemplate>
+
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="ibtnCheck" EventName="Click" />
+                                                <asp:AsyncPostBackTrigger ControlID="lbtnProcesar" EventName="Click" />
+                                                <asp:AsyncPostBackTrigger ControlID="lbtnSiguiente" EventName="Click" />
+                                                <asp:AsyncPostBackTrigger ControlID="ddlTipo" EventName="SelectedIndexChanged" />
+                                                <asp:AsyncPostBackTrigger ControlID="lbtnAnterior" EventName="Click" />
+                                            </Triggers>
+
+                                        </asp:UpdatePanel>
+                                    </div>
+
                                 </div>
+                            </div>
+                        </div>
 
 
 
@@ -562,15 +562,11 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                 </div>
 
 
-                <!-- /.card-header -->
-
-
-                <!-- /.card-body -->
 
             </div>
-            <!-- /.container-fluid -->
+
         </section>
-        <!-- /.content -->
+
     </div>
 
 

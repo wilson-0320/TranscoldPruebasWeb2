@@ -64,7 +64,13 @@ Public Class Solicitud
         End If
 
     End Function
-
+    Private Sub msjNot()
+        If Not BLL.Solicitud_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Solicitud_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("", 0, True)
+        End If
+    End Sub
 
     Private Sub iniciarControles(ByVal bandera As Boolean, ByVal Codigo As String)
         Dim agregarP As Boolean = Roles("Administrador,JefeLab,JefeRefri", 1)
@@ -78,7 +84,7 @@ Public Class Solicitud
 
                 Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Solicitud_Actualiza2", New Object() {
                                                                     New Object() {"@Estado", "consulta"},
-                                                                    New Object() {"@Codigo", Codigo}
+                                                                    New Object() {"@Codigo", Codigo.TrimEnd}
                                                                     }, CommandType.StoredProcedure).Tables(0)
 
                 lblConsectivo.Text = DTOrig.Rows(0).Item(19)
@@ -316,17 +322,19 @@ Public Class Solicitud
 
 
     'Click que inserta y modifica
+
     Private Sub guardarCrudSolicitud(ByVal Estado As String)
 
 
         If (ddlEstadoB.Enabled) Then
             Estado = ddlEstadoB.SelectedValue.TrimEnd
         End If
-        MuestraErrorToast(BLL.Solicitud_BLL.crudSolicitud(Estado.TrimEnd, lblCodigo.Text, Session("Usuario").ToString, ddlLider.SelectedValue,
+        BLL.Solicitud_BLL.crudSolicitud(Estado.TrimEnd, lblCodigo.Text, Session("Usuario").ToString, ddlLider.SelectedValue,
 tbModelo.Text, ddlEncargado.SelectedValue, tbObjetivosSolicitud.Text, tbCantidad.Text, tbRProveedor.Text, tbRFogel.Text,
 tbModeloM.Text, tbSerieM.Text, tbWoM.Text, tbFechaEntrega.Text, ddlCarga.SelectedValue, tbParametroTermostato.Text,
-tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownList.SelectedValue), 1, True)
+tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownList.SelectedValue)
         iniciarControles(True, lblCodigo.Text)
+        msjNot()
     End Sub
 
     Protected Sub lbtnGuardarSolicitud_Click(sender As Object, e As EventArgs)
@@ -336,13 +344,23 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
     End Sub
     Protected Sub lbtnGuardarEnsayos_Click(sender As Object, e As EventArgs)
 
-        MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.insertar(lblCodigo.Text, "Sol", ddlEnsayos.SelectedValue), 1, True)
+        BLL.Solicitud_Ensayo_BLL.insertar(lblCodigo.Text, "Sol", ddlEnsayos.SelectedValue)
         cargarEnsayosRepeater(1, "Sol")
+        If Not BLL.Solicitud_Ensayo_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("Listo", 1, True)
+        End If
 
     End Sub
     Protected Sub lbtnGuardarEnsayosContratos_Click(sender As Object, e As EventArgs)
-        MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.insertar(lblCodigo.Text, "Ofr", ddlEnsayos.SelectedValue), 1, True)
+        BLL.Solicitud_Ensayo_BLL.insertar(lblCodigo.Text, "Ofr", ddlEnsayos.SelectedValue)
         cargarEnsayosRepeater(2, "Ofr")
+        If Not BLL.Solicitud_Ensayo_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("Listo", 1, True)
+        End If
 
     End Sub
 
@@ -362,7 +380,8 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
 
     Protected Sub lbtnEliminar_Click(sender As Object, e As EventArgs)
 
-        MuestraErrorToast(BLL.Solicitud_BLL.Eliminar(lblCodigo.Text, "eliminar"), 1, True)
+        BLL.Solicitud_BLL.Eliminar(lblCodigo.Text, "eliminar")
+        msjNot()
         Try
             iniciarControles(True, "")
         Catch ex As Exception
@@ -400,17 +419,27 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
 
     Protected Sub repeaterEnsayosContratados_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") And Roles("Administrador,JefeLab,JefeRefri", 3) And consultarFechaFin() Then
-            MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.eliminar(Integer.Parse(e.CommandArgument)), 1, True)
+            BLL.Solicitud_Ensayo_BLL.eliminar(Integer.Parse(e.CommandArgument))
             cargarEnsayosRepeater(2, "Ofr")
-            '            MuestraErrorToast("Listo", 1, True)
+            If Not BLL.Solicitud_Ensayo_BLL.MsjError Is Nothing Then
+                MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.MsjError, 4, True)
+            Else
+                MuestraErrorToast("Listo", 1, True)
+            End If
+
 
         End If
     End Sub
     Protected Sub repeaterEnsayos_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") And Roles("Administrador,JefeLab,JefeRefri", 3) And consultarFechaFin() Then
-            MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.eliminar(Integer.Parse(e.CommandArgument)), 1, True)
+            BLL.Solicitud_Ensayo_BLL.eliminar(Integer.Parse(e.CommandArgument))
+
             cargarEnsayosRepeater(1, "Sol")
-            '            MuestraErrorToast("Listo", 1, True)
+            If Not BLL.Solicitud_Ensayo_BLL.MsjError Is Nothing Then
+                MuestraErrorToast(BLL.Solicitud_Ensayo_BLL.MsjError, 4, True)
+            Else
+                MuestraErrorToast("Listo", 1, True)
+            End If
 
         End If
     End Sub

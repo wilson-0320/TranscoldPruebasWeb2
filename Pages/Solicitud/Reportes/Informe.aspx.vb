@@ -11,7 +11,7 @@
                 tbCodigo.Text = hfCodigo.Value
                 hfElementID.Value = tbCodigo.Text
 
-                cargarReportRepeatet("LineaTiempoIntegradoPruebas")
+                cargarReportRepeatet("LineaTiempoIntegrado2")
 
                 cargarPendienteRevision()
                 cargarImagenes(hfElementID.Value, "ElemSol")
@@ -124,7 +124,15 @@
         End If
 
     End Sub
+    Function CreateRow(Text As String, Value As String, dt As DataTable) As DataRow
 
+        Dim dr As DataRow = dt.NewRow()
+        dr(0) = Text
+        dr(1) = Value
+
+        Return dr
+
+    End Function
     Private Function obtTiposReg() As String
         Dim l As New List(Of String)
         For Each li As ListItem In listOpciones.Items
@@ -186,7 +194,7 @@
                                                                     New Object() {"@minutos", 1440},
                                                                     New Object() {"@TiposRegistro", obtTiposReg()}
                                                                     }, CommandType.StoredProcedure).Tables(0)
-        If (cualRep.Equals("LineaTiempoIntegradoPruebas")) Then
+        If (cualRep.Equals("LineaTiempoIntegrado2")) Then
             repeaterReporte.DataSource = DTOrig
             repeaterReporte.DataBind()
         Else
@@ -227,15 +235,47 @@
                                                             New Object() {"@Elemento_ID", elementoId}
                                                             }, CommandType.StoredProcedure).Tables(0)
 
-                listCodigoCrud.DataSource = DTOrig
-                listCodigoCrud.DataTextField = "valores"
-                listCodigoCrud.DataValueField = "valores"
-                listCodigoCrud.DataBind()
 
-                listCodigoCrud.Visible = True
-                tbCodigoCrud.Visible = False
 
-            Catch ex As Exception
+
+                If (DTOrig.Rows(0).Item(0).ToString.Contains(",")) Then
+                        Dim DTOriginValores As String() = DTOrig.Rows(0).Item(0).ToString.Split(",")
+
+
+                        listCodigoCrud.Visible = True
+                        tbCodigoCrud.Visible = False
+
+                        Dim dt As DataTable = New DataTable()
+                        dt.Columns.Add(New DataColumn("valores", GetType(String)))
+                    dt.Columns.Add(New DataColumn("ids", GetType(String)))
+                    For Each datos As String In DTOriginValores
+                            dt.Rows.Add(CreateRow(datos, datos.TrimEnd, dt))
+                        Next
+
+
+                    listCodigoCrud.DataSource = dt
+                    listCodigoCrud.DataTextField = "valores".TrimEnd
+                        listCodigoCrud.DataValueField = "valores".TrimEnd
+                        listCodigoCrud.DataBind()
+
+
+                    Else
+                        listCodigoCrud.DataSource = DTOrig
+                        listCodigoCrud.DataTextField = "valores"
+                        listCodigoCrud.DataValueField = "valores"
+                        listCodigoCrud.DataBind()
+
+                        listCodigoCrud.Visible = True
+                        tbCodigoCrud.Visible = False
+
+
+                    End If
+
+
+
+
+
+                Catch ex As Exception
                 listCodigoCrud.Visible = False
                 tbCodigoCrud.Visible = True
 
@@ -256,7 +296,7 @@
 
 
             '  llamarFuncionesJavascript("", "")
-            cargarReportRepeatet("LineaTiempoIntegradoPruebas")
+            cargarReportRepeatet("LineaTiempoIntegrado2")
             consultarFechaFin()
             cargarPendienteRevision()
             cargarImagenes(hfElementID.Value, hfTipoImagen.Value)
@@ -355,19 +395,19 @@
     Private Sub GuardaArchivo(ByVal IdArch_ As Integer)
 
         'Quitar:
-        Dim Path As String = "D:\EstaticosWeb\TranscoldPruebasWeb\"
-        Dim pathBD As String = "\EstaticosWeb\TranscoldPruebasWeb\"
+        '   Dim Path As String = "D:\EstaticosWeb\TranscoldPruebasWeb\"
+        Dim path As String = "\EstaticosWeb\TranscoldPruebasWeb\"
         'Dim Path As String = "C:\Users\Inspiron 5577\Pictures\Saved Pictures\"
-        Path += hfCodigo.Value.Replace("/", "-")
-        Path += "\"
+        path += hfTipoImagen.Value
+        path += "\" + hfElementID.Value
 
-        pathBD += hfCodigo.Value.Replace("/", "-")
-        pathBD += "\"
+        'pathBD += hfCodigo.Value.Replace("/", "-")
+        ' pathBD += "\"
 
         If Not System.IO.Directory.Exists(Path) Then
             System.IO.Directory.CreateDirectory(Path)
         End If
-
+        Dim IdArch As Integer
         Dim uploadedFiles As HttpFileCollection = Request.Files
         'Dim contar As Integer
         For i As Integer = 0 To uploadedFiles.Count - 1
@@ -377,10 +417,15 @@
             If userPostedFile.ContentLength > 0 Then
                 ArchPath = Path + "\" + nomArch
                 userPostedFile.SaveAs(ArchPath)
+                If IdArch_ = -1 Then
+                    BLL.Archivo_BLL.insertar(hfTipoImagen.Value.TrimEnd, hfElementID.Value.TrimEnd, nomArch + "-" + tbDescripcionFoto.Text, nomArch)
 
+                    ' IdArch = TAF.QueriesTA.UltArchID
+                Else
+                    IdArch = IdArch_
+                End If
             End If
 
-            BLL.Archivo_BLL.insertar(hfTipoImagen.Value.TrimEnd, hfElementID.Value.TrimEnd, nomArch + "-" + tbDescripcionFoto.Text, pathBD + nomArch)
             cargarImagenes(hfElementID.Value, hfTipoImagen.Value)
             ArchivosLib.CreaThumbnail(ArchPath)
         Next
@@ -428,7 +473,7 @@
 
         limpiaEnControles()
         cargarPendienteRevision()
-        cargarReportRepeatet("LineaTiempoIntegradoPruebas")
+        cargarReportRepeatet("LineaTiempoIntegrado2")
         cargarImagenes(hfElementID.Value, hfTipoImagen.Value)
 
     End Sub
@@ -453,7 +498,7 @@
             'cargarReportRepeatet()
             cargarPendienteRevision()
 
-            cargarReportRepeatet("LineaTiempoIntegradoPruebas")
+            cargarReportRepeatet("LineaTiempoIntegrado2")
             MuestraErrorToast("Listo", 1, True)
 
             ' MandaCorreosSolicitudEnviada()
@@ -671,14 +716,14 @@
         ElseIf e.CommandName = "rechazarHistorico" Then
 
             BLL.Solicitud_Hist_BLL.rechazar(Integer.Parse(e.CommandArgument), tbComputadora.Text)
-            cargarReportRepeatet("LineaTiempoIntegradoPruebas")
+            cargarReportRepeatet("LineaTiempoIntegrado2")
 
 
         ElseIf e.CommandName = "aprobarHistorico" Then
             BLL.Solicitud_Hist_BLL.revisar_y_aprobar(Integer.Parse(e.CommandArgument), tbComputadora.Text)
             ''  TAF.SolHistElemTA.UpdateEstado("Aprobado", Integer.Parse(e.CommandArgument))
             ' TAF.SolHistTA.Update(hfCodigo.Value, Now, Now, "", "", "", "", "Revisada.", Integer.Parse(e.CommandArgument))
-            cargarReportRepeatet("LineaTiempoIntegradoPruebas")
+            cargarReportRepeatet("LineaTiempoIntegrado2")
 
 
 
@@ -696,7 +741,7 @@
 
             BLL.Solicitud_Hist_BLL.Eliminar2(Integer.Parse(e.CommandArgument))
             MuestraErrorToast("Listo", 2, True)
-            cargarReportRepeatet("LineaTiempoIntegradoPruebas")
+            cargarReportRepeatet("LineaTiempoIntegrado2")
             cargarPendienteRevision()
 
 

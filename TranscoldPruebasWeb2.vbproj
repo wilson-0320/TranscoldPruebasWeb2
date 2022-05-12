@@ -19,7 +19,7 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44305</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
@@ -35,6 +35,11 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>WebForms_Basic.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -204,7 +209,6 @@
     <Content Include="Pages\Solicitud\Reportes\Controles\checkList.ascx" />
     <Content Include="Pages\Solicitud\Reportes\Informe.aspx" />
     <Content Include="Pages\Solicitud\Reportes\LineaTiempo.aspx" />
-    <Content Include="Pages\Solicitud\Reportes\RepGaleria.aspx" />
     <Content Include="Pages\Solicitud\Reportes\RepPruebas.aspx" />
     <Content Include="Pages\Solicitud\Reportes\RepSolicitud.aspx" />
     <Content Include="Pages\Solicitud\Reportes\tabPanel.aspx" />
@@ -2448,6 +2452,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Publico\TransWebService.asmx" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -2585,7 +2590,6 @@
     </Compile>
     <Compile Include="ComunesWeb\Site.Master.vb">
       <DependentUpon>Site.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogos.aspx.designer.vb">
       <DependentUpon>Catalogos.aspx</DependentUpon>
@@ -2804,13 +2808,6 @@
       <DependentUpon>LineaTiempo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Solicitud\Reportes\RepGaleria.aspx.designer.vb">
-      <DependentUpon>RepGaleria.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Solicitud\Reportes\RepGaleria.aspx.vb">
-      <DependentUpon>RepGaleria.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Pages\Solicitud\Reportes\RepPruebas.aspx.designer.vb">
       <DependentUpon>RepPruebas.aspx</DependentUpon>
     </Compile>
@@ -2891,6 +2888,7 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="My Project\PublishProfiles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

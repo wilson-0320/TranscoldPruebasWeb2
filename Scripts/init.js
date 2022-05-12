@@ -26,9 +26,28 @@ $(function () {
     }
 
    
-   
 
 });
+
+function abrirReportes(all)
+{
+
+   
+   var Compu = $(".NombreCompu").val();
+
+    var PathRep = all;
+
+    var jqxhr = $.get("https://www.fogelonline.com/TranscoldPruebasWeb/Publico/Servicios/TransWebService.asmx/AbreReporte", { Compu: Compu, PathReporte: PathRep })
+            .done(function () {
+                alert("Colocado " + PathRep);
+            })
+            .fail(function () {
+                alert("Error");
+            })
+   
+
+
+}
 
 function metodo(mensaje,tipo) {
     console.log("Cargando Scripts-en metodo");

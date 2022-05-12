@@ -20,8 +20,8 @@ Namespace BLL
             End Try
         End Function
 
-        Public Shared Function eliminar(ByVal id As Integer) As String
-            MsjError = "Realizado"
+        Public Shared Sub eliminar(ByVal id As Integer)
+            MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
                 trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() {
@@ -31,11 +31,11 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
 
-        Public Shared Function insertar(ByVal Solicitud_Cod As String, ByVal Tipo As String, ByVal Ensayo_ID As Integer) As String
-            MsjError = "Realizado"
+        End Sub
+
+        Public Shared Sub insertar(ByVal Solicitud_Cod As String, ByVal Tipo As String, ByVal Ensayo_ID As Integer)
+            MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
                 trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() {
@@ -47,11 +47,11 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
 
-        Public Shared Function cmodificar(ByVal ID As Integer, ByVal Prueba As String) As String
-            MsjError = "Realizado"
+        End Sub
+
+        Public Shared Sub cmodificar(ByVal ID As Integer, ByVal Prueba As String)
+            MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
                 trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() {
@@ -62,8 +62,7 @@ Namespace BLL
             Catch ex As Exception
                 colocaError(ex)
             End Try
-            Return MsjError
-        End Function
+        End Sub
 
     End Class
 
