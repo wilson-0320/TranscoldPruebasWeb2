@@ -410,27 +410,32 @@
         Dim IdArch As Integer
         Dim uploadedFiles As HttpFileCollection = Request.Files
         'Dim contar As Integer
-        For i As Integer = 0 To uploadedFiles.Count - 1
-            Dim userPostedFile As HttpPostedFile = uploadedFiles(i)
-            Dim nomArch As String = UI_Lib.htmlSeguro(userPostedFile.FileName)
-            Dim ArchPath As String = ""
-            If userPostedFile.ContentLength > 0 Then
-                ArchPath = Path + "\" + nomArch
-                userPostedFile.SaveAs(ArchPath)
-                If IdArch_ = -1 Then
-                    BLL.Archivo_BLL.insertar(hfTipoImagen.Value.TrimEnd, hfElementID.Value.TrimEnd, nomArch + "-" + tbDescripcionFoto.Text, nomArch)
+        Try
 
-                    ' IdArch = TAF.QueriesTA.UltArchID
-                Else
-                    IdArch = IdArch_
+
+            For i As Integer = 0 To uploadedFiles.Count - 1
+                Dim userPostedFile As HttpPostedFile = uploadedFiles(i)
+                Dim nomArch As String = UI_Lib.htmlSeguro(userPostedFile.FileName)
+                Dim ArchPath As String = ""
+                If userPostedFile.ContentLength > 0 Then
+                    ArchPath = Path + "\" + nomArch
+                    userPostedFile.SaveAs(ArchPath)
+                    If IdArch_ = -1 Then
+                        BLL.Archivo_BLL.insertar(hfTipoImagen.Value.TrimEnd, hfElementID.Value.TrimEnd, nomArch + "-" + tbDescripcionFoto.Text, nomArch)
+
+                        IdArch = BLL.Archivo_BLL.ultimo_id(0)
+                    Else
+                        IdArch = IdArch_
+                    End If
                 End If
-            End If
 
-            cargarImagenes(hfElementID.Value, hfTipoImagen.Value)
-            ArchivosLib.CreaThumbnail(ArchPath)
-        Next
+                cargarImagenes(hfElementID.Value, hfTipoImagen.Value)
+                ArchivosLib.CreaThumbnail(ArchPath)
+            Next
 
-
+        Catch ex As Exception
+            MuestraErrorToast("Error al cargar el archivo", 4, True)
+        End Try
     End Sub
 
     Protected Sub ddlCargaRefrigerante_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -479,31 +484,25 @@
     End Sub
     Private Sub enviarRevision()
 
-        Dim msj As String
+        Dim msj As String = ""
         'TAF.QueriesTA.Pru_Solicitud_Hist_Actualiza(Nothing, "Estado", CorrelativoLabel.Text, "Enviada", ObservacionesPruebaTextBox.Text, User.Identity.Name, msj)
         'msj = BLL.Solicitud_Hist_BLL.ActuEstado(hfCodigo.Value, "Enviada", "", User.Identity.Name, 0)
         'Modo pruebas
         If (Session("Usuario") Is Nothing) Then
         Else
-            msj = BLL.Solicitud_Hist_BLL.ActuEstado(hfCodigo.Value, "Enviada", "", Session("Usuario"), ddlDivision.SelectedValue)
+            msj = BLL.Solicitud_Hist_BLL.ActuEstado(hfCodigo.Value, "Enviada", "", Session("Usuario").ToString, ddlDivision.SelectedValue)
 
         End If
 
-
-        If msj.StartsWith("Error:") Then
-            MuestraErrorToast(msj, 4, True)
-
+        If Not BLL.Solicitud_Hist_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Solicitud_Hist_BLL.MsjError, 4, True)
         Else
-
-            'cargarReportRepeatet()
             cargarPendienteRevision()
 
             cargarReportRepeatet("LineaTiempoIntegrado2")
             MuestraErrorToast("Listo", 1, True)
-
-            ' MandaCorreosSolicitudEnviada()
-
         End If
+
     End Sub
 
 
@@ -555,9 +554,9 @@
 
 
             If (tipo.Equals("insertar")) Then
-                msj = BLL.Solicitud_Elemento_BLL.Inserta(hfCodigo.Value, listElemento.SelectedValue, valores, tbCantidadCrud.Text, tbPrecioCrud.Text, tbComentariosObservacionesCrud.Text, externoBoolean())
+                msj = BLL.Solicitud_Elemento_BLL.Inserta(hfCodigo.Value, listElemento.SelectedValue, valores, tbCantidadCrud.Text, tbPrecioCrud.Text, tbComentariosObservacionesCrud.Text, externoBoolean(), Session("Usuario").ToString)
             ElseIf (tipo.Equals("modificarElemento")) Then
-                msj = BLL.Solicitud_Elemento_BLL.modificarEliminar("Modificar2", hfCodigo.Value, Int32.Parse(hfIDElmentoCrud.Value), listElemento.SelectedValue, valores, tbCantidadCrud.Text, tbPrecioCrud.Text, tbComentariosObservacionesCrud.Text, externoBoolean())
+                msj = BLL.Solicitud_Elemento_BLL.modificarEliminar("Modificar2", hfCodigo.Value, Int32.Parse(hfIDElmentoCrud.Value), listElemento.SelectedValue, valores, tbCantidadCrud.Text, tbPrecioCrud.Text, tbComentariosObservacionesCrud.Text, externoBoolean(), Session("Usuario").ToString)
             ElseIf (tipo.Equals("modificarHistorico")) Then
                 If (fnRevisado.Text.Length < 1) Then
                     fnRevisado.Text = fnEnviado.Text
@@ -715,12 +714,12 @@
 
         ElseIf e.CommandName = "rechazarHistorico" Then
 
-            BLL.Solicitud_Hist_BLL.rechazar(Integer.Parse(e.CommandArgument), tbComputadora.Text)
+            BLL.Solicitud_Hist_BLL.rechazar(Integer.Parse(e.CommandArgument), Session("Usuario").ToString)
             cargarReportRepeatet("LineaTiempoIntegrado2")
 
 
         ElseIf e.CommandName = "aprobarHistorico" Then
-            BLL.Solicitud_Hist_BLL.revisar_y_aprobar(Integer.Parse(e.CommandArgument), tbComputadora.Text)
+            BLL.Solicitud_Hist_BLL.revisar_y_aprobar(Integer.Parse(e.CommandArgument), Session("Usuario").ToString)
             ''  TAF.SolHistElemTA.UpdateEstado("Aprobado", Integer.Parse(e.CommandArgument))
             ' TAF.SolHistTA.Update(hfCodigo.Value, Now, Now, "", "", "", "", "Revisada.", Integer.Parse(e.CommandArgument))
             cargarReportRepeatet("LineaTiempoIntegrado2")
@@ -762,5 +761,29 @@
         End If
     End Sub
 
+    Protected Sub tbCodigoCrud_TextChanged(sender As Object, e As EventArgs)
+        If (cbExterno.Checked And tbCodigoCrud.Text.Length > 0) Then
+            listadoArticulos()
+        End If
+    End Sub
+    Public Sub listadoArticulos()
 
+
+
+        Dim TrSql As New TransacSQL
+        Dim DT As DataTable = TrSql.EjecutarConsulta("refrigua",
+                                                         "select 'Articulo: '+rf.articulo+ +'. Descripcion: '+rf.descripcion, rf.costo_std_dol costo " +
+                                                         "from refrigua.refrigua.articulo rf " +
+                                                         "where rf.articulo = @LikeTerm", New Object() {
+                                                         New Object() {"@LikeTerm", tbCodigoCrud.Text}
+                                                         }).Tables(0)
+        Try
+            tbPrecioCrud.Text = DT.Rows(0).Item(1)
+            MuestraErrorToast(DT.Rows(0).Item(0).ToString, 2, True)
+        Catch ex As Exception
+            MuestraErrorToast(ex.Message, 4, True)
+        End Try
+
+
+    End Sub
 End Class

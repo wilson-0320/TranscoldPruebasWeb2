@@ -215,7 +215,7 @@
                                                     <div class="col-sm-3">
                                                         <small>Codigo:</small>
 
-                                                        <asp:TextBox ID="tbCodigoCrud" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <asp:TextBox ID="tbCodigoCrud" runat="server" OnTextChanged="tbCodigoCrud_TextChanged" AutoPostBack="true" CssClass="form-control"></asp:TextBox>
                                                         <asp:DropDownList ID="listCodigoCrud" runat="server" CssClass="js-example-theme-single form-control"></asp:DropDownList>
 
                                                     </div>
@@ -280,6 +280,7 @@
                                         <asp:AsyncPostBackTrigger ControlID="repeaterPendienteRevision" EventName="ItemCommand" />
                                         <asp:AsyncPostBackTrigger ControlID="btnGenerar" EventName="Click" />
                                         <asp:AsyncPostBackTrigger ControlID="btnGuardarCrud" EventName="Click" />
+                                        <asp:AsyncPostBackTrigger ControlID="tbCodigoCrud" EventName="TextChanged" />
                                     </Triggers>
                                 </asp:UpdatePanel>
 
@@ -532,7 +533,7 @@
                                                             <h3 class="timeline-header"><%# Eval("cat") %></h3>
                                                             <div class="timeline-body">
                                                             
-                                                                    <div class="col-sm-12">
+                                                                    <div class="col-sm-10">
 
                                                                         <%#  Eval("elem")  %>
 
@@ -562,6 +563,36 @@
                                                                             <td colspan="3" style="color: #00DF00" onclick="abrirReportes();" class="LinkGuardaReporte"><button class="btn btn-sm text-primary " onclick="abrirReportes('<%# Eval("Folder")%>');"  ><%# Eval("Folder")%></button></td>
                                                                             
                                                                         </tr>
+                                                                    </div>
+                                                                <div class="col-sm-2">
+
+                                                                        <!--
+                                                                       
+                                                                        -->
+                                                                        <tr runat="server" id="tr3" visible='<%# cbPresentacion.Checked %>'>
+                                                                            <td>
+                                                                                <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="editarHistoricos" CssClass=" fa fa-2x fa-edit btn btn-warning" runat="server"></asp:LinkButton>
+
+
+                                                                                &nbsp;&nbsp;
+                                                    
+                                                          <tr runat="server" id="tr1" visible='<%# Eval("Estado") = "Aprobado"%>'>
+                                                              <td>
+                                                                  <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="rechazarHistorico" CssClass=" fa fa-2x fa-exclamation-triangle" runat="server"></asp:LinkButton>
+
+                                                              </td>
+                                                          </tr>
+                                                                                <tr runat="server" id="tr2" visible='<%#  Eval("Estado") = "Ingresado"%>'>
+                                                                                    <td>
+                                                                                        <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="aprobarHistorico" CssClass=" fa fa-2x fa-check " runat="server"></asp:LinkButton>
+
+
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                            </td>
+                                                                        </tr>
+
                                                                     </div>
                                                                    
 

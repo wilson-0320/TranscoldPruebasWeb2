@@ -9,31 +9,39 @@ Namespace BLL
         Const PathBase As String = "E:\\EstaticosWeb\\TranscoldPruebasWeb\\"
 
         Public Shared Function ActuEstado(ByVal Solicitud_Cod As String, ByVal Estado As String, ByVal Observaciones As String, ByVal Usuario As String, ByVal Division_ID As Integer, Optional ByVal ID As Integer = -1) As String
-            Dim TrSql As New TransacSQL
-            Dim msj As String = TrSql.EjecutarConsulta("TranscoldPruebas", "Pru_Solicitud_Hist_Actualiza", New Object() {
-                                   New Object() {"@Tipo", "Estado2"},
-                                   New Object() {"@ID", ID},
-                                   New Object() {"@Estado", Estado},
-                                   New Object() {"@Solicitud_Cod", Solicitud_Cod.TrimEnd},
-                                   New Object() {"@Observaciones", Observaciones},
-                                   New Object() {"@Usuario", Usuario},
-                                   New Object() {"@Division_ID", Division_ID}
-                                   }, Data.CommandType.StoredProcedure).Tables(0).Rows(0)(0)
-            If Estado = "Enviada" And Not msj.StartsWith("Error:") Then
-                Dim valores As String()
+            MsjError = Nothing
+            Try
 
 
-                '  For Each valoresSt As String In msj.Split("/")
-                ' If valoresSt <> "" Then
-                '  valores = valoresSt.Split("|")
-                '  Dim sourcePath As String = PathBase + "ElemSol\\" + valores(0) + "\\"
-                '  Dim destPath As String = PathBase + "ElemHist\\" + valores(1) + "\\"
-                '  Dim nomArch As String = valores(2)
-                'ArchivosLib.MoverArchivoADirectorio(sourcePath, destPath, nomArch)
-                ' End If
-                '  Next
-            End If
-            Return msj
+                Dim TrSql As New TransacSQL
+                Dim msj As String = TrSql.EjecutarConsulta("TranscoldPruebas", "Pru_Solicitud_Hist_Actualiza", New Object() {
+                                       New Object() {"@Tipo", "Estado"},
+                                       New Object() {"@ID", ID},
+                                       New Object() {"@Estado", Estado},
+                                       New Object() {"@Solicitud_Cod", Solicitud_Cod.TrimEnd},
+                                       New Object() {"@Observaciones", Observaciones},
+                                       New Object() {"@Usuario", Usuario},
+                                       New Object() {"@Division_ID", Division_ID}
+                                       }, Data.CommandType.StoredProcedure).Tables(0).Rows(0)(0)
+                If Estado = "Enviada" And Not msj.StartsWith("Error:") Then
+                    Dim valores As String()
+
+
+                    For Each valoresSt As String In msj.Split("/")
+                        If valoresSt <> "" Then
+                            valores = valoresSt.Split("|")
+                            Dim sourcePath As String = PathBase + "ElemSol\\" + valores(0) + "\\"
+                            Dim destPath As String = PathBase + "ElemHist\\" + valores(1) + "\\"
+                            Dim nomArch As String = valores(2)
+                            ArchivosLib.MoverArchivoADirectorio(sourcePath, destPath, nomArch)
+                        End If
+                    Next
+                End If
+                Return msj
+            Catch ex As Exception
+                colocaError(ex)
+            End Try
+
         End Function
 
         Public Shared Function GuardaFechaEnviado(ByVal ID As Integer, ByVal Fecha_Enviado As DateTime) As String

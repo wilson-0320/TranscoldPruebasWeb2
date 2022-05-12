@@ -77,6 +77,17 @@ Namespace BLL
             End Try
         End Function
 
+        Public Shared Function ultimo_id(ByVal id As Integer) As Integer
+            MsjError = Nothing
+            Try
+                Dim trsql As New TransacSQL
+                Return Integer.Parse(trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Archivo_ABCD", New Object() {
+                                              New Object() {"@query", "ultimo_id"}
+                                              }, CommandType.StoredProcedure).Tables(0).Rows(0).Item(0))
+            Catch ex As Exception
+                colocaError(ex)
+            End Try
+        End Function
     End Class
 
 End Namespace
