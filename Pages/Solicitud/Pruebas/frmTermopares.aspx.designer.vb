@@ -14,58 +14,13 @@ Option Explicit On
 Partial Public Class frmTermopares
 
     '''<summary>
-    '''Control ddlFecha.
+    '''Control hfCodigo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ddlFecha As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Control tbFechaReemplazo.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents tbFechaReemplazo As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control lbtnModificarFecha.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbtnModificarFecha As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Control lbtnFiltrar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbtnFiltrar As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Control lbtnModificar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbtnModificar As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Control lbtnGuardar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbtnGuardar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents hfCodigo As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''Control pnlTodo.
@@ -113,13 +68,13 @@ Partial Public Class frmTermopares
     Protected WithEvents divRefrSystem1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''Control wucRefrigSystem1.
+    '''Control wucRefrSystem1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents wucRefrigSystem1 As Global.TranscoldPruebasWeb2.wucRefrig
+    Protected WithEvents wucRefrSystem1 As Global.TranscoldPruebasWeb2.wucRefrig
 
     '''<summary>
     '''Control divRefrSystem2.
@@ -228,4 +183,85 @@ Partial Public Class frmTermopares
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents wucValoresAdicionales As Global.TranscoldPruebasWeb2.wucAdicionales
+
+    '''<summary>
+    '''Control upFechas.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents upFechas As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''Control ddlFecha.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlFecha As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control panelEditorFecha.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents panelEditorFecha As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''Control tbFechaReemplazo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbFechaReemplazo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control lbtnGuardarFecha.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbtnGuardarFecha As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control lbtnCancelarGuardarFecha.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbtnCancelarGuardarFecha As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control lbtnModificarFecha.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbtnModificarFecha As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control lbtnModificar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbtnModificar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control lbtnGuardar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbtnGuardar As Global.System.Web.UI.WebControls.LinkButton
 End Class

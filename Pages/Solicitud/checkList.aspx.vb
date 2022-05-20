@@ -107,7 +107,7 @@
             lbtnGuardar.Enabled = True
         Else
             lbtnGuardar.Enabled = False
-            '   llamarFuncionesJavascript("No podras realizar modificaciones, tu no has creado el registro.", "Error")
+            MuestraErrorToast("Inicie la modificacion de los parametros", 1, True)
         End If
 
 
@@ -116,7 +116,7 @@
     Protected Sub btnGenerar_Click(sender As Object, e As EventArgs)
         If (tbCodigoFiltro.Text.Length > 0 Or tbModeloFiltro.Text.Length > 0) Then
             llenarReportRecepcion()
-            '  llamarFuncionesJavascript("Consulta finalizada.", "Satisfactorio")
+            MuestraErrorToast("", 0, True)
         End If
 
     End Sub
@@ -124,24 +124,22 @@
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
         If (tbCliente.Text.Length > 0 And tbPais.Text.Length > 0 And tbSolicitado.Text.Length > 0 And tbWorkOrder.Text.Length > 0 And
 tbSerie.Text.Length > 0 And tbModelo.Text.Length > 0 And tbCodigo.Text.Length > 0) Then
-            Dim mensaje As String = BLL.Recepcion_BLL.insertar(hfQuery.Value, dplTipo.SelectedValue, hfID.Value, tbCliente.Text, tbPais.Text, tbSolicitado.Text, tbWorkOrder.Text,
+            BLL.Recepcion_BLL.insertar(hfQuery.Value, dplTipo.SelectedValue, hfID.Value, tbCliente.Text, tbPais.Text, tbSolicitado.Text, tbWorkOrder.Text,
 tbSerie.Text, tbModelo.Text, tbCodigo.Text, tbParrillas.Text, tbClips.Text, tbLamparas.Text, cbRotulo.Checked, cbCubremotor.Checked,
 cbCertificado.Checked, cbEtiquetaSerie.Checked, cbManOpe.Checked, cbManIns.Checked, cbCalcomania.Checked, cbDiagrama.Checked,
 cbFuncionamiento.Checked, cbParrillasTraseras.Checked, cbHalador.Checked, tbGolpes.Text, tbRayones.Text, tbComentarios.Text, lblUser.Text, tbDespachos.Text)
 
             tbCodigoFiltro.Text = tbCodigo.Text
             llenarReportRecepcion()
-
-            If mensaje.StartsWith("Error:") Then
-
-                '    llamarFuncionesJavascript("" + mensaje + "", "Error")
-
+            If Not BLL.Recepcion_BLL.MsjError Is Nothing Then
+                MuestraErrorToast(BLL.Recepcion_BLL.MsjError, 4, True)
             Else
                 iniciarlizar()
-                '    llamarFuncionesJavascript("Se realizo el cambio", "Satisfactorio")
-
+                MuestraErrorToast("Registro realizado con exito.", 1, True)
             End If
+
         Else
+            MuestraErrorToast("Los campos son obligatorio, por favor revise.", 1, True)
             'llamarFuncionesJavascript("Debes llenar los campos requeridos.", "Error")
 
         End If
@@ -159,6 +157,8 @@ cbFuncionamiento.Checked, cbParrillasTraseras.Checked, cbHalador.Checked, tbGolp
             llenarCrud(Integer.Parse(e.CommandArgument))
 
             lbtnCancelar.Visible = True
+            Dim key As String = Guid.NewGuid.ToString
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, "abrirModal()", True)
 
         ElseIf e.CommandName = "EliminarRecepcion" Then
             Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Recepcion_ABCD", New Object() {

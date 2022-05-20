@@ -21,7 +21,7 @@ Public Class menu
                 Else
                     Session.Abandon()
                     ' Dim v1 As String = Request.Url.AbsoluteUri
-                    ' Response.Redirect("~/ComunesWeb/Login.aspx?responder=" + v1)
+                    Response.Redirect("~/ComunesWeb/Login.aspx")
 
                 End If
 

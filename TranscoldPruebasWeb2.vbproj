@@ -187,7 +187,9 @@
     <Content Include="Pages\Administrador\permisos.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
     <Content Include="Pages\Metrologia\camaras\lecturas.aspx" />
+    <Content Include="Pages\Metrologia\Catalogo\MetProveedor.aspx" />
     <Content Include="Pages\Metrologia\Equipo.aspx" />
+    <Content Include="Pages\Metrologia\Equipos\Instrumentos.aspx" />
     <Content Include="Pages\Metrologia\Retenidos.aspx" />
     <Content Include="Pages\Metrologia\Solicitud\Verificaciones.aspx" />
     <Content Include="Pages\Prueba\PrubasLab.aspx" />
@@ -2504,6 +2506,7 @@
     <Compile Include="Codigo\BLL\Login_BLL.vb" />
     <Compile Include="Codigo\BLL\Prueba_BLL.vb" />
     <Compile Include="Codigo\BLL\Prueba_Resultado_BLL.vb" />
+    <Compile Include="Codigo\BLL\Met_Proveedores_BLL.vb" />
     <Compile Include="Codigo\BLL\Pru_Entrega_BLL.vb" />
     <Compile Include="Codigo\BLL\Pru_Eventos_BLL.vb" />
     <Compile Include="Codigo\BLL\Pru_Solicitud_Valor_BLL.vb" />
@@ -2654,12 +2657,26 @@
       <DependentUpon>lecturas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Metrologia\Catalogo\MetProveedor.aspx.designer.vb">
+      <DependentUpon>MetProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Metrologia\Catalogo\MetProveedor.aspx.vb">
+      <DependentUpon>MetProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Pages\Metrologia\Equipo.aspx.designer.vb">
       <DependentUpon>Equipo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Metrologia\Equipo.aspx.vb">
       <DependentUpon>Equipo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Metrologia\Equipos\Instrumentos.aspx.designer.vb">
+      <DependentUpon>Instrumentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Metrologia\Equipos\Instrumentos.aspx.vb">
+      <DependentUpon>Instrumentos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\Metrologia\Retenidos.aspx.designer.vb">
       <DependentUpon>Retenidos.aspx</DependentUpon>

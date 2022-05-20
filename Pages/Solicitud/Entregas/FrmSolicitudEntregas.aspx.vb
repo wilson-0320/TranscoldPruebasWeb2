@@ -12,7 +12,11 @@
 
     Private Sub cargarReporteEntregas()
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() {
-                                                                New Object() {"@query", "consultar_reporte_temp"}
+                                                                New Object() {"@query", "consultar_reporte"},
+                                                                 New Object() {"@UserName", ""},
+                                                                 New Object() {"@Fecha_ini", ""},
+                                                                 New Object() {"@fecha_fin", ""},
+                                                                 New Object() {"@buscar", ""}
                                                                 }, CommandType.StoredProcedure).Tables(0)
 
         'Categoria de refrigeracion de protoispos

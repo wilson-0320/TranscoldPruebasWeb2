@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="wucVidrios.ascx.vb" Inherits="TranscoldPruebasWeb2.wucVidrios" %>
-<img src="http://fogelonline.com/TranscoldPruebasWeb/Publico/ImagenesWebsites/Termopares/vidrios.jpg" style="position: absolute; top: 15px; left: 10px;" />
+<img src="https://www.fogelonline.com/TranscoldPruebasWeb/Publico/ImagenesWebsites/Termopares/vidrios.jpg" style="position: absolute; top: 15px; left: 10px;" />
 <input runat="server" id="tb261" style="position: absolute; top: 43px; left: 34px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
 <input runat="server" id="tb263" style="position: absolute; top: 43px; left: 238px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
 <input runat="server" id="tb271" style="position: absolute; top: 273px; left: 137px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />

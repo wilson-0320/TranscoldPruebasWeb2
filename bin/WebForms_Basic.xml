@@ -1180,6 +1180,87 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
+<member name="F:TranscoldPruebasWeb2.MetProveedor._upPanel">
+<summary>
+Control upPanel.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.MetProveedor._hfID">
+<summary>
+Control hfID.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.MetProveedor._hfIDCategoria">
+<summary>
+Control hfIDCategoria.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.MetProveedor._gvProveedoresMetrologia">
+<summary>
+Control gvProveedoresMetrologia.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.MetProveedor._ODSBLL_Met_Proveedor">
+<summary>
+Control ODSBLL_Met_Proveedor.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.MetProveedor._ODSBLL_Met_Proveedores">
+<summary>
+Control ODSBLL_Met_Proveedores.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.MetProveedor._upCheck">
+<summary>
+Control upCheck.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.MetProveedor._lbtnAnterior">
+<summary>
+Control lbtnAnterior.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.MetProveedor._lbtnSiguiente">
+<summary>
+Control lbtnSiguiente.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
 <member name="F:TranscoldPruebasWeb2.Equipo._upInstrumentos">
 <summary>
 Control upInstrumentos.
@@ -1516,6 +1597,42 @@ Para modificarlo, mueva la declaración del campo del archivo del diseñador al 
 <member name="F:TranscoldPruebasWeb2.Equipo._repeaterCertificados">
 <summary>
 Control repeaterCertificados.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Instrumentos._upCatalogo">
+<summary>
+Control upCatalogo.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Instrumentos._hfID">
+<summary>
+Control hfID.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Instrumentos._hfIDCategoria">
+<summary>
+Control hfIDCategoria.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.Instrumentos._repeaterCatalogo">
+<summary>
+Control repeaterCatalogo.
 </summary>
 <remarks>
 Campo generado automáticamente.
@@ -2026,6 +2143,24 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
+<member name="F:TranscoldPruebasWeb2.checkList._lblTipo">
+<summary>
+Control lblTipo.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.checkList._dplTipo">
+<summary>
+Control dplTipo.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
 <member name="F:TranscoldPruebasWeb2.checkList._lblCliente">
 <summary>
 Control lblCliente.
@@ -2074,24 +2209,6 @@ Para modificarlo, mueva la declaración del campo del archivo del diseñador al 
 <member name="F:TranscoldPruebasWeb2.checkList._tbSolicitado">
 <summary>
 Control tbSolicitado.
-</summary>
-<remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-</remarks>
-</member>
-<member name="F:TranscoldPruebasWeb2.checkList._lblTipo">
-<summary>
-Control lblTipo.
-</summary>
-<remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-</remarks>
-</member>
-<member name="F:TranscoldPruebasWeb2.checkList._dplTipo">
-<summary>
-Control dplTipo.
 </summary>
 <remarks>
 Campo generado automáticamente.
@@ -2548,18 +2665,9 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._repeaterDetalle">
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._btnClick">
 <summary>
-Control repeaterDetalle.
-</summary>
-<remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-</remarks>
-</member>
-<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._ObjectDataSourceEntregas">
-<summary>
-Control ObjectDataSourceEntregas.
+Control btnClick.
 </summary>
 <remarks>
 Campo generado automáticamente.
@@ -2836,54 +2944,9 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:TranscoldPruebasWeb2.frmTermopares._ddlFecha">
+<member name="F:TranscoldPruebasWeb2.frmTermopares._hfCodigo">
 <summary>
-Control ddlFecha.
-</summary>
-<remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-</remarks>
-</member>
-<member name="F:TranscoldPruebasWeb2.frmTermopares._tbFechaReemplazo">
-<summary>
-Control tbFechaReemplazo.
-</summary>
-<remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-</remarks>
-</member>
-<member name="F:TranscoldPruebasWeb2.frmTermopares._lbtnModificarFecha">
-<summary>
-Control lbtnModificarFecha.
-</summary>
-<remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-</remarks>
-</member>
-<member name="F:TranscoldPruebasWeb2.frmTermopares._lbtnFiltrar">
-<summary>
-Control lbtnFiltrar.
-</summary>
-<remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-</remarks>
-</member>
-<member name="F:TranscoldPruebasWeb2.frmTermopares._lbtnModificar">
-<summary>
-Control lbtnModificar.
-</summary>
-<remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-</remarks>
-</member>
-<member name="F:TranscoldPruebasWeb2.frmTermopares._lbtnGuardar">
-<summary>
-Control lbtnGuardar.
+Control hfCodigo.
 </summary>
 <remarks>
 Campo generado automáticamente.
@@ -2935,9 +2998,9 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:TranscoldPruebasWeb2.frmTermopares._wucRefrigSystem1">
+<member name="F:TranscoldPruebasWeb2.frmTermopares._wucRefrSystem1">
 <summary>
-Control wucRefrigSystem1.
+Control wucRefrSystem1.
 </summary>
 <remarks>
 Campo generado automáticamente.
@@ -3046,6 +3109,87 @@ Para modificarlo, mueva la declaración del campo del archivo del diseñador al 
 <member name="F:TranscoldPruebasWeb2.frmTermopares._wucValoresAdicionales">
 <summary>
 Control wucValoresAdicionales.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.frmTermopares._upFechas">
+<summary>
+Control upFechas.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.frmTermopares._ddlFecha">
+<summary>
+Control ddlFecha.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.frmTermopares._panelEditorFecha">
+<summary>
+Control panelEditorFecha.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.frmTermopares._tbFechaReemplazo">
+<summary>
+Control tbFechaReemplazo.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.frmTermopares._lbtnGuardarFecha">
+<summary>
+Control lbtnGuardarFecha.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.frmTermopares._lbtnCancelarGuardarFecha">
+<summary>
+Control lbtnCancelarGuardarFecha.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.frmTermopares._lbtnModificarFecha">
+<summary>
+Control lbtnModificarFecha.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.frmTermopares._lbtnModificar">
+<summary>
+Control lbtnModificar.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.frmTermopares._lbtnGuardar">
+<summary>
+Control lbtnGuardar.
 </summary>
 <remarks>
 Campo generado automáticamente.

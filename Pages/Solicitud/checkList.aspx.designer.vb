@@ -68,6 +68,24 @@ Partial Public Class checkList
     Protected WithEvents hfID As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''Control lblTipo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblTipo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control dplTipo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents dplTipo As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''Control lblCliente.
     '''</summary>
     '''<remarks>
@@ -120,24 +138,6 @@ Partial Public Class checkList
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents tbSolicitado As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control lblTipo.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblTipo As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control dplTipo.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents dplTipo As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control lblSolicitud.

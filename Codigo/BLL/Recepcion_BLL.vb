@@ -6,7 +6,7 @@ Namespace BLL
     Public Class Recepcion_BLL
         Inherits Base_BLL
 
-        Public Shared Function insertar(ByVal query As String,
+        Public Shared Sub insertar(ByVal query As String,
                                        ByVal tipo As String,
                                         ByVal ID As Int32,
                                         ByVal cliente As String,
@@ -35,7 +35,7 @@ Namespace BLL
                                          ByVal comentarios As String,
                                          ByVal usuarioLaboratorio As String,
                                          ByVal usuarioDespachos As String
-                                          ) As String
+                                          )
             MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
@@ -70,12 +70,12 @@ Namespace BLL
                                                        New Object() {"@usuarioLaboratorio", usuarioLaboratorio.TrimEnd},
                                                        New Object() {"@usuarioDespachos", usuarioDespachos.TrimEnd}
                                                   }, Data.CommandType.StoredProcedure).Tables(0).Rows(0)(0)
-                Return msj '    Dim a As Int16 = ex + codigo
+                '    Dim a As Int16 = ex + codigo
             Catch ex As Exception
-                Return ex.ToString '
-                ' colocaError(ex)
+
+                colocaError(ex)
             End Try
-        End Function
+        End Sub
 
 
     End Class

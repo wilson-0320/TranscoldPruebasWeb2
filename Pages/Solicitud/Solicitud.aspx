@@ -465,7 +465,7 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                             </Triggers>
                         </asp:UpdatePanel>
 
-                        <div class="modal fade" id="modalCheck" name="modal">
+                        <div class="modal fade" id="modalCheck" name="modal" data-backdrop="static">
                             <div class="modal-dialog modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">

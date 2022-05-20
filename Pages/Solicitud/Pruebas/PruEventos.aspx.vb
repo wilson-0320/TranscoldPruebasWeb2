@@ -17,11 +17,21 @@
         tbFecha.Text = ""
 
     End Sub
+
+    Private Sub msjNot()
+        If Not BLL.Pru_Eventos_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Pru_Eventos_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("Realizado", 1, True)
+        End If
+    End Sub
+
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
 
         Try
             If (tbCodigo.Text.Length > 0 And tbFecha.Text.Length > 0 And ddlEnsayo.SelectedValue.Length > 0) Then
-                MuestraErrorToast(BLL.Pru_Eventos_BLL.evento_inicio_fin(tbCodigo.Text, ddlEventos.SelectedValue, "Pruebas", "", tbFecha.Text, ddlEnsayo.SelectedValue, Session("Usuario")), 1, True)
+                BLL.Pru_Eventos_BLL.evento_inicio_fin(tbCodigo.Text, ddlEventos.SelectedValue, "Pruebas", "", tbFecha.Text, ddlEnsayo.SelectedValue, Session("Usuario"))
+                msjNot()
                 cargarRepeatPruebas()
             Else
                 MuestraErrorToast("Complete los campos", 3, True)
@@ -63,13 +73,11 @@
 
     Protected Sub repeaterPruebas_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") Then
-            Try
-                MuestraErrorToast(BLL.Pru_Eventos_BLL.eliminar_evento_inicio_fin(e.CommandArgument, Session("Usuario").ToString), 1, True)
 
-            Catch ex As Exception
+            BLL.Pru_Eventos_BLL.eliminar_evento_inicio_fin(e.CommandArgument, Session("Usuario").ToString)
+                msjNot()
 
-            End Try
-            cargarRepeatPruebas()
+                cargarRepeatPruebas()
         End If
     End Sub
 End Class

@@ -23,22 +23,13 @@ Partial Public Class FrmSolicitudEntregas
     Protected WithEvents repeaterReporte As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
-    '''Control repeaterDetalle.
+    '''Control btnClick.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents repeaterDetalle As Global.System.Web.UI.WebControls.Repeater
-
-    '''<summary>
-    '''Control ObjectDataSourceEntregas.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ObjectDataSourceEntregas As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents btnClick As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''Control upEntregas.

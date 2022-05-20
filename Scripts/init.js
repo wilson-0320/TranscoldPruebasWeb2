@@ -49,6 +49,21 @@ function abrirReportes(all)
 
 }
 
+function cerrarModal(idmodal) {
+    $('#' + idmodal).modal('hide');
+    return true;
+}
+
+function abrirModal(idmodal) {
+
+    try {
+        $('#' + idmodal).modal('show');
+    } catch (e) {
+        alert(e + "");
+    }
+    return false;
+}
+
 function metodo(mensaje,tipo) {
     console.log("Cargando Scripts-en metodo");
     var tipos = parseInt(tipo);
@@ -61,6 +76,8 @@ function metodo(mensaje,tipo) {
     $(".js-example-theme-multiple").select2({
         theme: "classic"
     });
+
+
 
     var Toast = Swal.mixin({
         toast: true,

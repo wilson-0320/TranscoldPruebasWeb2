@@ -6,8 +6,8 @@ Namespace BLL
     Public Class Pru_Eventos_BLL
         Inherits Base_BLL
 
-        Public Shared Function evento_inicio_fin(CodSolicitud As String, Descriptor As String, Tipo As String, Path As String, Fecha As Nullable(Of DateTime), Ensayo_ID As Object, Usuario As String) As String
-            MsjError = "-Realizado"
+        Public Shared Sub evento_inicio_fin(CodSolicitud As String, Descriptor As String, Tipo As String, Path As String, Fecha As Nullable(Of DateTime), Ensayo_ID As Object, Usuario As String)
+            MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
                 ' Return
@@ -25,11 +25,11 @@ Namespace BLL
                 colocaError(ex)
             End Try
 
-            Return MsjError
-        End Function
 
-        Public Shared Function eliminar_evento_inicio_fin(id As Integer, Usuario As String) As String
-            MsjError = "-Realizado"
+        End Sub
+
+        Public Shared Sub eliminar_evento_inicio_fin(id As Integer, Usuario As String)
+            MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
                 trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Eventos_sp", New Object() {
@@ -42,9 +42,7 @@ Namespace BLL
 
             End Try
 
-
-            Return MsjError
-        End Function
+        End Sub
 
         Public Shared Function consultar_pruebas_y_eventos(CodSolicitud As String) As DataTable
             Dim trsql As New TransacSQL

@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="wucRefrig.ascx.vb" Inherits="TranscoldPruebasWeb2.wucRefrig" %>
 
 
-<img src="http://fogelonline.com/TranscoldPruebasWeb/Publico/ImagenesWebsites/Termopares/refrigeracion.jpg" style="position: absolute; top: 15px; left: 10px;" />
+<img src="https://www.fogelonline.com/TranscoldPruebasWeb/Publico/ImagenesWebsites/Termopares/refrigeracion.jpg" style="position: absolute; top: 15px; left: 10px;" />
 <input runat="server" id="tb233" style="position: absolute; top: 651px; left: 244px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
 <input runat="server" id="tb234" style="position: absolute; top: 653px; left: 393px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
 <input runat="server" id="tb232" style="position: absolute; top: 488px; left: 784px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />

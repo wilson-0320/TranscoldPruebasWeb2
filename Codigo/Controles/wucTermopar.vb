@@ -18,33 +18,39 @@ Public Class wucTermopar
     End Sub
 
     Public Sub CargarDatos()
-        Dim dt As DataTable = BLL.Pru_Termopar_BLL.consulta(_codigo, _stFecha, -1, _posicion_ini, _posicion_fin)
-        For Each dr As DataRow In dt.Rows
-            If dr("posicion") = 317 Then
-                Dim i As Integer = 1
-                i = 2
-            End If
-            Dim num_canal As String = ""
-            If Not dr("num_canal") Is DBNull.Value Then
-                num_canal = dr("num_canal")
-            End If
-            Dim ctrlID As String = dr("posicion") - _posicion_ini + _tb_ini
-            CType(FindControl("tb" + ctrlID), HtmlInputText).Value = num_canal
-            If Not FindControl("tbNom" + ctrlID) Is Nothing Then
-                Dim nombre As String = ""
-                If Not dr("nombre") Is DBNull.Value Then
-                    nombre = dr("nombre")
+        Try
+
+
+            Dim dt As DataTable = BLL.Pru_Termopar_BLL.consulta(_codigo, _stFecha, -1, _posicion_ini, _posicion_fin)
+            For Each dr As DataRow In dt.Rows
+                If dr("posicion") = 317 Then
+                    Dim i As Integer = 1
+                    i = 2
                 End If
-                CType(FindControl("tbNom" + ctrlID), HtmlInputText).Value = nombre
-            End If
-            If Not FindControl("tbNum" + ctrlID) Is Nothing Then
-                Dim num As String = ""
-                If Not dr("num") Is DBNull.Value Then
-                    num = dr("num")
+                Dim num_canal As String = ""
+                If Not dr("num_canal") Is DBNull.Value Then
+                    num_canal = dr("num_canal")
                 End If
-                CType(FindControl("tbNum" + ctrlID), HtmlInputText).Value = num
-            End If
-        Next
+                Dim ctrlID As String = dr("posicion") - _posicion_ini + _tb_ini
+                CType(FindControl("tb" + ctrlID), HtmlInputText).Value = num_canal
+                If Not FindControl("tbNom" + ctrlID) Is Nothing Then
+                    Dim nombre As String = ""
+                    If Not dr("nombre") Is DBNull.Value Then
+                        nombre = dr("nombre")
+                    End If
+                    CType(FindControl("tbNom" + ctrlID), HtmlInputText).Value = nombre
+                End If
+                If Not FindControl("tbNum" + ctrlID) Is Nothing Then
+                    Dim num As String = ""
+                    If Not dr("num") Is DBNull.Value Then
+                        num = dr("num")
+                    End If
+                    CType(FindControl("tbNum" + ctrlID), HtmlInputText).Value = num
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     <Bindable(True, BindingDirection.OneWay)> _
