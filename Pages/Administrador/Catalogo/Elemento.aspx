@@ -8,7 +8,7 @@
 
 
                         <div class="card-tools">
-                            <b class="text-info">Catalogos</b>
+                            <b class="text-info">Elementos</b>
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>

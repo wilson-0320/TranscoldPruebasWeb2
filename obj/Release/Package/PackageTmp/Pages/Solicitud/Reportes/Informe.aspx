@@ -215,7 +215,7 @@
                                                     <div class="col-sm-3">
                                                         <small>Codigo:</small>
 
-                                                        <asp:TextBox ID="tbCodigoCrud" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <asp:TextBox ID="tbCodigoCrud" runat="server" OnTextChanged="tbCodigoCrud_TextChanged" AutoPostBack="true" CssClass="form-control"></asp:TextBox>
                                                         <asp:DropDownList ID="listCodigoCrud" runat="server" CssClass="js-example-theme-single form-control"></asp:DropDownList>
 
                                                     </div>
@@ -280,6 +280,7 @@
                                         <asp:AsyncPostBackTrigger ControlID="repeaterPendienteRevision" EventName="ItemCommand" />
                                         <asp:AsyncPostBackTrigger ControlID="btnGenerar" EventName="Click" />
                                         <asp:AsyncPostBackTrigger ControlID="btnGuardarCrud" EventName="Click" />
+                                        <asp:AsyncPostBackTrigger ControlID="tbCodigoCrud" EventName="TextChanged" />
                                     </Triggers>
                                 </asp:UpdatePanel>
 
@@ -348,7 +349,7 @@
                                                 </div>
 
                                                 <div class="col-sm-12">
-                                                    <div class="table-responsive">
+                                                    <div class="table-responsive text-sm">
                                                         
                                                         <table class="table table-sm table-bordered">
                                                     <thead class="bg-gradient-navy">
@@ -416,7 +417,7 @@
 
 
                                             <asp:LinkButton ID="btnEnviarRevision" runat="server" OnClick="btnEnviarRevision_Click" ToolTip="Enviar a revision" CssClass="fa fa-share"></asp:LinkButton>
-                                            <div class="table-responsive">
+                                            <div class="table-responsive text-sm">
                                                 <table class="table table-sm table-bordered">
                                                     <thead class="bg-gradient-navy">
                                                         <th></th>
@@ -518,24 +519,24 @@
 
                                                 <ItemTemplate>
 
-                                                    <!-- timeline time label -->
-                                                    <div class="time-label ">
+                                                  <!-- timeline time label -->
+                                                    <div class="time-label " style="display:none;">
                                                     </div>
                                                     <!-- /.timeline-label -->
                                                     <!-- timeline item -->
-                                                    <div>
+                                                    <div runat="server"  Style='<%# If(Eval("cat") Is DBNull.Value, "display:none;", "display:Block;")%>'>
 
-                                                        <i class="  <%#If(Eval("Estado").Equals("Aprobado"), " fa fa-check bg-success", "fas  fa-exclamation-triangle  bg-danger")  %>"></i>
+                                                        <i class="  <%#If(Eval("Estado").Equals("Aprobado") Or Eval("Estado").Equals("Revisada"), " fa fa-check bg-success", "fas  fa-exclamation-triangle  bg-danger")  %>"></i>
                                                         <div class="timeline-item">
 
                                                             <span class="time"><i class="fas fa-clock"></i><%# Eval("Fecha_Enviado", "{0:dd/MM/yyyy hh:mm tt}")%> <%#  Eval("Observaciones_Revision") %></span>
                                                             <h3 class="timeline-header"><%# Eval("cat") %></h3>
                                                             <div class="timeline-body">
-                                                                <div class="row">
-                                                                    <div class="col-sm-10">
+                                                         
+                                                              <div style="width:900px;">
 
                                                                         <%#  Eval("elem")  %>
-
+ 
                                                                         <tr runat="server" id="trArch" class="table-responsive-sm" visible='<%# Not Eval("Arch") Is DBNull.Value AndAlso Eval("Arch") <> ""%>'>
                                                                             <td>
 
@@ -548,35 +549,37 @@
 
                                                                                     </div>
                                                                                 </div>
+                                                                                <a href='https://www.fogelonline.com<%# Eval("Arch")%>' target="_blank">  
+                                                                                    <%# Eval("ArchDescr")%>                
+
+                                                                                </a>
 
 
                                                                             </td>
 
                                                                         </tr>
-                                                                        <tr runat="server" id="trAbre" visible='<%# Not Eval("elem") Is DBNull.Value AndAlso (Left(Eval("elem"), 6) = "INICIO" Or Left(Eval("elem"), 3) = "FIN")%>'>
+                                                                        <tr runat="server"   id="trAbre" visible='<%# Not Eval("elem") Is DBNull.Value AndAlso (Left(Eval("elem"), 6) = "INICIO" Or Left(Eval("elem"), 3) = "FIN")%>'>
                                                                             <td style="border-left-style: solid;"></td>
-                                                                            <td colspan="3" style="color: #00DF00" class="LinkGuardaReporte"><%# Eval("Folder")%></td>
+                                                                            <td colspan="3" style="color: #00DF00" onclick="abrirReportes();" class="LinkGuardaReporte"><button class="btn btn-sm text-primary " onclick="abrirReportes('<%# Eval("Folder")%>');"  ><%# Eval("Folder")%></button></td>
+                                                                            
                                                                         </tr>
                                                                     </div>
-                                                                    <div class="col-sm-2">
+                                                             <div class="text-right">
 
-                                                                        <!--
-                                                                       
-                                                                        -->
                                                                         <tr runat="server" id="tr3" visible='<%# cbPresentacion.Checked %>'>
                                                                             <td>
-                                                                                <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="editarHistoricos" CssClass=" fa fa-2x fa-edit btn btn-warning" runat="server"></asp:LinkButton>
+                                                                                <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="editarHistoricos" CssClass=" fa fa-2x fa-edit " runat="server"></asp:LinkButton>
 
 
                                                                                 &nbsp;&nbsp;
                                                     
-                                                          <tr runat="server" id="tr1" visible='<%# Eval("Estado") = "Aprobado"%>'>
+                                                          <tr runat="server" id="tr1" visible='<%# If(Eval("Estado").Equals("Aprobado") Or Eval("Estado").Equals("Revisada"), True, False)%>'>
                                                               <td>
                                                                   <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="rechazarHistorico" CssClass=" fa fa-2x fa-exclamation-triangle" runat="server"></asp:LinkButton>
 
                                                               </td>
                                                           </tr>
-                                                                                <tr runat="server" id="tr2" visible='<%#  Eval("Estado") = "Ingresado"%>'>
+                                                                                <tr runat="server" id="tr2" visible='<%# If(Eval("Estado").Equals("Ingresado") Or Eval("Estado").Equals("Enviada"), True, False)%>'>
                                                                                     <td>
                                                                                         <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="aprobarHistorico" CssClass=" fa fa-2x fa-check " runat="server"></asp:LinkButton>
 
@@ -586,21 +589,14 @@
 
                                                                             </td>
                                                                         </tr>
+                                                                  </div>
 
-                                                                    </div>
-
-
-
-
-
-
-                                                                </div>
+                                                                    
+                                                               
 
                                                             </div>
                                                         </div>
                                                     </div>
-
-
 
 
                                                 </ItemTemplate>

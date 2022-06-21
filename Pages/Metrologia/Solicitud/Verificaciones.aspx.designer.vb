@@ -23,40 +23,22 @@ Partial Public Class Verificaciones
     Protected WithEvents tbCodigoFiltro As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control tbModeloFiltro.
+    '''Control ddlCamaraFiltro.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents tbModeloFiltro As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlCamaraFiltro As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control tbWOFiltro.
+    '''Control ddlMagnitudFiltro.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents tbWOFiltro As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control tbSerieFiltro.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents tbSerieFiltro As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control tbCamaraFiltro.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents tbCamaraFiltro As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlMagnitudFiltro As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control btnGenerar.
@@ -104,15 +86,6 @@ Partial Public Class Verificaciones
     Protected WithEvents hfQuery As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control ddlTipoEntrada.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ddlTipoEntrada As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''Control tbCodigo.
     '''</summary>
     '''<remarks>
@@ -120,6 +93,15 @@ Partial Public Class Verificaciones
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents tbCodigo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control ddlTipoEntrada.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlTipoEntrada As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control ddlInstrumentos.
@@ -210,96 +192,6 @@ Partial Public Class Verificaciones
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents tbP4 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control lblP5.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblP5 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control tbP5.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents tbP5 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control lblP6.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblP6 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control tbP6.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents tbP6 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control lblP7.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblP7 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control tbP7.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents tbP7 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control lblP8.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblP8 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control tbP8.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents tbP8 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control lblP9.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblP9 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control tbP9.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents tbP9 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control tbComentarios.

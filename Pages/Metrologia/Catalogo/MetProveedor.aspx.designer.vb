@@ -41,6 +41,15 @@ Partial Public Class MetProveedor
     Protected WithEvents ODSBLL_Met_Proveedores As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
+    '''Control updatePanelCrud.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents updatePanelCrud As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
     '''Control hfID.
     '''</summary>
     '''<remarks>
@@ -140,20 +149,20 @@ Partial Public Class MetProveedor
     Protected WithEvents cbSuministros As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''Control btnGuardar.
+    '''Control lbtnGuardar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnGuardar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lbtnGuardar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control Button1.
+    '''Control lbtnCancelar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lbtnCancelar As Global.System.Web.UI.WebControls.LinkButton
 End Class

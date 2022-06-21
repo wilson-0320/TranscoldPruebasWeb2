@@ -13,7 +13,7 @@ Public Class menu
                 Dim v As String = Request.Url.AbsoluteUri
                 Dim RetornoUrl As String = v(0) + "//" + v(1) +
                    "/" + v(2) + "/" + v(3) + "/" + v(4)
-                '  Response.Redirect("~/ComunesWeb/Login.aspx?responder=" + v)
+                Response.Redirect("~/ComunesWeb/Login.aspx")
             Else
                 Session("Roles") = Session("Roles").ToString
 

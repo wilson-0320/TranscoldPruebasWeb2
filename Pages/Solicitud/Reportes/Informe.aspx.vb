@@ -1,6 +1,6 @@
 ﻿Public Class Informe
     Inherits MiPageN
-
+    Dim TAF As New TAF
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             chargeListElementos()
@@ -9,7 +9,12 @@
             If Not Request.QueryString("Codigo") Is Nothing Then
                 hfCodigo.Value = Request.QueryString("Codigo")
                 tbCodigo.Text = hfCodigo.Value
-                hfElementID.Value = tbCodigo.Text
+                Try
+                    hfElementID.Value = Session("Usuario").ToString()
+                Catch ex As Exception
+
+                End Try
+
 
                 cargarReportRepeatet("LineaTiempoIntegrado2")
 
@@ -70,6 +75,17 @@
 
 
     End Sub
+    Private Sub MandaCorreosSolicitudEnviada()
+        Dim Asunto As String = "Se envió una solicitud para la Solicitud " + hfCodigo.Value
+        Dim DT As DataTable = TAF.TrSql.EjecutarConsulta("TranscoldPruebas", "Pru_Consulta", New Object() {
+                                                         New Object() {"@Consulta", "CorreosEnvSol"},
+                                                         New Object() {"@Filtro1", hfCodigo.Value}
+                                                         }, CommandType.StoredProcedure).Tables(0)
+        For Each Row As DataRow In DT.Rows
+            TAF.Varios.Enviar_Mail(New String() {Row("Correo")}, Asunto, Row("Texto"), Nothing, True)
+        Next
+    End Sub
+
     Private Sub reiniciarListas()
         Try
             listElemento.SelectedValue = ""
@@ -104,13 +120,13 @@
     End Sub
 
     Private Sub consultarFechaFin()
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Select Fecha_Finalizacion From Pru_Solicitud where Codigo=@Codigo", New Object() {
+        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Select Estado From Pru_Solicitud where Codigo=@Codigo", New Object() {
                                                                  New Object() {"@Codigo", tbCodigo.Text}
                                                                  }, CommandType.Text).Tables(0)
 
         Dim fin As String = DTOrig.Rows(0).Item(0).ToString
 
-        If (fin.Length > 5) Then
+        If (fin.Equals("Finalizada")) Then
 
             btnGuardarCrud.Enabled = False
             btnEnviarRevision.Enabled = False
@@ -337,6 +353,8 @@
             'Este es el procedimiento: Pru_Elemento_Valor_Consulta
             Dim DTOrig As DataTable = BLL.Archivo_BLL.consultar(Tipo, elementoId)
 
+
+
             repeaterImagenes.DataSource = DTOrig
             repeaterImagenes.DataBind()
         Catch ex As Exception
@@ -420,13 +438,13 @@
                 If userPostedFile.ContentLength > 0 Then
                     ArchPath = Path + "\" + nomArch
                     userPostedFile.SaveAs(ArchPath)
-                    If IdArch_ = -1 Then
-                        BLL.Archivo_BLL.insertar(hfTipoImagen.Value.TrimEnd, hfElementID.Value.TrimEnd, nomArch + "-" + tbDescripcionFoto.Text, nomArch)
+                    'If IdArch_ = -1 Then
+                    BLL.Archivo_BLL.insertar(hfTipoImagen.Value.TrimEnd, hfElementID.Value.TrimEnd, nomArch + "-" + tbDescripcionFoto.Text, nomArch)
 
-                        IdArch = BLL.Archivo_BLL.ultimo_id(0)
-                    Else
-                        IdArch = IdArch_
-                    End If
+                    IdArch = BLL.Archivo_BLL.ultimo_id(0)
+                    '  Else
+                    '     IdArch = IdArch_
+                    '   End If
                 End If
 
                 cargarImagenes(hfElementID.Value, hfTipoImagen.Value)
@@ -464,6 +482,7 @@
         validacionCrud()
         cargarImagenes(hfElementID.Value, hfTipoImagen.Value)
         limpiaEnControles()
+        cargarReportRepeatet("LineaTiempoIntegrado2")
     End Sub
     Protected Sub btnCancelarModificacion_Click(sender As Object, e As EventArgs)
         limpiaEnControles()
@@ -490,7 +509,7 @@
         'Modo pruebas
         If (Session("Usuario") Is Nothing) Then
         Else
-            msj = BLL.Solicitud_Hist_BLL.ActuEstado(hfCodigo.Value, "Enviada", "", Session("Usuario").ToString, ddlDivision.SelectedValue)
+            msj = BLL.Solicitud_Hist_BLL.ActuEstado(hfCodigo.Value, "Enviada2", "", Session("Usuario").ToString, ddlDivision.SelectedValue)
 
         End If
 
@@ -498,7 +517,7 @@
             MuestraErrorToast(BLL.Solicitud_Hist_BLL.MsjError, 4, True)
         Else
             cargarPendienteRevision()
-
+            MandaCorreosSolicitudEnviada()
             cargarReportRepeatet("LineaTiempoIntegrado2")
             MuestraErrorToast("Listo", 1, True)
         End If
@@ -566,7 +585,7 @@
                 If (fnRevisado.Text.Length < 1) Then
                     fnRevisado.Text = fnEnviado.Text
                 End If
-                msj = BLL.Solicitud_Hist_Elem_BLL.modificarEliminarHistorico("EliminarCompleto", Int32.Parse(hfIDElmentoCrud.Value), listElemento.SelectedValue, valores, tbCantidadCrud.Text, tbPrecioCrud.Text, tbComentariosObservacionesCrud.Text, externoBoolean(), Convert.ToDateTime(fnEnviado.Text), Convert.ToDateTime(fnRevisado.Text))
+                msj = BLL.Solicitud_Hist_Elem_BLL.modificarEliminarHistorico("Eliminar", Int32.Parse(hfIDElmentoCrud.Value), listElemento.SelectedValue, valores, tbCantidadCrud.Text, tbPrecioCrud.Text, tbComentariosObservacionesCrud.Text, externoBoolean(), Convert.ToDateTime(fnEnviado.Text), Convert.ToDateTime(fnRevisado.Text))
 
             End If
 

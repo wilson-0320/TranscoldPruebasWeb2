@@ -68,7 +68,7 @@ Public Class Solicitud
         If Not BLL.Solicitud_BLL.MsjError Is Nothing Then
             MuestraErrorToast(BLL.Solicitud_BLL.MsjError, 4, True)
         Else
-            MuestraErrorToast("", 0, True)
+            MuestraErrorToast("Se completo la operacion.", 1, True)
         End If
     End Sub
 
@@ -89,6 +89,12 @@ Public Class Solicitud
 
                 lblConsectivo.Text = DTOrig.Rows(0).Item(19)
                 lblCodigo.Text = DTOrig.Rows(0).Item(0)
+                Try
+                    ddlEstadoB.SelectedValue = DTOrig.Rows(0).Item(20)
+                Catch ex As Exception
+
+                End Try
+
                 lblFechaCreacion.Text = DTOrig.Rows(0).Item(1)
                 ddlLider.SelectedValue = DTOrig.Rows(0).Item(2)
                 tbModelo.Text = DTOrig.Rows(0).Item(3)
@@ -186,7 +192,7 @@ Public Class Solicitud
         hfIDRequerimiento.Value = "-1"
         hfIDCheck.Value = "-1"
         tbOpciones.Visible = False
-        ddlOpciones.Visible = False
+        lbOpciones.Visible = False
         lblRequisito.Text = False
         lbtnSiguiente.Visible = False
 
@@ -224,11 +230,16 @@ Public Class Solicitud
                 ddlEnsayosOfrecidos.DataTextField = "Descripcion"
                 ddlEnsayosOfrecidos.DataBind()
             Case 4
-                ddlCarga.DataSource = DTOrig
+                Try
+                    ddlCarga.DataSource = DTOrig
 
-                ddlCarga.DataValueField = "ID"
-                ddlCarga.DataTextField = "Descripcion"
-                ddlCarga.DataBind()
+                    ddlCarga.DataValueField = "ID"
+                    ddlCarga.DataTextField = "Descripcion"
+                    ddlCarga.DataBind()
+                Catch ex As Exception
+
+                End Try
+
 
         End Select
 
@@ -339,7 +350,7 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
 
     Protected Sub lbtnGuardarSolicitud_Click(sender As Object, e As EventArgs)
         If validarCrud() Then
-            guardarCrudSolicitud("Nuevo")
+            guardarCrudSolicitud("Nueva")
         End If
     End Sub
     Protected Sub lbtnGuardarEnsayos_Click(sender As Object, e As EventArgs)
@@ -541,7 +552,7 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
 
             If (DTOrigin.Rows(0).Item(3).ToString.Contains(",")) Then
                 Dim DTOriginValores As String() = DTOrigin.Rows(0).Item(3).ToString.Split(",")
-                ddlOpciones.Visible = True
+                lbOpciones.Visible = True
                 tbOpciones.Visible = False
 
                 Dim dt As DataTable = New DataTable()
@@ -552,21 +563,43 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
                 Next
 
 
-                ddlOpciones.DataSource = dt
-                ddlOpciones.DataTextField = "ID".TrimEnd
-                ddlOpciones.DataValueField = "ID".TrimEnd
-                ddlOpciones.DataBind()
+                lbOpciones.DataSource = dt
+                lbOpciones.DataTextField = "ID".TrimEnd
+                lbOpciones.DataValueField = "ID".TrimEnd
+                lbOpciones.DataBind()
                 Try
-                    ddlOpciones.SelectedValue = DTOrigin.Rows(0).Item(6).ToString.TrimEnd
 
+
+                    Dim Seleccionar As String() = DTOrigin.Rows(0).Item(3).ToString.TrimEnd().Split(",")
+                    lblEleccion.Text = DTOrigin.Rows(0).Item(3).ToString.TrimEnd()
+
+
+                    For a As Integer = 0 To Seleccionar.Length Step 1
+
+                        If (lbOpciones.Items(a).Selected = Seleccionar(a)) Then
+
+
+
+                            Try
+                                lbOpciones.Items(a).Selected = True
+                            Catch ex As Exception
+
+                            End Try
+                        End If
+
+                    Next
                 Catch ex As Exception
-                    '  MuestraErrorToast(ex.Message, 3, True)
+
                 End Try
+
+
+
 
             Else
                 tbOpciones.Text = DTOrigin.Rows(0).Item(3).ToString.TrimEnd
+                lblEleccion.Text = DTOrigin.Rows(0).Item(3).ToString.TrimEnd()
                 tbOpciones.Visible = True
-                ddlOpciones.Visible = False
+                lbOpciones.Visible = False
 
             End If
             lbtnAnterior.Visible = True
@@ -578,7 +611,7 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
             lblEstadoCheck.Text = DTOrigin.Rows(0).Item(9).ToString.TrimEnd
         Catch ex As Exception
             hfNum.Value = Integer.Parse(hfNum.Value) - 1
-            MuestraErrorToast("Ya completo el checklist de la prueba", 3, True)
+            MuestraErrorToast("Aun no existe requerimientos para este ensayo, dile al administrador que los agrege.", 3, True)
             lbtnSiguiente.Enabled = False
         End Try
 
@@ -593,12 +626,12 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
         lbtnAnterior.Visible = False
         lblEstadoCheck.Visible = False
         lblRequisito.Visible = False
-        ddlOpciones.Visible = False
+        lbOpciones.Visible = False
         tbOpciones.Visible = False
 
 
         Dim key As String = Guid.NewGuid.ToString
-        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, "abrir()", True)
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, "abrirModal('modalCheck')", True)
         MuestraErrorToast("Listo", 0, True)
     End Sub
 
@@ -611,7 +644,7 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
             MuestraErrorToast("", 0, True)
         Else
             MuestraErrorToast("No es posible continuar sin elegir un ensayo", 3, True)
-            ddlOpciones.Visible = False
+            lbOpciones.Visible = False
             tbOpciones.Visible = False
             lblRequisito.Visible = False
             lblEstadoCheck.Visible = False
@@ -629,8 +662,8 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
             hfQueryCheck.Value = "Insertar"
         End If
         Dim opcion As String = ""
-        If (ddlOpciones.Visible) Then
-            opcion = ddlOpciones.SelectedValue.TrimEnd
+        If (lbOpciones.Visible) Then
+            opcion = obtTiposReg()
         Else
             opcion = tbOpciones.Text.TrimEnd
         End If
@@ -652,7 +685,15 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
         MuestraErrorToast("Listo", 0, True)
 
     End Sub
-
+    Private Function obtTiposReg() As String
+        Dim l As New List(Of String)
+        For Each li As ListItem In lbOpciones.Items
+            If li.Selected Then
+                l.Add(li.Value)
+            End If
+        Next
+        Return String.Join(",", l.ToArray)
+    End Function
     Protected Sub lbtnAnterior_Click(sender As Object, e As EventArgs)
         If (hfNum.Value.Equals("1")) Then
         Else

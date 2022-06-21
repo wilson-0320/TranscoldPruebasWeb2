@@ -7,21 +7,7 @@ tr.group:hover {
 }
     </style>
     <script>
-        $(function () {
-
-            console.log("Cargando Scripts");
-            
-
-            $('#example tbody').on('click', 'tr.group', function () {
-                var currentOrder = table.order()[0];
-                if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-                    table.order([groupColumn, 'desc']).draw();
-                }
-                else {
-                    table.order([groupColumn, 'asc']).draw();
-                }
-            });
-        });
+        
 
         function agruparTabla()
         {
@@ -56,7 +42,7 @@ tr.group:hover {
             }
         }
 
-            
+       
     </script>
      <div class="content-wrapper">
         <section class="content">

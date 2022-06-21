@@ -2,29 +2,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Main2" runat="server">
-    <script>
-        function abrirModal() {
-
-            try {
-                $('#modal').modal('show');
-            } catch (e) {
-                alert(e + "");
-            }
-
-        }
-
-        function abrir() {
-
-            try {
-                $('#modalCheck').modal('show');
-            } catch (e) {
-                alert(e + "");
-            }
-
-            return false;
-        }
-
-    </script>
+    
     <div class="content-wrapper">
 
         <!-- Main content -->
@@ -77,16 +55,16 @@
                              <asp:ImageButton ID="ibtnReporteSolicitud" runat="server" OnClick="ibtnReporteSolicitud_Click" ImageUrl="~/Content/Estaticos/reporteSolicitud.jpg" ToolTip="reporte solicitud" />
 
                          </div>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                         <div class="cols-sm-2 btn btn-default">
+                       
+                         <div class="cols-sm-2 btn btn-default" style="display:none;">
                              <small>Pruebas</small><br />
-                             <asp:ImageButton ID="ibtnGraficas" runat="server" OnClick="ibtnGraficas_Click" ImageUrl="~/Content/Estaticos/02.jpg" ToolTip="Visor de pruebas" />
+                             <asp:ImageButton ID="ibtnGraficas" runat="server" Visible="false" OnClick="ibtnGraficas_Click" ImageUrl="~/Content/Estaticos/02.jpg" ToolTip="Visor de pruebas" />
 
                          </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="cols-sm-2 btn btn-default">
                             <small>CheckList</small><br />
-                            <asp:ImageButton ID="ibtnCheck" data-target="#modal-default" runat="server" OnClick="ibtnCheck_Click" ImageUrl="~/Content/Estaticos/02.jpg" ToolTip="Visor de pruebas" />
+                            <asp:ImageButton ID="ibtnCheck" data-target="#modal-default" runat="server" OnClick="ibtnCheck_Click" ImageUrl="~/Content/Estaticos/reportePruebas.png" ToolTip="Check list de procedimientos" />
 
 
                         </div>
@@ -110,9 +88,9 @@
                                         <small>Estado</small>
 
                                         <asp:DropDownList ID="ddlEstadoB" runat="server" OnSelectedIndexChanged="ddlEstadoB_SelectedIndexChanged" CssClass="form-control" AutoPostBack="True" AppendDataBoundItems="True">
-
+                                            <asp:ListItem>Nueva</asp:ListItem>
                                             <asp:ListItem>Pruebas</asp:ListItem>
-                                            <asp:ListItem>Finalizacion</asp:ListItem>
+                                            <asp:ListItem>Finalizada</asp:ListItem>
                                         </asp:DropDownList>
 
 
@@ -518,9 +496,10 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-sm-12">
-
-                                                        <asp:DropDownList ID="ddlOpciones" CssClass="js-example-theme-single form-control" runat="server"></asp:DropDownList>
+                                                        <asp:ListBox ID="lbOpciones" CssClass="js-example-theme-single form-control"  SelectionMode="Multiple"   multiple="multiple"   runat="server"></asp:ListBox>
                                                         <asp:TextBox ID="tbOpciones" CssClass="form-control" runat="server"></asp:TextBox>
+                                                        <small>Elección realizada: </small>
+                                                        <asp:Label ID="lblEleccion" runat="server" CssClass="text-sm text-danger" Text=""></asp:Label>
                                                     </div>
                                                 </div>
 

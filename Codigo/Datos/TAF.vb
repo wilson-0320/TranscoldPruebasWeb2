@@ -4,6 +4,7 @@ Public Class TAF
 
 
     Dim TrSql_ As TransacSQL
+    Dim Varios_ As Varios
     Dim QueriesTA_ As ApDataSetTableAdapters.QueriesTableAdapter
     Dim SolicitudTA_ As ApDataSetTableAdapters.Pru_SolicitudTableAdapter
     Dim SolEnsayoTA_ As ApDataSetTableAdapters.Pru_Solicitud_EnsayoTableAdapter
@@ -35,7 +36,12 @@ Public Class TAF
         End Try
     End Function
 
-
+    Public Function Varios() As Varios
+        If Varios_ Is Nothing Then
+            Varios_ = New Varios
+        End If
+        Return Varios_
+    End Function
 
     Public Function TrSql() As TransacSQL
         If TrSql_ Is Nothing Then

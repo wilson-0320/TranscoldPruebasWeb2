@@ -212,6 +212,7 @@
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td>
+                                                                         <small>  <a  class="text-purple" target="_blank" href="/Pages/Prueba/PruebasLab.aspx?CodigoSol=<%#Eval("Prueba") %>"><span class="fa fa-2x fa-chart-line"></span></a></small><br />
                                                                         <asp:LinkButton ID="LinkButton3" CommandName="Reporte" CommandArgument='<%# Eval("Prueba_ID") %>' CssClass="fa fa-play" runat="server" ></asp:LinkButton>
                                                                         <asp:LinkButton ID="LinkButton1" CommandName="Edit" CommandArgument='<%# Eval("Prueba_ID") %>' CssClass="fa fa-edit" runat="server" ></asp:LinkButton>
                                                                         <asp:LinkButton ID="LinkButton2" CommandName="Eli" CommandArgument='<%# Eval("Prueba_ID") %>' CssClass="fa fa-trash" runat="server" OnClientClick="return confirm('¿Realmente desea eliminar el registro?')" ></asp:LinkButton>

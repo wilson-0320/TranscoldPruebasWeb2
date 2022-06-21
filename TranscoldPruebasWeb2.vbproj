@@ -173,6 +173,7 @@
     <Content Include="Content\Estaticos\guardar.png" />
     <Content Include="Content\Estaticos\home.png" />
     <Content Include="Content\Estaticos\linea.png" />
+    <Content Include="Content\Estaticos\LOGO-FOGEL-NEGRO.png" />
     <Content Include="Content\Estaticos\refresh.png" />
     <Content Include="Content\Estaticos\reportePruebas.png" />
     <Content Include="Content\Estaticos\reporteSolicitud.jpg" />
@@ -186,15 +187,16 @@
     <Content Include="Pages\Administrador\Catalogo\FrmValoresRel.aspx" />
     <Content Include="Pages\Administrador\permisos.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
-    <Content Include="Pages\Metrologia\camaras\lecturas.aspx" />
+    <Content Include="Pages\Metrologia\Catalogo\MetCatalogo.aspx" />
+    <Content Include="Pages\Metrologia\Catalogo\MetMagnitud.aspx" />
     <Content Include="Pages\Metrologia\Catalogo\MetProveedor.aspx" />
-    <Content Include="Pages\Metrologia\Equipo.aspx" />
-    <Content Include="Pages\Metrologia\Equipos\Instrumentos.aspx" />
-    <Content Include="Pages\Metrologia\Retenidos.aspx" />
+    <Content Include="Pages\Metrologia\Detalle\panelMetrologia.aspx" />
+    <Content Include="Pages\Metrologia\Instrumentos.aspx" />
     <Content Include="Pages\Metrologia\Solicitud\Verificaciones.aspx" />
-    <Content Include="Pages\Prueba\PrubasLab.aspx" />
     <Content Include="Pages\Prueba\PruebasLab.aspx" />
+    <Content Include="Pages\Prueba\webRepPruebas.aspx" />
     <Content Include="Pages\Solicitud\checkList.aspx" />
+    <Content Include="Pages\Solicitud\Entregas\FrmEntregas.aspx" />
     <Content Include="Pages\Solicitud\Entregas\FrmSolicitudEntregas.aspx" />
     <Content Include="Pages\Solicitud\HistorialSolicitudes.aspx" />
     <Content Include="Pages\Solicitud\Pruebas\checkListProcedimientos.aspx" />
@@ -202,8 +204,12 @@
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucAdicionales.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucElectric.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucEstacionPruebas.ascx" />
+    <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucPanaEvaporadorHTML.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucPanaEvaporador.ascx" />
+    <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrigHTML2.ascx" />
+    <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrigHTML.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrig.ascx" />
+    <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucVidriosHTML.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucVidrios.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\Pruebas.aspx" />
     <Content Include="Pages\Solicitud\Pruebas\PruEventos.aspx" />
@@ -303,6 +309,7 @@
     <Content Include="Scripts\plugins\chart.js\Chart.js" />
     <Content Include="Scripts\plugins\chart.js\Chart.min.css" />
     <Content Include="Scripts\plugins\chart.js\Chart.min.js" />
+    <Content Include="Scripts\plugins\chart.js\chart\chart.js" />
     <Content Include="Scripts\plugins\codemirror\addon\comment\comment.js" />
     <Content Include="Scripts\plugins\codemirror\addon\comment\continuecomment.js" />
     <Content Include="Scripts\plugins\codemirror\addon\dialog\dialog.css" />
@@ -2494,13 +2501,17 @@
     <Compile Include="Codigo\BLL\Elementos_Requerimientos_BLL.vb" />
     <Compile Include="Codigo\BLL\Elementos_BLL.vb" />
     <Compile Include="Codigo\BLL\Catalogo_Categoria_BLL.vb" />
-    <Compile Include="Codigo\BLL\Certificados_Calibracion_BLL.vb" />
+    <Compile Include="Codigo\BLL\Met_Certificado.vb" />
     <Compile Include="Codigo\BLL\Consulta_BLL.vb" />
     <Compile Include="Codigo\BLL\Catalogo_BLL.vb" />
     <Compile Include="Codigo\BLL\Elemento_Relacion_BLL.vb" />
     <Compile Include="Codigo\BLL\Equipos_BLL.vb" />
-    <Compile Include="Codigo\BLL\Laboratorios_Calibracion_BLL.vb" />
+    <Compile Include="Codigo\BLL\Met_Instrumento_Magnitud_BLL.vb" />
+    <Compile Include="Codigo\BLL\Met_Instrumento_Proveedor.vb" />
     <Compile Include="Codigo\BLL\Lec_BLL.vb" />
+    <Compile Include="Codigo\BLL\Met_Magnitud_BLL.vb" />
+    <Compile Include="Codigo\BLL\Met_Catalogo_BLL.vb" />
+    <Compile Include="Codigo\BLL\Met_Instrumento_BLL.vb" />
     <Compile Include="Codigo\BLL\Pag_Paginas_BLl.vb" />
     <Compile Include="Codigo\BLL\Pag_Usuarios_Permisos_BLL.vb" />
     <Compile Include="Codigo\BLL\Login_BLL.vb" />
@@ -2524,8 +2535,9 @@
     <Compile Include="Codigo\BLL\Solicitud_Repor_BLL.vb" />
     <Compile Include="Codigo\BLL\Solicitud_Rep_BLL.vb" />
     <Compile Include="Codigo\BLL\Token_BLL.vb" />
-    <Compile Include="Codigo\BLL\Validacion_BLL.vb" />
+    <Compile Include="Codigo\BLL\Pru_Verificacion_Solicitud_BLL.vb" />
     <Compile Include="Codigo\BLL\Valor_Rel_BLL.vb" />
+    <Compile Include="Codigo\ComunesCodigoWeb\EspecificoTipoProy.vb" />
     <Compile Include="Codigo\ComunesCodigoWeb\MiPageN.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -2535,6 +2547,7 @@
     <Compile Include="Codigo\ComunesCodigo\Utilidades.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Codigo\ComunesCodigo\Varios.vb" />
     <Compile Include="Codigo\Controles\wucTermopar.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -2593,6 +2606,7 @@
     </Compile>
     <Compile Include="ComunesWeb\Site.Master.vb">
       <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Administrador\Catalogos.aspx.designer.vb">
       <DependentUpon>Catalogos.aspx</DependentUpon>
@@ -2650,12 +2664,19 @@
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Metrologia\camaras\lecturas.aspx.designer.vb">
-      <DependentUpon>lecturas.aspx</DependentUpon>
+    <Compile Include="Pages\Metrologia\Catalogo\MetCatalogo.aspx.designer.vb">
+      <DependentUpon>MetCatalogo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Metrologia\camaras\lecturas.aspx.vb">
-      <DependentUpon>lecturas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Pages\Metrologia\Catalogo\MetCatalogo.aspx.vb">
+      <DependentUpon>MetCatalogo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Metrologia\Catalogo\MetMagnitud.aspx.designer.vb">
+      <DependentUpon>MetMagnitud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Metrologia\Catalogo\MetMagnitud.aspx.vb">
+      <DependentUpon>MetMagnitud.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\Metrologia\Catalogo\MetProveedor.aspx.designer.vb">
       <DependentUpon>MetProveedor.aspx</DependentUpon>
@@ -2664,39 +2685,25 @@
       <DependentUpon>MetProveedor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Metrologia\Equipo.aspx.designer.vb">
-      <DependentUpon>Equipo.aspx</DependentUpon>
+    <Compile Include="Pages\Metrologia\Detalle\panelMetrologia.aspx.designer.vb">
+      <DependentUpon>panelMetrologia.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Metrologia\Equipo.aspx.vb">
-      <DependentUpon>Equipo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Metrologia\Equipos\Instrumentos.aspx.designer.vb">
-      <DependentUpon>Instrumentos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Metrologia\Equipos\Instrumentos.aspx.vb">
-      <DependentUpon>Instrumentos.aspx</DependentUpon>
+    <Compile Include="Pages\Metrologia\Detalle\panelMetrologia.aspx.vb">
+      <DependentUpon>panelMetrologia.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Pages\Metrologia\Retenidos.aspx.designer.vb">
-      <DependentUpon>Retenidos.aspx</DependentUpon>
+    <Compile Include="Pages\Metrologia\Instrumentos.aspx.designer.vb">
+      <DependentUpon>Instrumentos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Metrologia\Retenidos.aspx.vb">
-      <DependentUpon>Retenidos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Pages\Metrologia\Instrumentos.aspx.vb">
+      <DependentUpon>Instrumentos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\Metrologia\Solicitud\Verificaciones.aspx.designer.vb">
       <DependentUpon>Verificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Metrologia\Solicitud\Verificaciones.aspx.vb">
       <DependentUpon>Verificaciones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Prueba\PrubasLab.aspx.designer.vb">
-      <DependentUpon>PrubasLab.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Prueba\PrubasLab.aspx.vb">
-      <DependentUpon>PrubasLab.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Prueba\PruebasLab.aspx.designer.vb">
@@ -2706,12 +2713,26 @@
       <DependentUpon>PruebasLab.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Pages\Prueba\webRepPruebas.aspx.designer.vb">
+      <DependentUpon>webRepPruebas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Prueba\webRepPruebas.aspx.vb">
+      <DependentUpon>webRepPruebas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\Solicitud\checkList.aspx.designer.vb">
       <DependentUpon>checkList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Solicitud\checkList.aspx.vb">
       <DependentUpon>checkList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Entregas\FrmEntregas.aspx.designer.vb">
+      <DependentUpon>FrmEntregas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Entregas\FrmEntregas.aspx.vb">
+      <DependentUpon>FrmEntregas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Entregas\FrmSolicitudEntregas.aspx.designer.vb">
       <DependentUpon>FrmSolicitudEntregas.aspx</DependentUpon>
@@ -2762,6 +2783,13 @@
       <DependentUpon>wucEstacionPruebas.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucPanaEvaporadorHTML.ascx.designer.vb">
+      <DependentUpon>wucPanaEvaporadorHTML.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucPanaEvaporadorHTML.ascx.vb">
+      <DependentUpon>wucPanaEvaporadorHTML.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucPanaEvaporador.ascx.designer.vb">
       <DependentUpon>wucPanaEvaporador.ascx</DependentUpon>
     </Compile>
@@ -2769,11 +2797,32 @@
       <DependentUpon>wucPanaEvaporador.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrigHTML2.ascx.designer.vb">
+      <DependentUpon>wucRefrigHTML2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrigHTML2.ascx.vb">
+      <DependentUpon>wucRefrigHTML2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrigHTML.ascx.designer.vb">
+      <DependentUpon>wucRefrigHTML.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrigHTML.ascx.vb">
+      <DependentUpon>wucRefrigHTML.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrig.ascx.designer.vb">
       <DependentUpon>wucRefrig.ascx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucRefrig.ascx.vb">
       <DependentUpon>wucRefrig.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucVidriosHTML.ascx.designer.vb">
+      <DependentUpon>wucVidriosHTML.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucVidriosHTML.ascx.vb">
+      <DependentUpon>wucVidriosHTML.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucVidrios.ascx.designer.vb">
@@ -2895,6 +2944,7 @@
     <Content Include="Scripts\plugins\editor\plugins\specialchars\ui\sass\trumbowyg.specialchars.scss" />
     <Content Include="Scripts\plugins\editor\plugins\table\ui\sass\trumbowyg.table.scss" />
     <Content Include="Scripts\plugins\editor\ui\sass\trumbowyg.scss" />
+    <Content Include="Scripts\plugins\chart.js\chart\hammerjs%402.0.8.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

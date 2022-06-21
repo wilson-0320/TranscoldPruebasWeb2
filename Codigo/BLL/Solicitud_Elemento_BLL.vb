@@ -12,7 +12,7 @@ Namespace BLL
                                   ByVal Precio As String, ByVal Comentario As String, ByVal EsExterno As Boolean, ByVal usuario As String) As String
             Dim TrSql As New TransacSQL
             Dim msj As String = TrSql.EjecutarConsulta("TranscoldPruebas", "Pru_Solicitud_Elemento_Actualiza", New Object() {
-                                   New Object() {"@Tipo", "Insertar"},
+                                   New Object() {"@Tipo", "Insertar2"},
                                    New Object() {"@Solicitud_Cod", Solicitud_Cod.TrimEnd},
                                    New Object() {"@Elemento_ID", Elemento_ID},
                                    New Object() {"@Valor", Valor},

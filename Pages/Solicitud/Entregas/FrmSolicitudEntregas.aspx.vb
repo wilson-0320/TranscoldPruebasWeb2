@@ -7,30 +7,21 @@
             cargarReporteEntregas()
             cargarddlEntregas()
 
+
         End If
     End Sub
 
     Private Sub cargarReporteEntregas()
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() {
-                                                                New Object() {"@query", "consultar_reporte"},
-                                                                 New Object() {"@UserName", ""},
-                                                                 New Object() {"@Fecha_ini", ""},
-                                                                 New Object() {"@fecha_fin", ""},
-                                                                 New Object() {"@buscar", ""}
-                                                                }, CommandType.StoredProcedure).Tables(0)
-
-        'Categoria de refrigeracion de protoispos
+                                                                 New Object() {"@query", "consultar_reporte_temp"}
+                                                             }, CommandType.StoredProcedure).Tables(0)
         repeaterReporte.DataSource = DTOrig
         repeaterReporte.DataBind()
     End Sub
 
     Private Sub cargarddlEntregas()
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() {
-                                                                New Object() {"@query", "consultar"}
-                                                                }, CommandType.StoredProcedure).Tables(0)
-
-        ddlEntregas.DataSource = DTOrig
-
+        Dim DTOrigin As DataTable = BLL.Pru_Entrega_BLL.consultar()
+        ddlEntregas.DataSource = DTOrigin
         ddlEntregas.DataTextField = "Entrega"
         ddlEntregas.DataValueField = "id"
         ddlEntregas.DataBind()
@@ -48,4 +39,7 @@
             MuestraErrorToast("Listo", 0, True)
         End If
     End Sub
+
+
+
 End Class

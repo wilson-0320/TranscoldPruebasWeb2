@@ -81,6 +81,13 @@ Public Class MiPageN
         Alerta(TransformaMensError(ex))
     End Sub
 
+    Public Sub funcionJavascript(ByVal funcion As String)
+
+        Dim key As String = Guid.NewGuid.ToString
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, funcion, True)
+
+    End Sub
+
     Public Sub MuestraError(ByVal s As String, Optional ByVal DentroDeUpdatePanel As Boolean = False)
         Alerta(TransformaMensError(s), DentroDeUpdatePanel)
     End Sub
@@ -204,7 +211,7 @@ Public Class MiPageN
 
                         If (PermisosA(index).Contains(pags(index2))) Then
                             PermisosDetalle = PermisosA(index).Split("!")
-                            If (Boolean.Parse(PermisosDetalle(tipo))) Then
+                            If (Boolean.Parse(PermisosDetalle(tipo)) = True) Then
                                 Return Boolean.Parse(PermisosDetalle(tipo))
                             End If
                         End If

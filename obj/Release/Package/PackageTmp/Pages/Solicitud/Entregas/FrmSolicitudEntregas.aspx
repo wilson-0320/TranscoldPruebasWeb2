@@ -33,6 +33,8 @@
 
                     </div>
                 </div>
+              
+                                          
                 <div class="card-body">
                     <div class="table-responsive text-sm">
                         <table id="tt" class="table table-bordered table-hover table-sm">
@@ -52,10 +54,12 @@
                             <tbody>
                                 <asp:Repeater ID="repeaterReporte" runat="server" OnItemCommand="repeaterReporte_ItemCommand">
                                     <ItemTemplate>
+                <asp:HiddenField ID="HiddenField1" runat="server" />
+                <asp:HiddenField ID="hfUsuarioRealiza" runat="server" />
                                         <tr>
                                             <td>
                                                 <asp:LinkButton ID="LinkButton3" CommandName="Subir" CommandArgument='<%# Eval("Codigo") %>' CssClass="fa fa-play" runat="server"></asp:LinkButton></td>
-                                            <asp:HiddenField ID="HiddenField1" runat="server" />
+                                            <asp:HiddenField ID="hfCodigo" runat="server" />
                                             <td><%# Eval("Codigo") %></td>
                                             <td><%# Eval("Modelo") %></td>
                                             <td><%# Eval("Fecha_Creacion") %></td>
@@ -64,29 +68,29 @@
                                             <td><%# Eval("DifCosto") %></td>
                                             <td><%# Eval("NumCambios") %></td>
                                             <td>
-                                               
+                                                <div class="row">
+                                                    <div class="col-4-sm">
+                                                        <input type="text" readonly class="btn btn-success"></input>
+                                                    </div>
+                                                    <div class="col-4-sm">
+                                                        <input type="text" readonly class="btn btn-info"></input>
+                                                    </div>
+                                                    <div class="col-4-sm">
+                                                        <input type="text" readonly class="btn btn-info"></input>
+                                                    </div>
 
+                                                </div>
+                                                   
+                                                   
+                                                  
                                             </td>
                                         </tr>
+
                                     </ItemTemplate>
 
                                 </asp:Repeater>
                                 <asp:Button ID="btnClick" CssClass="btn-success" runat="server" Text="-------" />
-                                 <asp:Repeater ID="repeaterDetalle" runat="server" DataSourceID="ObjectDataSourceEntregas"  >
-                                                    <ItemTemplate>
-
-                                                    </ItemTemplate>
-                                                </asp:Repeater>
-                                
-                                <asp:ObjectDataSource ID="ObjectDataSourceEntregas" runat="server" SelectMethod="consultar_reporte" TypeName="TranscoldPruebasWeb2.BLL.Pru_Entrega_BLL" >
-                                    <SelectParameters>
-                                        <asp:Parameter Name="buscar" Type="String" />
-                                        <asp:Parameter Name="fecha_ini" Type="Object" />
-                                        <asp:Parameter Name="fecha_fin" Type="Object" />
-                                        <asp:Parameter Name="Entrega_id" Type="Int32" />
-                                        <asp:Parameter Name="UserName" Type="String" />
-                                    </SelectParameters>
-                                </asp:ObjectDataSource>
+                                 
                                 
                             </tbody>
                         </table>

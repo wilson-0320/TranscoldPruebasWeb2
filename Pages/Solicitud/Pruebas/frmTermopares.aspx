@@ -103,10 +103,15 @@
                                       <button class="btn-default btn " name="6" id="6" onclick="return mostrarOpcion(this.id)">
                                           Station Parameters
                                       </button>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              
                                       <button class="btn-default btn " name="7" id="7" onclick="return mostrarOpcion(this.id)">
                                           Val. Adicionales
                                       </button>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-dark" onclick="abrirModal('modal');">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                     
 
                             </div>
 
@@ -207,11 +212,7 @@
                                             
 
                                         </div>
-                                        <div class="col-sm-1">
-                                            <button type="button" class="btn btn-dark" onclick="abrirModal('modal');">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
+                                       
                                       
                                     </div>
 
@@ -272,6 +273,7 @@
                                                             <Triggers>
                                                                 <asp:AsyncPostBackTrigger ControlID="lbtnCancelarGuardarFecha" EventName="Click" />
                                                                 <asp:AsyncPostBackTrigger ControlID="lbtnGuardarFecha" EventName="Click" />
+                                                                   <asp:AsyncPostBackTrigger ControlID="lbtnGuardar" EventName="Click" />
                                                                 <asp:AsyncPostBackTrigger ControlID="ddlFecha" EventName="SelectedIndexChanged" />
                                                                 <asp:AsyncPostBackTrigger ControlID="lbtnModificarFecha" EventName="Click" />
                                                             </Triggers>
@@ -280,19 +282,19 @@
                                                         <br />
                                                         <hr />
                                                         <div class="row">
-                                                            <div class="col-sm-2 text-sm">
+                                                           
 
                                                                 <asp:LinkButton ID="lbtnModificarFecha" OnClick="lbtnModificarFecha_Click" CssClass="fa btn-sm btn btn-default" runat="server">Modificar fecha</asp:LinkButton>
-                                                            </div>
-                                                            <div class="col-sm-2 text-sm">
+                                                           
+                                                   
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;   
                                                      <asp:LinkButton ID="lbtnModificar" OnClick="lbtnModificar_Click" CssClass="fa btn-sm btn btn-default " runat="server">Editar en fecha</asp:LinkButton>
-                                                            </div>
-                                                            <div class="col-sm-2 text-sm">
+                                                         
+                                                           
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;  
                                                       <asp:LinkButton ID="lbtnGuardar" OnClick="lbtnGuardar_Click" CssClass="fa btn-sm btn btn-default" runat="server">Guardar nuevo</asp:LinkButton>
                                                             </div>
-                                                        </div>
+                                                        
 
 
                                                     </div>

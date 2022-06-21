@@ -18,7 +18,7 @@
                                     </button>
 
                                 </div>
-                                <button class="btn btn-success"  onclick="return abrirModal();" ><li class="fa fa-plus  " ></li></button>
+                                <button class="btn btn-success"  onclick="return abrirModal('modalCheck');" ><li class="fa fa-plus  " ></li></button>
                             </div>
                             <div class="card-body">
 
@@ -291,15 +291,16 @@
                                 <asp:TextBox ID="tbComentarios" runat="server" CssClass="form-control"></asp:TextBox>
 
                             </div>
+                            <br />
                             <div class="justify-content-between">
 
-                            <asp:LinkButton ID="lbtnGuardar" runat="server" CssClass="fa fa-2x fa-save" OnClientClick="return cerrarModal()" OnClick="lbtnGuardar_Click">
+                            <asp:LinkButton ID="lbtnGuardar" runat="server" CssClass="fa fa-2x fa-save" OnClientClick="cerrarModal('modalCheck');" OnClick="lbtnGuardar_Click">
                          
                             </asp:LinkButton>
 
-                           </div>
+                           </div>&nbsp;&nbsp;&nbsp;&nbsp;
                           <div class="justify-content-md-end">
-                            <asp:LinkButton ID="lbtnCancelar" runat="server" CssClass="fa fa-2x fa-minus" OnClientClick="return cerrarModal()" OnClick="lbtnCancelar_Click">
+                            <asp:LinkButton ID="lbtnCancelar" runat="server" CssClass="fa fa-2x fa-minus" OnClientClick="cerrarModal('modalCheck')" OnClick="lbtnCancelar_Click">
                          
                             </asp:LinkButton>
                            </div>
@@ -318,7 +319,7 @@
 
                           
                                <button class="fa fa-arrow-alt-circle-left btn btn-info"  id="btnAnt" value="1" onclick="return modalDinamico(this.value, this.id);" ></button>  
-                           </div>
+                           </div>&nbsp;&nbsp;&nbsp;&nbsp;
                           <div class="justify-content-md-end">
                            <button  class="fa fa-arrow-alt-circle-right btn btn-info" id="btnSig"  value="1" onclick="return modalDinamico(this.value, this.id);" ></button>  
                                </div>
@@ -506,21 +507,8 @@
 
 
     <script>
-        function cerrarModal()
-        {
-            $('#modalCheck').modal('hide');
-            return true;
-        }
+       
         
-        function abrirModal() {
-
-            try {
-                $('#modalCheck').modal('show');
-            } catch (e) {
-                alert(e + "");
-            }
-            return false;
-        }
         function modalDinamico(indice,boton)
 
         {

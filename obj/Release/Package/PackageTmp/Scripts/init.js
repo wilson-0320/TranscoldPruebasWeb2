@@ -26,9 +26,48 @@ $(function () {
     }
 
    
-   
 
 });
+
+function abrirReportes(all)
+{
+
+   
+   var Compu = $(".NombreCompu").val();
+
+    var PathRep = all;
+
+    var jqxhr = $.get("https://www.fogelonline.com/TranscoldPruebasWeb/Publico/Servicios/TransWebService.asmx/AbreReporte", { Compu: Compu, PathReporte: PathRep })
+            .done(function () {
+                alert("Colocado " + PathRep);
+            })
+            .fail(function () {
+                alert("Error");
+            })
+   
+
+
+}
+
+function cerrarModal(idmodal) {
+    try {
+        $('#' + idmodal).modal('hide');
+    } catch (e) {
+        alert(e + "");
+    }
+    
+    return false;
+}
+
+function abrirModal(idmodal) {
+
+    try {
+        $('#' + idmodal).modal('show');
+    } catch (e) {
+        alert(e + "");
+    }
+    return false;
+}
 
 function metodo(mensaje,tipo) {
     console.log("Cargando Scripts-en metodo");
@@ -42,6 +81,8 @@ function metodo(mensaje,tipo) {
     $(".js-example-theme-multiple").select2({
         theme: "classic"
     });
+
+
 
     var Toast = Swal.mixin({
         toast: true,

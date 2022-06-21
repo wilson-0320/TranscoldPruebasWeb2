@@ -51,7 +51,7 @@
         If Not Pag_Usuarios_Permisos_BLL.MsjError Is Nothing Then
             MuestraErrorToast(Pag_Usuarios_Permisos_BLL.MsjError, 4, True)
         Else
-            MuestraErrorToast("", 0, True)
+            MuestraErrorToast("Realizado", 1, True)
         End If
     End Sub
 
@@ -119,7 +119,8 @@
         Pag_Usuarios_Permisos_BLL.crudPermisos(hfquery.Value, Int32.Parse(hfID.Value), Int32.Parse(hfIDUsuario.Value), Int32.Parse(ddlApartados.SelectedValue), cbEscritura.Checked, cbEditar.Checked, cbEliminar.Checked)
         cargarTablaElementos(1, hfIDUsuario.Value, "consulta", hfID.Value)
         msjNot()
-
+        hf()
+        iniciarControles()
 
     End Sub
 

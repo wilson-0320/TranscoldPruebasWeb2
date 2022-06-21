@@ -349,7 +349,7 @@
                                                 </div>
 
                                                 <div class="col-sm-12">
-                                                    <div class="table-responsive">
+                                                    <div class="table-responsive text-sm">
                                                         
                                                         <table class="table table-sm table-bordered">
                                                     <thead class="bg-gradient-navy">
@@ -417,7 +417,7 @@
 
 
                                             <asp:LinkButton ID="btnEnviarRevision" runat="server" OnClick="btnEnviarRevision_Click" ToolTip="Enviar a revision" CssClass="fa fa-share"></asp:LinkButton>
-                                            <div class="table-responsive">
+                                            <div class="table-responsive text-sm">
                                                 <table class="table table-sm table-bordered">
                                                     <thead class="bg-gradient-navy">
                                                         <th></th>
@@ -524,7 +524,7 @@
                                                     </div>
                                                     <!-- /.timeline-label -->
                                                     <!-- timeline item -->
-                                                    <div runat="server"  Style='<%# If(Eval("Observaciones_Revision") Is DBNull.Value, "display:none;", "display:Block;")%>'>
+                                                    <div runat="server"  Style='<%# If(Eval("cat") Is DBNull.Value, "display:none;", "display:Block;")%>'>
 
                                                         <i class="  <%#If(Eval("Estado").Equals("Aprobado") Or Eval("Estado").Equals("Revisada"), " fa fa-check bg-success", "fas  fa-exclamation-triangle  bg-danger")  %>"></i>
                                                         <div class="timeline-item">
@@ -532,11 +532,11 @@
                                                             <span class="time"><i class="fas fa-clock"></i><%# Eval("Fecha_Enviado", "{0:dd/MM/yyyy hh:mm tt}")%> <%#  Eval("Observaciones_Revision") %></span>
                                                             <h3 class="timeline-header"><%# Eval("cat") %></h3>
                                                             <div class="timeline-body">
-                                                            
-                                                                    <div class="col-sm-10">
+                                                         
+                                                              <div style="width:900px;">
 
                                                                         <%#  Eval("elem")  %>
-
+ 
                                                                         <tr runat="server" id="trArch" class="table-responsive-sm" visible='<%# Not Eval("Arch") Is DBNull.Value AndAlso Eval("Arch") <> ""%>'>
                                                                             <td>
 
@@ -564,25 +564,22 @@
                                                                             
                                                                         </tr>
                                                                     </div>
-                                                                <div class="col-sm-2">
+                                                             <div class="text-right">
 
-                                                                        <!--
-                                                                       
-                                                                        -->
                                                                         <tr runat="server" id="tr3" visible='<%# cbPresentacion.Checked %>'>
                                                                             <td>
-                                                                                <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="editarHistoricos" CssClass=" fa fa-2x fa-edit btn btn-warning" runat="server"></asp:LinkButton>
+                                                                                <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="editarHistoricos" CssClass=" fa fa-2x fa-edit " runat="server"></asp:LinkButton>
 
 
                                                                                 &nbsp;&nbsp;
                                                     
-                                                          <tr runat="server" id="tr1" visible='<%# Eval("Estado") = "Aprobado"%>'>
+                                                          <tr runat="server" id="tr1" visible='<%# If(Eval("Estado").Equals("Aprobado") Or Eval("Estado").Equals("Revisada"), True, False)%>'>
                                                               <td>
                                                                   <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="rechazarHistorico" CssClass=" fa fa-2x fa-exclamation-triangle" runat="server"></asp:LinkButton>
 
                                                               </td>
                                                           </tr>
-                                                                                <tr runat="server" id="tr2" visible='<%#  Eval("Estado") = "Ingresado"%>'>
+                                                                                <tr runat="server" id="tr2" visible='<%# If(Eval("Estado").Equals("Ingresado") Or Eval("Estado").Equals("Enviada"), True, False)%>'>
                                                                                     <td>
                                                                                         <asp:LinkButton CommandArgument='<%# Eval("ID") %>' CommandName="aprobarHistorico" CssClass=" fa fa-2x fa-check " runat="server"></asp:LinkButton>
 
@@ -592,9 +589,10 @@
 
                                                                             </td>
                                                                         </tr>
+                                                                  </div>
 
-                                                                    </div>
-                                                                   
+                                                                    
+                                                               
 
                                                             </div>
                                                         </div>

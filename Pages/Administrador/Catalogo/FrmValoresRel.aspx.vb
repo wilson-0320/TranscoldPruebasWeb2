@@ -41,7 +41,7 @@
         If Not BLL.Elemento_BLL.MsjError Is Nothing Then
             MuestraErrorToast(BLL.Elemento_BLL.MsjError, 4, True)
         Else
-            MuestraErrorToast("", 0, True)
+            MuestraErrorToast("Listo", 1, True)
         End If
     End Sub
     Private Sub cargarddlCategorias()

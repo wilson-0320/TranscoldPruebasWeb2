@@ -61,7 +61,7 @@
         If Not BLL.Elemento_Relacion_DAL.MsjError Is Nothing Then
             MuestraErrorToast(BLL.Elemento_Relacion_DAL.MsjError, 4, True)
         Else
-            MuestraErrorToast("", 0, True)
+            MuestraErrorToast("Realizado", 1, True)
         End If
     End Sub
     Private Sub cargarddlElementos()

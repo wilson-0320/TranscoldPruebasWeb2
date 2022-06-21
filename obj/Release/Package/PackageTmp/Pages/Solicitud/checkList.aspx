@@ -2,25 +2,26 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Main2" runat="server">
 
-         <asp:UpdatePanel ID="upCrud" runat="server" UpdateMode="Conditional">
-                            <ContentTemplate>
-    <div class="content-wrapper">
-        <section class="content">
-            <div class="container-fluid">
-                <div class="card card-default">
-                    <div class="card-header ">
+    <asp:UpdatePanel ID="upCrud" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="content-wrapper">
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="card card-default">
+                            <div class="card-header ">
 
 
-                        <div class="card-tools">
-                            <b class="text-info">Recepcion</b>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
+                                <div class="card-tools">
+                                    <b class="text-info">Recepcion</b>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
 
-                        </div>
-                    </div>
-                    <div class="card-body">
-                   
+                                </div>
+                                <button class="btn btn-success"  onclick="return abrirModal('modalCheck');" ><li class="fa fa-plus  " ></li></button>
+                            </div>
+                            <div class="card-body">
+
 
 
                                 <div class="card">
@@ -29,258 +30,318 @@
                                         <div class="row">
 
                                             <div class="col-lg-2">
-                                                
+
                                                 <small>Solicitud</small>
-                                                    <asp:TextBox ID="tbCodigoFiltro" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="tbCodigoFiltro" runat="server" CssClass="form-control"></asp:TextBox>
 
                                             </div>
                                             <div class="col-lg-2">
                                                 <small>Modelo</small>
 
-                                                    <asp:TextBox ID="tbModeloFiltro" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="tbModeloFiltro" runat="server" CssClass="form-control"></asp:TextBox>
 
                                             </div>
 
                                             <div class="col-lg-1">
 
                                                 <br />
-                                                    <asp:LinkButton ID="btnGenerar" runat="server" ToolTip="Filtrar" CssClass="fa  fa-2x fa-retweet" OnClick="btnGenerar_Click">
-                                       </asp:LinkButton>
-
-                                            </div>
-                                        </div>
-
-
-
-                                    </div>
-                                    <div class="card-body">
-                                        <asp:HiddenField ID="hfQuery" runat="server" />
-                                        <asp:HiddenField ID="hfID" runat="server" />
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblCliente" CssClass="text-sm" runat="server" Text="Cliente:"></asp:Label>
-                                                <asp:TextBox ID="tbCliente" CssClass="form-control" runat="server"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblPais" CssClass="text-sm"  runat="server" Text="Pais origen:"></asp:Label>
-                                                <asp:TextBox ID="tbPais" CssClass="form-control" runat="server"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblSolicitado" CssClass="text-sm"  runat="server" Text="Solicitado por:"></asp:Label>
-                                                <asp:TextBox ID="tbSolicitado" CssClass="form-control" runat="server"></asp:TextBox>
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblTipo" CssClass="text-sm"  runat="server" Text="Tipo"></asp:Label>
-                                                <asp:DropDownList ID="dplTipo" runat="server" CssClass="form-control">
-                                                    <asp:ListItem>Recepcion</asp:ListItem>
-                                                    <asp:ListItem>Entrega</asp:ListItem>
-                                                </asp:DropDownList>
-
-                                            </div>
-                                             <div class="col-lg-2">
-
-                                                <asp:Label ID="lblSolicitud" CssClass="text-sm" runat="server" Text="Codigo de solicitud:"></asp:Label>
-
-                                                <asp:TextBox ID="tbCodigo" CssClass="form-control" runat="server"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblModelo" CssClass="text-sm" runat="server" Text="Modelo:"></asp:Label>
-                                                <asp:TextBox ID="tbModelo" CssClass="form-control" runat="server"></asp:TextBox>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblwo" CssClass="text-sm" runat="server" Text="Word order:"></asp:Label>
-                                                <asp:TextBox ID="tbWorkOrder" CssClass="form-control" runat="server"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblNoSerie" CssClass="text-sm" runat="server" Text="No. Serie:"></asp:Label>
-                                                <asp:TextBox ID="tbSerie" CssClass="form-control" runat="server"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblUsuarioOperador" CssClass="text-sm" runat="server" Text="Usuario de laboratorio"></asp:Label>
-                                                <asp:Label ID="lblUser" runat="server" Text="" CssClass="form-control"></asp:Label>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblUsuarioDespacho" CssClass="text-sm" runat="server" Text="Empleado despacho"></asp:Label>
-                                                <asp:TextBox ID="tbDespachos" runat="server" CssClass="form-control"></asp:TextBox>
-                                            </div>
-                                            
-                                           
-                                        </div>
-
-
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblParillas" CssClass="text-sm" runat="server" Text="Parillas:"></asp:Label>
-                                                <asp:TextBox ID="tbParrillas" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblClips"  CssClass="text-sm" runat="server" Text="Clips:"></asp:Label>
-                                                <asp:TextBox ID="tbClips" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="lblLamparas" CssClass="text-sm" runat="server" Text="Lamparas"></asp:Label>
-                                                <asp:TextBox ID="tbLamparas" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblRotulo" CssClass="text-sm" runat="server" Text="Rotulo"></asp:Label>
-                                                <asp:CheckBox ID="cbRotulo" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblCubremotor" CssClass="text-sm" runat="server" Text="Cubremotor:"></asp:Label>
-                                                <asp:CheckBox ID="cbCubremotor" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblCertificado" CssClass="text-sm" runat="server" Text="Cert. Prueba:"></asp:Label>
-                                                <asp:CheckBox ID="cbCertificado" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-
-
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblEtiqueta" CssClass="text-sm" runat="server" Text="Etiq.Serie:"></asp:Label>
-                                                <asp:CheckBox ID="cbEtiquetaSerie" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblMan1" CssClass="text-sm" runat="server" Text="Manual Operacion:"></asp:Label>
-                                                <asp:CheckBox ID="cbManOpe" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblManIns" CssClass="text-sm" runat="server" Text="Manual Instalacion:"></asp:Label>
-                                                <asp:CheckBox ID="cbManIns" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblCal" CssClass="text-sm" runat="server" Text="Calcomania:"></asp:Label>
-                                                <asp:CheckBox ID="cbCalcomania" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblDiagrama" CssClass="text-sm" runat="server" Text="Diagrama:"></asp:Label>
-                                                <asp:CheckBox ID="cbDiagrama" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblFunciona" CssClass="text-sm" runat="server" Text="Funcionamiento:"></asp:Label>
-                                                <asp:CheckBox ID="cbFuncionamiento" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblParTrasera"  CssClass="text-sm" runat="server" Text="Parillas Trasera:"></asp:Label>
-                                                <asp:CheckBox ID="cbParrillasTraseras" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblHalador" CssClass="text-sm" runat="server" Text="Haladores:"></asp:Label>
-                                                <asp:CheckBox ID="cbHalador" CssClass="form-check" runat="server" />
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblGolpes"  CssClass="text-sm" runat="server" Text="Golpes:"></asp:Label>
-                                                <asp:TextBox ID="tbGolpes" runat="server" CssClass="form-control"></asp:TextBox>
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblRayon" CssClass="text-sm" runat="server" Text="Rayones:"></asp:Label>
-                                                <asp:TextBox ID="tbRayones" runat="server" CssClass="form-control"></asp:TextBox>
-
-
-                                            </div>
-                                            <div class="col-lg-2">
-
-                                                <asp:Label ID="lblComentarios" CssClass="text-sm" runat="server" Text="Comentarios:"></asp:Label>
-                                                <asp:TextBox ID="tbComentarios" runat="server" CssClass="form-control"></asp:TextBox>
-
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <br />
-                                                <asp:LinkButton ID="lbtnGuardar" runat="server" CssClass="fa fa-2x fa-save" OnClick="lbtnGuardar_Click">
-                         
+                                                <asp:LinkButton ID="btnGenerar" runat="server" ToolTip="Filtrar" CssClass="fa  fa-2x fa-retweet" OnClick="btnGenerar_Click">
                                                 </asp:LinkButton>
 
-                                                <asp:LinkButton ID="lbtnCancelar" runat="server" CssClass="fa fa-2x fa-minus" OnClick="lbtnCancelar_Click">
-                         
-                                                </asp:LinkButton>
                                             </div>
                                         </div>
-                                       
-                                    </div>
 
+                                    </div>
 
                                 </div>
-                         
 
-                    </div>
-                </div>
-            </div>
-    
-  
-            <div class="container-fluid">
-                <div class="card card-default">
-                    <div class="card-header ">
-
-
-                        <div class="card-tools">
-                            <b class="text-info">Listado</b>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
+
+                    <div class="container-fluid">
+                        <div class="card card-default">
+                            <div class="card-header ">
 
 
-            <div class="row">
-                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="card-tools">
+                                    <b class="text-info">Listado</b>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                   
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="modal fade" id="modalCheck" data-backdrop="static" name="modal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">CheckList</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <asp:HiddenField ID="hfQuery" runat="server" />
+                    <asp:HiddenField ID="hfID" runat="server" />
+                    <div class="row" style="display:block;" id="1">
+                        <div class="col-lg-4">
+
+                            <asp:Label ID="lblTipo" CssClass="text-sm" runat="server" Text="Tipo"></asp:Label>
+                            <asp:DropDownList ID="dplTipo" runat="server" CssClass="form-control">
+                                <asp:ListItem>Recepcion</asp:ListItem>
+                                <asp:ListItem>Entrega</asp:ListItem>
+                            </asp:DropDownList>
+
+                        </div>
+                        </div>
+                        <div class="row" id="2" style="display:none;">
+                            <div class="col-lg-5">
+                                <asp:Label ID="lblCliente" CssClass="text-sm" runat="server" Text="Cliente:"></asp:Label>
+                                <asp:TextBox ID="tbCliente" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-5">
+                                <asp:Label ID="lblPais" CssClass="text-sm" runat="server" Text="Pais origen:"></asp:Label>
+                                <asp:TextBox ID="tbPais" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                       
+
+                        <div class="row" id="3" style="display:none;">
+                            <div class="col-lg-4">
+                                <asp:Label ID="lblSolicitado" CssClass="text-sm" runat="server" Text="Solicitado por:"></asp:Label>
+                                <asp:TextBox ID="tbSolicitado" CssClass="form-control" runat="server"></asp:TextBox>
+
+                            </div>
+
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblSolicitud" CssClass="text-sm" runat="server" Text="Codigo de solicitud:"></asp:Label>
+
+                                <asp:TextBox ID="tbCodigo" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+
+                        <div class="row" id="4" style="display:none;">
+
+                            <div class="col-lg-4">
+                                <asp:Label ID="lblModelo" CssClass="text-sm" runat="server" Text="Modelo:"></asp:Label>
+                                <asp:TextBox ID="tbModelo" CssClass="form-control" runat="server"></asp:TextBox>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <asp:Label ID="lblwo" CssClass="text-sm" runat="server" Text="Word order:"></asp:Label>
+                                <asp:TextBox ID="tbWorkOrder" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-4">
+                                <asp:Label ID="lblNoSerie" CssClass="text-sm" runat="server" Text="No. Serie:"></asp:Label>
+                                <asp:TextBox ID="tbSerie" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row" id="5" style="display:none;">
+
+                            <div class="col-lg-4">
+                                <asp:Label ID="lblUsuarioOperador" CssClass="text-sm" runat="server" Text="Usuario de laboratorio"></asp:Label>
+                                <asp:Label ID="lblUser" runat="server" Text="" CssClass="form-control"></asp:Label>
+                            </div>
+                            <div class="col-lg-4">
+                                <asp:Label ID="lblUsuarioDespacho" CssClass="text-sm" runat="server" Text="Empleado despacho"></asp:Label>
+                                <asp:TextBox ID="tbDespachos" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row" id="6" style="display:none;">
+                            <div class="col-lg-5">
+                                <asp:Label ID="lblParillas" CssClass="text-sm" runat="server" Text="Parillas:"></asp:Label>
+                                <asp:TextBox ID="tbParrillas" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-5">
+                                <asp:Label ID="lblClips" CssClass="text-sm" runat="server" Text="Clips:"></asp:Label>
+                                <asp:TextBox ID="tbClips" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                            </div>
+
+                        </div>
+                        <div class="row" id="7" style="display:none;" >
+                            <div class="col-lg-6">
+                                <asp:Label ID="lblLamparas" CssClass="text-sm" runat="server" Text="Lamparas"></asp:Label>
+                                <asp:TextBox ID="tbLamparas" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="8" style="display:none;" >
+
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblRotulo" CssClass="text-sm" runat="server" Text="Rotulo"></asp:Label>
+                                <asp:CheckBox ID="cbRotulo" CssClass="form-check" runat="server" />
+
+                            </div>
+
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblCubremotor" CssClass="text-sm" runat="server" Text="Cubremotor:"></asp:Label>
+                                <asp:CheckBox ID="cbCubremotor" CssClass="form-check" runat="server" />
+
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="9"style="display:none;" >
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblCertificado" CssClass="text-sm" runat="server" Text="Cert. Prueba:"></asp:Label>
+                                <asp:CheckBox ID="cbCertificado" CssClass="form-check" runat="server" />
+
+                            </div>
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblEtiqueta" CssClass="text-sm" runat="server" Text="Etiq.Serie:"></asp:Label>
+                                <asp:CheckBox ID="cbEtiquetaSerie" CssClass="form-check" runat="server" />
+
+                            </div>
+                        </div>
+                        <div class="row" id="10" style="display:none;" >
+
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblMan1" CssClass="text-sm" runat="server" Text="Manual Operacion:"></asp:Label>
+                                <asp:CheckBox ID="cbManOpe" CssClass="form-check" runat="server" />
+
+                            </div>
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblManIns" CssClass="text-sm" runat="server" Text="Manual Instalacion:"></asp:Label>
+                                <asp:CheckBox ID="cbManIns" CssClass="form-check" runat="server" />
+
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="11" style="display:none;" >
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblCal" CssClass="text-sm" runat="server" Text="Calcomania:"></asp:Label>
+                                <asp:CheckBox ID="cbCalcomania" CssClass="form-check" runat="server" />
+
+                            </div>
+
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblDiagrama" CssClass="text-sm" runat="server" Text="Diagrama:"></asp:Label>
+                                <asp:CheckBox ID="cbDiagrama" CssClass="form-check" runat="server" />
+
+                            </div>
+                        </div>
+
+                        <div class="row" id="12" style="display:none;" >
+                            <div class="col-lg-10">
+
+                                <asp:Label ID="lblFunciona" CssClass="text-sm" runat="server" Text="Funcionamiento:"></asp:Label>
+                                <asp:CheckBox ID="cbFuncionamiento" CssClass="form-check" runat="server" />
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="row" id="13" style="display:none;" >
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblParTrasera" CssClass="text-sm" runat="server" Text="Parillas Trasera:"></asp:Label>
+                                <asp:CheckBox ID="cbParrillasTraseras" CssClass="form-check" runat="server" />
+
+                            </div>
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblHalador" CssClass="text-sm" runat="server" Text="Haladores:"></asp:Label>
+                                <asp:CheckBox ID="cbHalador" CssClass="form-check" runat="server" />
+
+                            </div>
+                        </div>
+                        <div class="row" id="14" style="display:none;" >
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblGolpes" CssClass="text-sm" runat="server" Text="Golpes:"></asp:Label>
+                                <asp:TextBox ID="tbGolpes" runat="server" CssClass="form-control"></asp:TextBox>
+
+                            </div>
+                            <div class="col-lg-4">
+
+                                <asp:Label ID="lblRayon" CssClass="text-sm" runat="server" Text="Rayones:"></asp:Label>
+                                <asp:TextBox ID="tbRayones" runat="server" CssClass="form-control"></asp:TextBox>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="15" style="display:none;" >
+                            <div class="col-lg-10">
+
+                                <asp:Label ID="lblComentarios" CssClass="text-sm" runat="server" Text="Comentarios:"></asp:Label>
+                                <asp:TextBox ID="tbComentarios" runat="server" CssClass="form-control"></asp:TextBox>
+
+                            </div>
+                            <br />
+                            <div class="justify-content-between">
+
+                            <asp:LinkButton ID="lbtnGuardar" runat="server" CssClass="fa fa-2x fa-save" OnClientClick="cerrarModal('modalCheck');" OnClick="lbtnGuardar_Click">
+                         
+                            </asp:LinkButton>
+
+                           </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class="justify-content-md-end">
+                            <asp:LinkButton ID="lbtnCancelar" runat="server" CssClass="fa fa-2x fa-minus" OnClientClick="cerrarModal('modalCheck')" OnClick="lbtnCancelar_Click">
+                         
+                            </asp:LinkButton>
+                           </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                
+                <div class="modal-footer ">
+                    
+                   
+                          <div class="justify-content-between">
+
+                          
+                               <button class="fa fa-arrow-alt-circle-left btn btn-info"  id="btnAnt" value="1" onclick="return modalDinamico(this.value, this.id);" ></button>  
+                           </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class="justify-content-md-end">
+                           <button  class="fa fa-arrow-alt-circle-right btn btn-info" id="btnSig"  value="1" onclick="return modalDinamico(this.value, this.id);" ></button>  
+                               </div>
+                       
+                     
+                           
+                        </div>
+                                                    
+                                                    
+            </div>
+        </div>
+    </div>
+
+                                <div class="row">
+                                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Repeater ID="RepeaterRecepcion" runat="server" OnItemCommand="RepeaterRecepcion_ItemCommand">
 
                         <ItemTemplate>
 
 
 
-                            <table class="table-bordered table-hover ">
+                                                       <table class="table-bordered table-hover ">
 
                                 <tr>
                                     <td class="bg-gradient-navy">
@@ -397,9 +458,9 @@
                                     <td class="bg-gradient-navy">Parilla Trasera</td>
                                     <td class="text-center"><%#If(Eval("Parilla_Trasera") = 0, "No", "Si") %></td>
                                 </tr>
-
-                                <tr>
-                                    <td class="bg-gradient-navy">Parilla Trasera</td>
+                                
+                                 <tr>
+                                    <td class="bg-gradient-navy">Haladores</td>
                                     <td class="text-center"><%#If(Eval("Haladores") = 0, "No", "Si") %></td>
                                 </tr>
                                 <tr>
@@ -411,30 +472,82 @@
                                     <td class="text-center"><%#Eval("Usuario_Entrega") %></td>
                                 </tr>
 
+
+
+                                 
+
                             </table>
 
 
                             &nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
-
+                            
                         </ItemTemplate>
                     </asp:Repeater>
 
-            </div>
-       
+                                </div>
+
+                            </div>
                         </div>
-                     </div>
-                 </div>
-            </section>
-             </div>
-                                   </ContentTemplate>
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="lbtnGuardar" EventName="Click" />
-                                <asp:AsyncPostBackTrigger ControlID="RepeaterRecepcion" EventName="ItemCommand" />
-                                <asp:AsyncPostBackTrigger ControlID="lbtnCancelar" EventName="Click" />
-                            </Triggers>
-                        </asp:UpdatePanel>
+                    </div>
+                </section>
+            </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="lbtnGuardar" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="RepeaterRecepcion" EventName="ItemCommand" />
+            <asp:AsyncPostBackTrigger ControlID="lbtnCancelar" EventName="Click" />
+        </Triggers>
+    </asp:UpdatePanel>
+
+
+
+
+    
+
+
+
+    <script>
+       
+        
+        function modalDinamico(indice,boton)
+
+        {
+            var index = parseInt(indice);
+   
+
+            if (boton == "btnSig") {
+
+                if (index === 15) {
+                    metodo("Si estas seguro, puedes guardar el registro", 2);
+                } else { index = index + 1; }
+            } else {
+                if (index === 1) {
+                    metodo("No existe opciones, debes de presionar el boton de siguiente.", 2);
+                }
+                else { index = index - 1; }
+
+            }
+
+            var i = 1;
+            for (i; i < 16; i++)
+                
+            {
+                if (i == index) {
+                    var idDi = "#" + i;
+                    $(idDi).show();
+ 
+                } else
+                {
+                    var idDi = "#" + i;
+                    $(idDi).hide();
+                }
+            }
+
+            $("#btnAnt").val(index);
+            $("#btnSig").val(index);
+            return false;
+        }
+    </script>
+
 
 </asp:Content>

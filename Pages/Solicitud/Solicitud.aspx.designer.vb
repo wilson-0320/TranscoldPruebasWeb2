@@ -554,13 +554,13 @@ Partial Public Class Solicitud
     Protected WithEvents lblEstadoCheck As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control ddlOpciones.
+    '''Control lbOpciones.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ddlOpciones As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents lbOpciones As Global.System.Web.UI.WebControls.ListBox
 
     '''<summary>
     '''Control tbOpciones.
@@ -570,6 +570,15 @@ Partial Public Class Solicitud
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents tbOpciones As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control lblEleccion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblEleccion As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control lbtnAnterior.

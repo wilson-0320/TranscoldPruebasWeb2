@@ -43,42 +43,7 @@
 
 
     End Function
-    Public Function datos2() As String
-        Try
 
-            Dim data As String = "C1-104$2022-01-01 12:00:00.000$313$0$|C1-H$2022-01-01 12:00:00.000$316$0$"
-
-        Dim cls = New DLL2.metodos()
-        Dim path As String
-        Dim fecha As String = DateTime.Now.ToString("yyyy/MM/dd hh:mm")
-        path = "D:/lmpv/"
-        Dim retorno As String(,) = cls.TranscolPruebasWeb("22/0001", path, fecha, data)
-
-
-        Dim strDatos As String = "["
-        Dim tiempo As Double
-        For index As Integer = 1 To retorno.GetLength(0) - 1 Step 1
-            tiempo = tiempo + 0.5
-            strDatos = strDatos + "[" + tiempo.ToString.Replace(",", ".") + ","
-            For index1 As Integer = 0 To retorno.GetLength(1) - 1 Step 1
-                If (index1 = retorno.GetLength(1) - 1) Then
-                    strDatos = strDatos + retorno(index, index1)
-                Else
-
-                    strDatos = strDatos + retorno(index, index1) + ","
-                End If
-
-            Next
-            strDatos = strDatos + "],"
-        Next
-        strDatos = strDatos + "]"
-        Return strDatos
-
-        Catch ex As Exception
-
-        End Try
-        'cls.LabPruebasActivas("")
-    End Function
     Private Function informacionPrincipal()
         lblInfo.Text = ""
         Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Select Codigo,Fecha_Creacion,Usuario_Creacion,Modelo,Objetivos,Serie,WO from Pru_Solicitud_Enc_Historico where Codigo=@Codigo", New Object() {
@@ -110,12 +75,21 @@
 
 
     Private Sub cargarRepeaterPruebas()
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() {
-                                                                   New Object() {"@query", "consultarEstadoPrueba"},
-                                                                   New Object() {"@Solicitud_Cod", hfCodigo.Value}
-                                                                   }, CommandType.StoredProcedure).Tables(0)
-        repeaterPruebas.DataSource = DTOrig
+
+        Dim DTorigin As DataTable = BLL.Prueba_BLL.consultar("", "", "", "", "", "", "", "", "", "", "", "", "",
+                                                             "", "Ambos", "", "", "", "", hfCodigo.Value)
+
+
+        repeaterPruebas.DataSource = DTorigin
         repeaterPruebas.DataBind()
+
+
+        '' Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Solicitud_Ensayo_ABCD", New Object() {
+        ''                                                            New Object() {"@query", "consultarEstadoPrueba"},
+        ''                                                           New Object() {"@Solicitud_Cod", hfCodigo.Value}
+        ''                                                          }, CommandType.StoredProcedure).Tables(0)
+        ''repeaterPruebas.DataSource = DTOrig
+        '' repeaterPruebas.DataBind()
     End Sub
 
     Private Sub cargarRepeaterHistoricalCambios(ByVal CualRep As String)
@@ -159,13 +133,9 @@
 
     Private Sub cargarResumenVerificaciones()
 
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Verificacion_ABCD", New Object() {
+        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Verificacion_Solicitud_ABCD", New Object() {
                                                                    New Object() {"@query", "consultarfiltro"},
-                                                                    New Object() {"@Codigo", hfCodigo.Value},
-                                                                    New Object() {"@camara", ""},
-                                                                    New Object() {"@filtro1", ""},
-                                                                    New Object() {"@filtro2", ""},
-                                                                    New Object() {"@filtro3", ""}
+                                                                    New Object() {"@Codigo", hfCodigo.Value}
                                                                     }, CommandType.StoredProcedure).Tables(0)
 
 

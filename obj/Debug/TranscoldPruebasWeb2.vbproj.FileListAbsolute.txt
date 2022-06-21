@@ -133,3 +133,5 @@ C:\Users\user\source\repos\TranscoldPruebasWeb2\obj\Debug\TranscoldPruebasWeb2.v
 C:\Users\user\source\repos\TranscoldPruebasWeb2\obj\Debug\TranscoldPruebasWeb2.dll
 C:\Users\user\source\repos\TranscoldPruebasWeb2\obj\Debug\WebForms_Basic.xml
 C:\Users\user\source\repos\TranscoldPruebasWeb2\obj\Debug\TranscoldPruebasWeb2.pdb
+D:\wuzpa\visual studio\TranscoldPruebasWeb2\bin\MySql.Data.dll
+D:\wuzpa\visual studio\TranscoldPruebasWeb2\bin\DLL2.dll.config

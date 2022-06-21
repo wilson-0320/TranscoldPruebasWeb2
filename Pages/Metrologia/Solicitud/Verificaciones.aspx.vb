@@ -3,8 +3,9 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
 
-            chargeListCatalogos(12)
+            chargeListCatalogosMetrologia()
             chargeListInstrumentos()
+            chargeListMagnitud()
             inicializar()
             cargarResumenVerificaciones("consultarfiltro", -1)
             Try
@@ -21,19 +22,12 @@
         tbP2.Text = ""
         tbP3.Text = ""
         tbP4.Text = ""
-        tbP5.Text = ""
-        tbP6.Text = ""
-        tbP7.Text = ""
-        tbP8.Text = ""
-        tbP9.Text = ""
         tbComentarios.Text = ""
         hfID.Value = "-1"
         tbCodigo.Text = ""
-        hfQuery.Value = "insertar"
+        hfQuery.Value = "Insertar"
         lbtnCancelar.Visible = False
         lbtnGuardar.Enabled = Roles("Administrador,JefeLab,JefeRefri,SupMet,SupLab", 1)
-
-
 
     End Sub
 
@@ -42,10 +36,6 @@
         Dim eli1 As Boolean = Roles("Administrador,JefeLab,JefeRefri,SupMet,SupLab", 3)
 
         For index As Integer = 0 To RepeaterTabla.Items.Count - 1 Step 1
-            'Modificar
-            CType(RepeaterTabla.Items(index).FindControl("LinkButton1"), LinkButton).Visible = eli1
-            'Eliminar
-            CType(RepeaterTabla.Items(index).FindControl("LinkButton2"), LinkButton).Visible = mod1
 
             CType(RepeaterTabla.Items(index).FindControl("lbtnEliminarRepeat"), LinkButton).Visible = eli1
             'Eliminar
@@ -55,15 +45,40 @@
 
     End Sub
 
+    Private Sub msjNot()
+        If Not BLL.Solicitud_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Solicitud_BLL.MsjError, 4, True)
+        Else
+            MuestraErrorToast("Se completo la operacion.", 1, True)
+        End If
+    End Sub
+
+    Private Function validar() As Boolean
+
+        For Each CampoTexto As TextBox In New TextBox() {
+            tbCodigo, tbComentarios, tbP1, tbP2, tbP3, tbP4
+            }
+
+            If CampoTexto.Text = "" Then
+                MuestraErrorToast("Debe especificar el valor del campo enfocado " + CampoTexto.ToolTip, 3, True)
+                CampoTexto.Focus()
+
+                Return False
+            End If
+
+
+        Next
+        Return True
+
+    End Function
+
     Private Sub cargarResumenVerificaciones(ByVal query As String, ByVal ID As Int32)
 
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Verificacion_ABCD", New Object() {
+        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Verificacion_Solicitud_ABCD", New Object() {
                                                                    New Object() {"@query", query},
                                                                     New Object() {"@Codigo", tbCodigoFiltro.Text},
-                                                                    New Object() {"@filtro1", tbModeloFiltro.Text},
-                                                                    New Object() {"@filtro2", tbSerieFiltro.Text},
-                                                                    New Object() {"@filtro3", tbWOFiltro.Text},
-                                                                    New Object() {"@camara", tbCamaraFiltro.Text},
+                                                                    New Object() {"@ID_Ubicacion", ddlCamaraFiltro.SelectedValue},
+                                                                     New Object() {"@ID_Magnitud", ddlMagnitudFiltro.SelectedValue},
                                                                     New Object() {"@ID", ID}
                                                                      }, CommandType.StoredProcedure).Tables(0)
 
@@ -74,18 +89,12 @@
             tbCodigo.Text = DTOrig.Rows(0).Item(1)
             ddlEstacionCamara.SelectedValue = DTOrig.Rows(0).Item(2)
             ddlInstrumentos.SelectedValue = DTOrig.Rows(0).Item(3)
-            changeListEleccion(DTOrig.Rows(0).Item(14).ToString.TrimEnd)
-            tbP1.Text = DTOrig.Rows(0).Item(4)
-            tbP2.Text = DTOrig.Rows(0).Item(5)
-            tbP3.Text = DTOrig.Rows(0).Item(6)
-            tbP4.Text = DTOrig.Rows(0).Item(7)
-            tbP5.Text = DTOrig.Rows(0).Item(8)
-            tbP6.Text = DTOrig.Rows(0).Item(9)
-            tbP7.Text = DTOrig.Rows(0).Item(10)
-            tbP8.Text = DTOrig.Rows(0).Item(11)
-            tbP9.Text = DTOrig.Rows(0).Item(12)
-            tbComentarios.Text = DTOrig.Rows(0).Item(13).ToString.TrimEnd
-            ddlTipoEntrada.SelectedValue = DTOrig.Rows(0).Item(14).ToString().TrimEnd
+            tbP1.Text = DTOrig.Rows(0).Item(4).ToString().Replace(",", ".")
+            tbP2.Text = DTOrig.Rows(0).Item(5).ToString().Replace(",", ".")
+            tbP3.Text = DTOrig.Rows(0).Item(6).ToString().Replace(",", ".")
+            tbP4.Text = DTOrig.Rows(0).Item(7).ToString().Replace(",", ".")
+            tbComentarios.Text = DTOrig.Rows(0).Item(8).ToString.TrimEnd
+            ddlTipoEntrada.SelectedValue = DTOrig.Rows(0).Item(9).ToString().TrimEnd
 
             lbtnGuardar.Enabled = Roles("Administrador,JefeLab,JefeRefri,SupLab,SupMet", 1)
 
@@ -94,97 +103,63 @@
             Else
             RepeaterTabla.DataSource = DTOrig
             RepeaterTabla.DataBind()
-            ' llamarFuncionesJavascript("", "")
+            controlesRepeater()
         End If
 
 
     End Sub
 
-    Private Sub chargeListCatalogos(ByVal ID_Categoria As Integer)
+    Private Sub chargeListCatalogosMetrologia()
 
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Catalogo_Actualiza", New Object() {
-                                                                  New Object() {"@Tipo", "consultarCat"},
-                                                                  New Object() {"@Categoria_ID", ID_Categoria}
-                                                                  }, CommandType.StoredProcedure).Tables(0)
+        Dim DTOrig As DataTable = BLL.Met_Catalogo_BLL.consultar_por_tipo("Asignaciones Físicas")
 
-        Select Case ID_Categoria
-            Case 12
-                ddlEstacionCamara.DataSource = DTOrig
-                ddlEstacionCamara.DataTextField = "Descripcion"
-                ddlEstacionCamara.DataValueField = "ID"
-                ddlEstacionCamara.DataBind()
 
-        End Select
 
+        ddlEstacionCamara.DataSource = DTOrig
+        ddlEstacionCamara.DataTextField = "valor"
+        ddlEstacionCamara.DataValueField = "id"
+        ddlEstacionCamara.DataBind()
+
+        ddlCamaraFiltro.DataSource = DTOrig
+        ddlCamaraFiltro.DataTextField = "valor"
+        ddlCamaraFiltro.DataValueField = "id"
+        ddlCamaraFiltro.DataBind()
+
+    End Sub
+
+    Private Sub chargeListMagnitud()
+
+
+        Dim DTOrig As DataTable = BLL.Met_Magnitud_BLL.consultar()
+
+
+        ddlTipoEntrada.DataSource = DTOrig
+        ddlTipoEntrada.DataTextField = "magnitud"
+        ddlTipoEntrada.DataValueField = "id"
+        ddlTipoEntrada.DataBind()
+
+        ddlMagnitudFiltro.DataSource = DTOrig
+        ddlMagnitudFiltro.DataTextField = "magnitud"
+        ddlMagnitudFiltro.DataValueField = "id"
+        ddlMagnitudFiltro.DataBind()
     End Sub
 
     Private Sub chargeListInstrumentos()
 
 
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Instrumentos_ABCD", New Object() {
-                                                                   New Object() {"@query", "consultar"}
+        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Met_Instrumento_ABCD", New Object() {
+                                                                   New Object() {"@query", "listado"},
+                                                                   New Object() {"@con_vacio", 0}
                                                                    }, CommandType.StoredProcedure).Tables(0)
 
+
         ddlInstrumentos.DataSource = DTOrig
-        ddlInstrumentos.DataTextField = "Equipo"
-        ddlInstrumentos.DataValueField = "ID"
+        ddlInstrumentos.DataTextField = "instrumento"
+        ddlInstrumentos.DataValueField = "id"
         ddlInstrumentos.DataBind()
     End Sub
 
-    Private Sub changeListEleccion(ByVal eleccion As String)
-        If (eleccion = "Electrico") Then
-            lblP1.Text = "Corriente Patron On (A)"
-            lblP2.Text = "Corriente Patron Off (A)"
-            lblP3.Text = "Corriente Equipo On (A)"
-            lblP4.Text = "Corriente Equipo Off (A)"
 
-            lblP5.Text = "Voltaje Patron On (V)"
-            lblP6.Text = "Voltaje Patron Off (V)"
-            lblP7.Text = "Voltaje Equipo On (V)"
-            lblP8.Text = "Voltaje Equipo Off (V)"
-            lblP9.Visible = False
-            tbP9.Text = "0"
-            tbP9.Visible = False
-            lblP4.Visible = True
-            lblP5.Visible = True
-            lblP6.Visible = True
-            lblP7.Visible = True
-            lblP8.Visible = True
-            tbP4.Visible = True
-            tbP5.Visible = True
-            tbP6.Visible = True
-            tbP7.Visible = True
-            tbP8.Visible = True
-
-
-
-        ElseIf (eleccion = "Flujo de aire") Then
-            lblP1.Text = "punto Flujo 1 (ft/min)"
-            lblP2.Text = "punto Flujo 2 (ft/min)"
-            lblP3.Text = "punto Flujo 3 (ft/min)"
-            lblP4.Visible = False
-            lblP5.Visible = False
-            lblP6.Visible = False
-            lblP7.Visible = False
-            lblP8.Visible = False
-            tbP4.Visible = False
-            tbP5.Visible = False
-            tbP6.Visible = False
-            tbP7.Visible = False
-            tbP8.Visible = False
-
-            lblP9.Visible = False
-            tbP9.Visible = False
-            tbP4.Text = "01"
-            tbP5.Text = "01"
-            tbP6.Text = "01"
-            tbP7.Text = "01"
-            tbP8.Text = "01"
-            tbP9.Text = "01"
-
-        End If
-        MuestraErrorToast("Campos inicializados", 0, True)
-    End Sub
     Protected Sub btnGenerar_Click(sender As Object, e As EventArgs)
         cargarResumenVerificaciones("consultarfiltro", -1)
         MuestraErrorToast("Campos inicializados", 0, True)
@@ -199,23 +174,18 @@
         Try
 
 
-            If (tbCodigo.Text.Length > 0 And ddlEstacionCamara.SelectedValue.Length > 0 And
-         ddlInstrumentos.SelectedValue.Length > 0 And ddlTipoEntrada.SelectedValue.Length > 0 And
-         tbP1.Text > 0 And tbP2.Text > 0 And tbP3.Text > 0 And tbP4.Text > 0 And tbP5.Text > 0 And
-         tbP6.Text > 0 And tbP7.Text > 0 And tbP8.Text > 0) Then
+            If (validar()) Then
 
-                MuestraErrorToast(BLL.Validacion_BLL.insertar(hfQuery.Value, Int32.Parse(hfID.Value), "", ddlEstacionCamara.SelectedValue, ddlInstrumentos.SelectedValue, tbCodigo.Text,
-    tbComentarios.Text, Session("Usuario").ToString, ddlTipoEntrada.SelectedValue, tbP1.Text, tbP2.Text, tbP3.Text, tbP4.Text, tbP5.Text, tbP6.Text, tbP7.Text, tbP8.Text, tbP9.Text), 1, True)
+                BLL.Pru_Verificacion_Solicitud_BLL.crud(hfQuery.Value, Int32.Parse(hfID.Value), ddlEstacionCamara.SelectedValue, ddlInstrumentos.SelectedValue, tbCodigo.Text,
+    tbComentarios.Text, Session("Usuario").ToString, ddlTipoEntrada.SelectedValue, tbP1.Text, tbP2.Text, tbP3.Text, tbP4.Text)
 
-                'llamarFuncionesJavascript("Se realizo el cambio", "Satisfactorio")
+                msjNot()
+
+
                 tbCodigoFiltro.Text = tbCodigo.Text
                 cargarResumenVerificaciones("consultarfiltro", -1)
                 inicializar()
 
-
-
-            Else
-                MuestraErrorToast("Complete los campos", 1, True)
             End If
         Catch ex As Exception
             MuestraErrorToast(ex.Message, 1, True)
@@ -223,23 +193,13 @@
 
     End Sub
 
-    Protected Sub ddlTipoEntrada_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Try
-            If sender.SelectedValue = "" Then
-                sender.SelectedValue = "Electrico"
 
-            End If
-            changeListEleccion(sender.SelectedValue.ToString)
-        Catch ex As Exception
-
-        End Try
-    End Sub
 
     Protected Sub RepeaterTabla_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
-        If (e.CommandName = "editarVerificacion") Then
+        If (e.CommandName = "Edi") Then
 
             lbtnGuardar.Visible = True
-            hfQuery.Value = "modificar"
+            hfQuery.Value = "Modificar"
             lbtnCancelar.Visible = True
             tbComentarios.Focus()
             hfID.Value = e.CommandArgument
@@ -247,9 +207,10 @@
             cargarResumenVerificaciones("consultar_por_id", Int32.Parse(e.CommandArgument))
             MuestraErrorToast("Realizado", 0, True)
 
-        ElseIf e.CommandName = "eliminarVerificacion" Then
-            MuestraErrorToast(BLL.Validacion_BLL.eliminar(Int32.Parse(e.CommandArgument)), 1, True)
+        ElseIf e.CommandName = "Eli" Then
+            BLL.Pru_Verificacion_Solicitud_BLL.eliminar(Int32.Parse(e.CommandArgument))
             cargarResumenVerificaciones("consultarfiltro", -1)
+            msjNot()
         End If
 
 

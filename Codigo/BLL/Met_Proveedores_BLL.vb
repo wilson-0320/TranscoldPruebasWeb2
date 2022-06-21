@@ -23,7 +23,7 @@ Namespace BLL
                                             New Object() {"@contacto", contacto},
                                             New Object() {"@correo", correo},
                                             New Object() {"@telefono", telefono},
-                                            New Object() {"@comentario_envio", comentarioEnvio}
+                                            New Object() {"@comentarios_envio", comentarioEnvio}
                                             }, Data.CommandType.StoredProcedure)
             Catch ex As Exception
                 colocaError(ex)
@@ -62,7 +62,7 @@ Namespace BLL
             MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
-                Return trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() {
+                Return trsql.EjecutarConsulta("TranscoldPruebas", "Met_Proveedor_ABCD", New Object() {
                                                 New Object() {"@query", "POR LLAVE"},
                                                 New Object() {"@id", id}
                                                 }, Data.CommandType.StoredProcedure).Tables(0).Rows(0)

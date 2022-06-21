@@ -103,12 +103,8 @@
         cbParrillasTraseras.Checked = DTOrig.Rows(0).Item(27)
         cbHalador.Checked = DTOrig.Rows(0).Item(28)
 
-        If (User.Identity.Name.Equals(lblUser.Text)) Then
-            lbtnGuardar.Enabled = True
-        Else
-            lbtnGuardar.Enabled = False
-            MuestraErrorToast("Inicie la modificacion de los parametros", 1, True)
-        End If
+        lbtnGuardar.Enabled = True
+
 
 
 
@@ -122,8 +118,10 @@
     End Sub
 
     Protected Sub lbtnGuardar_Click(sender As Object, e As EventArgs)
+
         If (tbCliente.Text.Length > 0 And tbPais.Text.Length > 0 And tbSolicitado.Text.Length > 0 And tbWorkOrder.Text.Length > 0 And
 tbSerie.Text.Length > 0 And tbModelo.Text.Length > 0 And tbCodigo.Text.Length > 0) Then
+
             BLL.Recepcion_BLL.insertar(hfQuery.Value, dplTipo.SelectedValue, hfID.Value, tbCliente.Text, tbPais.Text, tbSolicitado.Text, tbWorkOrder.Text,
 tbSerie.Text, tbModelo.Text, tbCodigo.Text, tbParrillas.Text, tbClips.Text, tbLamparas.Text, cbRotulo.Checked, cbCubremotor.Checked,
 cbCertificado.Checked, cbEtiquetaSerie.Checked, cbManOpe.Checked, cbManIns.Checked, cbCalcomania.Checked, cbDiagrama.Checked,
@@ -138,7 +136,9 @@ cbFuncionamiento.Checked, cbParrillasTraseras.Checked, cbHalador.Checked, tbGolp
                 MuestraErrorToast("Registro realizado con exito.", 1, True)
             End If
 
+
         Else
+
             MuestraErrorToast("Los campos son obligatorio, por favor revise.", 1, True)
             'llamarFuncionesJavascript("Debes llenar los campos requeridos.", "Error")
 
@@ -158,7 +158,7 @@ cbFuncionamiento.Checked, cbParrillasTraseras.Checked, cbHalador.Checked, tbGolp
 
             lbtnCancelar.Visible = True
             Dim key As String = Guid.NewGuid.ToString
-            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, "abrirModal()", True)
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, "abrirModal('modalCheck');", True)
 
         ElseIf e.CommandName = "EliminarRecepcion" Then
             Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Pru_Recepcion_ABCD", New Object() {

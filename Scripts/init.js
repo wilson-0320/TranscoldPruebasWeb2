@@ -50,8 +50,13 @@ function abrirReportes(all)
 }
 
 function cerrarModal(idmodal) {
-    $('#' + idmodal).modal('hide');
-    return true;
+    try {
+        $('#' + idmodal).modal('hide');
+    } catch (e) {
+        alert(e + "");
+    }
+    
+    return false;
 }
 
 function abrirModal(idmodal) {

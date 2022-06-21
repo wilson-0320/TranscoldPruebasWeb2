@@ -157,11 +157,12 @@
 
         stFecha = BLL.Pru_Termopar_BLL.guarda(hfCodigo.Value, dt, stFecha, Session("Usuario").ToString)
         If Not BLL.Pru_Termopar_BLL.MsjError Is Nothing Then
-            Alerta(BLL.Pru_Termopar_BLL.MsjError, True)
+            MuestraErrorToast(BLL.Pru_Termopar_BLL.MsjError, 4, True)
+
         Else
-            Alerta(BLL.Pru_Termopar_BLL.MsjError, True)
+            MuestraErrorToast("Registros realizados", 1, True)
             panelEditorFecha.Visible = False
-            ddlFecha.DataBind()
+            cargarDllFechas()
             Try
                 ddlFecha.SelectedValue = stFecha
             Catch ex As Exception
@@ -232,6 +233,6 @@
 
     Protected Sub lbtnCancelarGuardarFecha_Click(sender As Object, e As EventArgs)
         panelEditorFecha.Visible = False
-        MuestraErrorToast(tbFechaReemplazo.Text, 4, True)
+        MuestraErrorToast(tbFechaReemplazo.Text, 0, True)
     End Sub
 End Class

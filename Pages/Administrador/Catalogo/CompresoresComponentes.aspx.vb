@@ -104,6 +104,7 @@
 
     Protected Sub repeaterComponentes_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Eli") Then
+            hfQuery.Value = "Eliminar"
             BLL.Componentes_Compresor_BLL.crudComponente(hfQuery.Value, tbVoltaje.Text, tbCodigoComp.Text, tbCompresor.Text, tbCaballaje.Text, tbRelay.Text, tbProtectorTermico.Text, tbCapacitor.Text, (Integer.Parse(e.CommandArgument)))
 
             msjNot()

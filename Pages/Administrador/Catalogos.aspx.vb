@@ -11,7 +11,7 @@
 
             End Try
         End If
-
+        Page.Form.Attributes.Add("enctype", "multipart/form-data")
     End Sub
 
     Private Sub inicializar()
@@ -124,7 +124,7 @@
         If (e.CommandName = "Eli") Then
             BLL.Catalogo_Categoria_BLL.eliminar(Int32.Parse(e.CommandArgument))
             cargarRepeatCatalogoCategorias(hfIDCategoria.Value, "Con_ID_Cat2")
-
+            MuestraErrorToast("Listo", 1, True)
             '  MuestraErrorToast("Si el elemento no fue eliminado, el registro tiene registros vinculados", 2, True)
         ElseIf (e.CommandName = "Edit") Then
             lbtnCancelar.Visible = True

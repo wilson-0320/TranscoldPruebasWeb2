@@ -15,6 +15,7 @@
 
      </script>
     <div class="content-wrapper">
+        <asp:HiddenField ID="hfUsuarioName"  runat="server" />
         <section class="content">
 
             <div class="container-fluid">
@@ -56,9 +57,11 @@
                                     <ItemTemplate>
                 <asp:HiddenField ID="HiddenField1" runat="server" />
                 <asp:HiddenField ID="hfUsuarioRealiza" runat="server" />
+                <asp:TextBox runat="server" ID="tbCodSolicitud" Text='<%# Eval("Codigo") %>' Visible="false"></asp:TextBox>
+
                                         <tr>
                                             <td>
-                                                <asp:LinkButton ID="LinkButton3" CommandName="Subir" CommandArgument='<%# Eval("Codigo") %>' CssClass="fa fa-play" runat="server"></asp:LinkButton></td>
+                                        <asp:LinkButton ID="LinkButton3" CommandName="Agregar" CommandArgument='<%# Eval("Codigo") %>' CssClass="fa fa-play" runat="server"></asp:LinkButton></td>
                                             <asp:HiddenField ID="hfCodigo" runat="server" />
                                             <td><%# Eval("Codigo") %></td>
                                             <td><%# Eval("Modelo") %></td>
@@ -68,18 +71,72 @@
                                             <td><%# Eval("DifCosto") %></td>
                                             <td><%# Eval("NumCambios") %></td>
                                             <td>
-                                                <asp:Repeater ID="repeaterDetalle" runat="server" DataSourceID="ObjectDataSourceDetalle"  >
-                                                    <ItemTemplate>
+                                                 <asp:Repeater runat="server" ID="rptSolEntregas" DataSourceID="dsSolEntregas">
+                        <HeaderTemplate>
+                            <asp:Literal runat="server" ID="litGvSolHeader" Text=" &lt;table style='margin: 0'&gt; &lt;tr&gt;"></asp:Literal>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                                    <td style="padding: 0; border-style: hidden;">
+                                        <table style="margin: 0">
+                                            <tr>
+                                                <td style="padding: 0; border-style: hidden;">
+                                                    <dx:ASPxCheckBox runat="server" ID="chbIncluir" Checked='<%# Eval("incluir") %>'
+                                                        Enabled='<%# ViewState("puede_editar_incluir") %>' CssClass='<%# Eval("CssClassBtn") %>'>
+                                                        <ClientSideEvents CheckedChanged="chbIncluir_CheckedChanged" />
+                                                    </dx:ASPxCheckBox>
+                                                </td>
+                                                <td style="padding: 0; border-style: hidden;">
+                                                    <dx:ASPxButton runat="server" ID="btnEntrega" Text='<%# Eval("Entrega") %>' AutoPostBack="false"
+                                                        CssClass='<%# Eval("CssClassBtn") + "" %>' Enabled='<%# Eval("habilitado") %>'
+                                                        ToolTip='<%# Eval("msj_tooltip") %>'>
+                                                        <ClientSideEvents Click="btnEntrega_Click" />
+                                                    </dx:ASPxButton>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <a href='<%# Eval("Link_Reporte") %>' target="_blank"><%#Eval("msj_abajo")%></a>
+                                                    <dx:ASPxButton runat="server" ID="btnEditarEntregaLink" CssClass='<%# "btnImg |" + Eval("id").ToString() + "| FlotaDer" %>'
+                                                        AutoPostBack="false" Visible='<%# Not Eval("id") Is DBNull.Value %>'>
+                                                        <Image Url="../Publico/Imagenes/Editar_20_x_20.png">
+                                                        </Image>
+                                                        <ClientSideEvents Click="btnEditarEntregaLink_Click" />
+                                                    </dx:ASPxButton>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:Literal runat="server" ID="litGvSolFooter" Text=" &lt;/tr&gt; &lt;/table&gt;"></asp:Literal>
+                        </FooterTemplate>
+                    </asp:Repeater>
 
-                                                    </ItemTemplate>
-                                                </asp:Repeater>
-                                               
-                               <asp:ObjectDataSource ID="ObjectDataSourceDetalle" runat="server" SelectMethod="consultar_solicitud_entregas" TypeName="TranscoldPruebasWeb2.BLL.Pru_Entrega_BLL">
-                                    <SelectParameters>
-                                        <asp:ControlParameter ControlID="hfCodigo" Name="cod_solicitud" PropertyName="Value" Type="String" />
-                                        <asp:ControlParameter ControlID="hfUsuarioRealiza" Name="UserName" PropertyName="Value" Type="String" />
-                                    </SelectParameters>
-                                </asp:ObjectDataSource>
+                      <asp:ObjectDataSource runat="server" ID="dsSolEntregas" 
+                        TypeName="BLL.Pru_Entrega_BLL" SelectMethod="consultar_solicitud_entregas" 
+                        onselecting="dsSolEntregas_Selecting">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="tbCodSolicitud" Name="cod_solicitud" Type="String" ConvertEmptyStringToNull="false" DefaultValue="-" />
+                           <asp:Parameter Name="UserName" Type="String" ConvertEmptyStringToNull="false" DefaultValue="" />
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+
+
+                                                <div class="row">
+                                                    <div class="col-4-sm">
+                                                        <input type="text" readonly class="btn btn-success"></input>
+                                                    </div>
+                                                    <div class="col-4-sm">
+                                                        <input type="text" readonly class="btn btn-info"></input>
+                                                    </div>
+                                                    <div class="col-4-sm">
+                                                        <input type="text" readonly class="btn btn-info"></input>
+                                                    </div>
+
+                                                </div>
+                                                   
+                                                   
+                                                  
                                             </td>
                                         </tr>
 

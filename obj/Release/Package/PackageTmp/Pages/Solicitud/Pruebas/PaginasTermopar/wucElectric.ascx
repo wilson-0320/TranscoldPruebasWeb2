@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="wucElectric.ascx.vb" Inherits="TranscoldPruebasWeb2.wucElectric" %>
 
-<img src="http://fogelonline.com/TranscoldPruebasWeb/Publico/ImagenesWebsites/Termopares/medicion_corriente.jpg" style="position: absolute; top: 15px; left: 10px;" />
+<img src="https://www.fogelonline.com/TranscoldPruebasWeb/Publico/ImagenesWebsites/Termopares/medicion_corriente.jpg" style="position: absolute; top: 15px; left: 10px;" />
 <input runat="server" id="tb302" style="position: absolute; top: 534px; left: 148px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
 <input runat="server" id="tb297" style="position: absolute; top: 341px; left: 147px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
 <input runat="server" id="tb307" style="position: absolute; top: 381px; left: 550px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />

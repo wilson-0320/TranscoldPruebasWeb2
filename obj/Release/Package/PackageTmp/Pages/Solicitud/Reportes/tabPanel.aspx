@@ -1,93 +1,7 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/ComunesWeb/Menu.Master" CodeBehind="tabPanel.aspx.vb" Inherits="TranscoldPruebasWeb2.tabPanel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Main2" runat="server">
-    <script>
-        google.charts.load('current', { 'packages': ['line', 'corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-       
-            var button = document.getElementById('change-chart');
-            var chartDiv = document.getElementById('chart_div');
 
-            var data = new google.visualization.DataTable();
-            data.addColumn('number', 'Minutos');
-            data.addColumn('number', "Temperatura");
-            data.addColumn('number', "Humedad");
-
-            data.addRows(<%=datos2()%>);
-
-
-            var materialOptions = {
-                chart: {
-                    title: 'Average Temperatures and Daylight in Iceland Throughout the Year'
-                },
-                width: 600,
-                height: 350,
-                series: {
-                    // Gives each series an axis name that matches the Y-axis below.
-                    0: { axis: 'Temps' },
-                    1: { axis: 'Daylight' }
-                },
-                axes: {
-                    // Adds labels to each axis; they don't have to match the axis names.
-                    y: {
-                        Temps: { label: 'Temps (Celsius)' },
-                        Daylight: { label: 'Daylight' }
-                    }
-                }
-            };
-
-
-
-            var classicOptions = {
-                title: 'Temperatura y Humudad de camara climatica seleccionada',
-                width: 600,
-                height: 400,
-                // Gives each series an axis that matches the vAxes number below.
-                series: {
-                    0: { targetAxisIndex: 0 },
-                    1: { targetAxisIndex: 1 }
-                },
-                vAxes: {
-                    // Adds titles to each axis.
-                    0: { title: 'Temperatura (~C)' },
-                    1: { title: 'Humedad (%HR)' }
-                },
-                hAxis: {
-
-                },
-                vAxis: {
-                    viewWindowMode: 'explicit',
-                    viewWindow: {
-                        max: 90,
-                        min: 10
-                    }
-                }
-            };
-
-
-            function drawMaterialChart() {
-                var materialChart = new google.charts.Line(chartDiv);
-                materialChart.draw(data, materialOptions);
-                button.innerText = 'Change to Classic';
-                button.onclick = drawClassicChart;
-            }
-
-            function drawClassicChart() {
-                var classicChart = new google.visualization.LineChart(chartDiv);
-                classicChart.draw(data, classicOptions);
-                button.innerText = 'Change to Material';
-                button.onclick = drawMaterialChart;
-            }
-
-            drawClassicChart()
-
-        }
-
-
-
-
-    </script>
     <div class="content-wrapper">
         <section class="content">
 
@@ -138,102 +52,34 @@
 
 
 
-                                        <div class="table-responsive">
-                                            <table id="tt" class="table tt table-sm table-bordered ">
-
+                                        <div class="table-responsive text-sm">
+                                            <table class="table tt table-sm table-bordered ">
+                                                 <thead class="bg-gradient-navy">
+                                            <tr><th>Solicitud</th>
+                                                <th>Ubicación</th><th>Magnitud</th><th>Equipo Patron</th>
+                                                <th>Medición 1</th><th>Medición 2</th><th>Medición 3</th><th>Medición 4</th>
+                                                <th>Comentario</th><th>Tecnico</th><th>Realizado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                                 <asp:Repeater ID="RepeaterValidaciones" runat="server">
                                                     <ItemTemplate>
+                                                        <tr >
+                                                        
+                                                        <td><%# Eval("Codigo") %> </td>
+                                                        <td><%# Eval("valor") %></td>
+                                                        <td><%# Eval("magnitud") %></td>
+                                                        <td><%# Eval("descripcion") %></td>
+                                                        <td><%# Eval("Dato1") %></td>
+                                                        <td><%# Eval("Dato2") %></td>
+                                                        <td><%# Eval("Dato3") %></td>
+                                                        <td><%# Eval("Dato4") %></td>
+                                                        <td><%# Eval("Comentario") %></td>
+                                                        <td><%# Eval("Usuario") %></td>
+                                                        <td><%# Eval("FechaRealiza") %></td>
 
+                                                    </tr>
 
-                                                        <tr class="bg-dark text-white" runat="server" visible='<%# If(Eval("ID") = "0", True, False)%>'>
-
-                                                            <td>Codigo </td>
-                                                            <td>Camara</td>
-                                                            <td>Modelo </td>
-                                                            <td>WO</td>
-                                                            <td>Serie</td>
-
-                                                            <td>Equipo</td>
-                                                            <td>Amperios ON Patron</td>
-                                                            <td>Amperios Off Patron</td>
-                                                            <td>Amperios On Equipo</td>
-                                                            <td>Amperios Off Equipo</td>
-                                                            <td>Voltaje On Patron</td>
-                                                            <td>Voltaje Off Patron</td>
-                                                            <td>Voltaje On Equipo</td>
-                                                            <td>Voltaje Off Equipo</td>
-
-
-                                                            <td>Comentario</td>
-                                                            <td>Tipo</td>
-                                                            <td>Tecnico</td>
-                                                            <td>Creado</td>
-
-                                                        </tr>
-
-
-                                                        <tr class="bg-dark text-white" runat="server" visible='<%# If(Eval("ID") = "-1", True, False)%>'>
-
-                                                            <td>Codigo </td>
-                                                            <td>Camara</td>
-                                                            <td>Modelo </td>
-                                                            <td>WO</td>
-                                                            <td>Serie</td>
-
-                                                            <td>Equipo</td>
-                                                            <td colspan="3">ft/min</td>
-                                                            <td colspan="3">ft/min</td>
-                                                            <td colspan="2">ft/min</td>
-
-
-                                                            <td>Comentario</td>
-                                                            <td>Tipo</td>
-                                                            <td>Tecnico</td>
-                                                            <td>Creado</td>
-
-                                                        </tr>
-
-
-                                                        <tr runat="server" visible='<%# If(Eval("Tipo_Entrada").ToString.TrimEnd = "Electrico", True, False)%>'>
-
-                                                            <td><%# Eval("Codigo") %> </td>
-                                                            <td><%# Eval("Camara") %></td>
-                                                            <td><%# Eval("Modelo") %></td>
-                                                            <td><%# Eval("WO") %></td>
-                                                            <td><%# Eval("Serie") %></td>
-                                                            <td><%# Eval("Equipo") %></td>
-                                                            <td><%# Eval("P1") %></td>
-                                                            <td><%# Eval("P2") %></td>
-                                                            <td><%# Eval("P3") %></td>
-                                                            <td><%# Eval("P4") %></td>
-                                                            <td><%# Eval("P5") %></td>
-                                                            <td><%# Eval("P6") %></td>
-                                                            <td><%# Eval("P7") %></td>
-                                                            <td><%# Eval("P8") %></td>
-                                                            <td><%# Eval("Comentario") %></td>
-                                                            <td><%# Eval("Tipo_Entrada") %></td>
-                                                            <td><%# Eval("Tecnico") %></td>
-                                                            <td><%# Eval("Fecha_Creacion") %></td>
-
-                                                        </tr>
-
-                                                        <tr runat="server" visible='<%# If(Eval("Tipo_Entrada").ToString.TrimEnd = "Flujo de aire", True, False)%>'>
-
-                                                            <td><%# Eval("Codigo") %> </td>
-                                                            <td><%# Eval("Camara") %></td>
-                                                            <td><%# Eval("Modelo") %></td>
-                                                            <td><%# Eval("WO") %></td>
-                                                            <td><%# Eval("Serie") %></td>
-                                                            <td><%# Eval("Equipo") %></td>
-                                                            <td colspan="3"><%# Eval("P1") %></td>
-                                                            <td colspan="3"><%# Eval("P2") %></td>
-                                                            <td colspan="2"><%# Eval("P3") %></td>
-                                                            <td><%# Eval("Comentario") %></td>
-                                                            <td><%# Eval("Tipo_Entrada") %></td>
-                                                            <td><%# Eval("Tecnico") %></td>
-                                                            <td><%# Eval("Fecha_Creacion") %></td>
-
-                                                        </tr>
 
 
 
@@ -241,7 +87,7 @@
 
                                                     </ItemTemplate>
                                                 </asp:Repeater>
-
+                                            </tbody>
                                             </table>
                                         </div>
 
@@ -270,47 +116,38 @@
                                     </div>
                                     <div class="card-body">
 
-                                        <table class="table table-bordered table-sm table-hover">
-                                            <asp:Repeater ID="repeaterPruebas" runat="server">
-                                                <HeaderTemplate>
+                                       <div class="table-responsive text-sm">
+                                                <table class="table table-sm table-bordered table-hover table-avatar">
+                                                    <thead class="bg-gradient-navy">
+                                                        <tr>
+                                                           
+                                                            <th>Solicitud</th>
+                                                            <th>Prueba</th>
+                                                            <th>Fecha</th>
+                                                            <th>Tipo prueba</th>
+                                                            <th>Notas</th>
+                                                            <th>Decision</th>
 
-                                                    <thead class="thead-dark">
-                                                        <th>Prueba
-                                                        </th>
-                                                        <th>Inicio
-                                                        </th>
-                                                        <th>Fin
-                                                        </th>
-                                                        <th>Comentario
-                                                        </th>
+                                                        </tr>
                                                     </thead>
-                                                </HeaderTemplate>
-                                                <FooterTemplate>
-                                                </FooterTemplate>
-                                                <ItemTemplate>
-                                                    <tr class="alert-<%# If(Eval("FechaInicio") Is DBNull.Value, "danger", "sucess")  %>">
-                                                        <td>
-                                                            <%# Eval("descripcion") %>
-                                                        </td>
-                                                        <td>
-                                                            <%# Eval("FechaInicio") %>
-                                                        </td>
-                                                        <td>
-                                                            <%# Eval("FechaFinalizacion") %>
-                                                        </td>
-                                                        <td>
-                                                            <%# Eval("prueba") %>
-                                                        </td>
+                                                    <tbody>
+                                                        <asp:Repeater ID="repeaterPruebas" runat="server">
+                                                            <ItemTemplate>
+                                                                <tr>
+                                                                   
+                                                                    <td><%# Eval("CodSolicitud") %></td>
+                                                                    <td><%# Eval("Prueba") %></td>
+                                                                    <td><%# Eval("Fecha") %></td>
+                                                                    <td><%# Eval("TipoPrueba") %></td>
+                                                                    <td><%# Eval("Notas") %></td>
+                                                                    <td><%# if(Eval("Aprobada") = "1", "Aprobado", "Fallida") %></td>
+                                                                </tr>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
 
-                                                    </tr>
-
-
-
-
-                                                </ItemTemplate>
-                                            </asp:Repeater>
-                                        </table>
-
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
 
                                     </div>
@@ -326,7 +163,7 @@
 
 
                                         <div class="card-tools">
-                                            <b class="text-info">Datos principales</b>
+                                            <b class="text-info">Datos de ingreso</b>
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
                                             </button>
@@ -337,15 +174,16 @@
 
 
                                     <div class="card-body table-responsive">
-
-
+                                        <div class="table-responsive">
+                                        <div class="row">
+                                            
                                         <asp:Repeater ID="RepeaterRecepcion" runat="server">
 
                                             <ItemTemplate>
 
                                                 <th>
-                                                    <div class="col-lg-12">
-                                                        <div class="col-lg-8">
+                                                    
+                                                        <div class="col-lg-6">
 
 
                                                             <table class="">
@@ -480,46 +318,26 @@
 
 
                                                         </div>
-                                                    </div>
+                                                    
                                                 </th>
 
 
                                             </ItemTemplate>
                                         </asp:Repeater>
-
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </div>
-                <div class="col-sm-6">
-                    <tr>
-                        <td>
-                            <div class="container-fluid">
-                                <div class="card card-default">
-                                    <div class="card-header ">
-
-
-                                        <div class="card-tools">
-                                            <b class="text-info">Condiciones ambientales</b>
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
+                                                </div>
 
                                         </div>
 
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="chart_div"></div>
+
                                     </div>
                                 </div>
                             </div>
                         </td>
+                
                     </tr>
+                </div>
+                <div class="col-sm-6">
+                   
                     <tr>
                         <td>
                             <div class="container-fluid">
@@ -558,7 +376,7 @@
                                                         </small>
                                                         <br />
                                                         <div class="text-center">
-                                                            <img src='https://www.fogelonline.com/ESTATICOSWEB/TRANSCOLDPRUEBASWEB/ELEMHIST/66544/IMG_20220222_103754.JPG' width="325" />
+                                                            <img src='https://www.fogelonline.com/<%# Eval("Archivo") %>' width="325" />
                                                         </div>
 
                                                     </td>

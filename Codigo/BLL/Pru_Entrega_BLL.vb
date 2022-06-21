@@ -115,11 +115,23 @@ Namespace BLL
             MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
-                Return trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() { _
-                                                New Object() {"@query", "consultar_entrega_usuario"}, _
-                                                New Object() {"@Entrega_id", Entrega_id}, _
-                                                New Object() {"@UserName", UserName}, _
-                                                New Object() {"@solo_con", solo_con} _
+                Return trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() {
+                                                New Object() {"@query", "consultar_entrega_usuario"},
+                                                New Object() {"@Entrega_id", Entrega_id},
+                                                New Object() {"@UserName", UserName},
+                                                New Object() {"@solo_con", solo_con}
+                                                }, Data.CommandType.StoredProcedure).Tables(0)
+            Catch ex As Exception
+                colocaError(ex)
+            End Try
+        End Function
+
+        Public Shared Function consultar_usuario() As DataTable
+            MsjError = Nothing
+            Try
+                Dim trsql As New TransacSQL
+                Return trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() {
+                                                New Object() {"@query", "consultar_usuario"}
                                                 }, Data.CommandType.StoredProcedure).Tables(0)
             Catch ex As Exception
                 colocaError(ex)
@@ -269,9 +281,36 @@ Namespace BLL
             MsjError = Nothing
             Try
                 Dim trsql As New TransacSQL
-                Return trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() { _
-                                              New Object() {"@query", "consultar_solicitud"}, _
-                                              New Object() {"@cod_solicitud", cod_solicitud} _
+                Return trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() {
+                                              New Object() {"@query", "consultar_solicitud"},
+                                              New Object() {"@cod_solicitud", cod_solicitud}
+                                              }, CommandType.StoredProcedure).Tables(0).Rows(0)
+            Catch ex As Exception
+                colocaError(ex)
+            End Try
+        End Function
+
+
+
+        Public Shared Function consultar_llave_Usuario(ByVal id As Integer) As DataRow
+            MsjError = Nothing
+            Try
+                Dim trsql As New TransacSQL
+                Return trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() {
+                                              New Object() {"@query", "consultar_llave_usuario"},
+                                              New Object() {"@id", id}
+                                              }, CommandType.StoredProcedure).Tables(0).Rows(0)
+            Catch ex As Exception
+                colocaError(ex)
+            End Try
+        End Function
+        Public Shared Function consultar_llave_Entrega(ByVal id As Integer) As DataRow
+            MsjError = Nothing
+            Try
+                Dim trsql As New TransacSQL
+                Return trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Entrega_sp", New Object() {
+                                              New Object() {"@query", "consultar_llave_entreg"},
+                                              New Object() {"@id", id}
                                               }, CommandType.StoredProcedure).Tables(0).Rows(0)
             Catch ex As Exception
                 colocaError(ex)

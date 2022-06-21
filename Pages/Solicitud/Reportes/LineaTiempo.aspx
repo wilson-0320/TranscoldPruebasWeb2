@@ -95,7 +95,7 @@
                                                     </div>
                                                     <!-- /.timeline-label -->
                                                     <!-- timeline item -->
-                                                    <div runat="server"  Style='<%# If(Eval("Observaciones_Revision") Is DBNull.Value, "display:none;", "display:Block;")%>'>
+                                                    <div runat="server"  Style='<%# If(Eval("cat") Is DBNull.Value, "display:none;", "display:Block;")%>'>
 
                                                         <i class="  <%#If(Eval("Estado").Equals("Aprobado") Or Eval("Estado").Equals("Revisada"), " fa fa-check bg-success", "fas  fa-exclamation-triangle  bg-danger")  %>"></i>
                                                         <div class="timeline-item">

@@ -7,7 +7,7 @@ Namespace BLL
         Inherits Base_BLL
 
         Public Shared Sub insertar(ByVal elemento_id As Integer, ByVal elemento_rel_id As Integer, ByVal valor As String, ByVal valor_rel As String)
-            MsjError = "Realizado"
+            MsjError = Nothing
             If elemento_id = -1 Then
                 MsjError = "Debe escoger el elemento"
             ElseIf elemento_rel_id = -1 Then

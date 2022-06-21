@@ -1,0 +1,29 @@
+﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="wucVidriosHTML.ascx.vb" Inherits="TranscoldPruebasWeb2.wucVidrios" %>
+<img src="https://www.fogelonline.com/TranscoldPruebasWeb/Publico/ImagenesWebsites/Termopares/vidrios.jpg" style="position: absolute; top: 15px; left: 10px;" />
+<input  id="tb261" style="position: absolute; top: 43px; left: 34px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb263" style="position: absolute; top: 43px; left: 238px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb271" style="position: absolute; top: 273px; left: 137px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb262" style="position: absolute; top: 42px; left: 136px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb266" style="position: absolute; top: 43px; left: 560px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb267" style="position: absolute; top: 43px; left: 689px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb265" style="position: absolute; top: 43px; left: 460px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb268" style="position: absolute; top: 43px; left: 789px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb272" style="position: absolute; top: 273px; left: 238px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb264" style="position: absolute; top: 43px; left: 360px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb287" style="position: absolute; top: 503px; left: 889px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb269" style="position: absolute; top: 43px; left: 890px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb270" style="position: absolute; top: 273px; left: 33px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb275" style="position: absolute; top: 273px; left: 560px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb276" style="position: absolute; top: 273px; left: 687px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb283" style="position: absolute; top: 503px; left: 460px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb282" style="position: absolute; top: 503px; left: 360px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb281" style="position: absolute; top: 503px; left: 239px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb278" style="position: absolute; top: 273px; left: 889px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb279" style="position: absolute; top: 503px; left: 33px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb273" style="position: absolute; top: 273px; left: 360px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb280" style="position: absolute; top: 503px; left: 135px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb277" style="position: absolute; top: 273px; left: 788px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb274" style="position: absolute; top: 273px; left: 460px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb286" style="position: absolute; top: 503px; left: 788px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb285" style="position: absolute; top: 503px; left: 687px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
+<input  id="tb284" style="position: absolute; top: 503px; left: 562px; width: 46px; height: 20px; margin-top: 0px; margin-bottom: 0px;" />
