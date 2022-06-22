@@ -86,11 +86,11 @@
             Dim retorno As String = "const limiteMinimo=0;  const limitePromedio=3.3; const limiteMaximo=7.2;"
             Dim limiteComa As String() = hfLimites.Value().ToString.Split(",")
             Dim validacion As Int32 = 0
-            validacion = Int32.Parse(limiteComa(0))
+            validacion = Int32.Parse(limiteComa(2))
             validacion = Int32.Parse(limiteComa(1)) + validacion
-            validacion = Int32.Parse(limiteComa(2)) + validacion
+            validacion = Int32.Parse(limiteComa(0)) + validacion
 
-            retorno = "const limiteMinimo=" + limiteComa(0) + ";  const limitePromedio=" + limiteComa(1) + "; const limiteMaximo=" + limiteComa(2) + ";"
+            retorno = "const limiteMinimo=" + limiteComa(2) + ";  const limitePromedio=" + limiteComa(1) + "; const limiteMaximo=" + limiteComa(0) + ";"
             Return retorno
         Catch ex As Exception
             Return "const limiteMinimo=0;  const limitePromedio=3.3; const limiteMaximo=7.2;"

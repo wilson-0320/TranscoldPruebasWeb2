@@ -17,7 +17,7 @@ Public Class TransacSQL
         If Not Conexiones.ContainsKey(bd) Then
             'Server=192.168.1.2; uid=TranscoldSa; pwd=SaTranscolD;
             '"Server=WUZPA; uid=wuzpa; pwd=wuz33.;
-            Conexiones.Add(bd, New Object() {New SqlConnection("Server=WUZPA; uid=wuzpa; pwd=wuz33.; database=" + bd), TimeOut})
+            Conexiones.Add(bd, New Object() {New SqlConnection("Server=192.168.1.2; uid=sa; pwd=xp04nt; database=" + bd), TimeOut})
         End If
         Return Conexiones(bd)
     End Function

@@ -53,10 +53,9 @@
 
                             <small>Valores</small>
                             <asp:DropDownList ID="ddlValores" CssClass="form-control"  runat="server"></asp:DropDownList>
-                           
 
                         </div>
-                        <div class="col-sm-1 form-inline">
+                        <div class="col-sm-1 form-inline" style="display:none;">
 
 
 
@@ -75,7 +74,7 @@
                                    <tr>
                                        <th></th>
                                        <th>Requisito</th>
-                                       <th>Comentario</th>
+                                       <th>Opciones</th>
                                        <th>Usuario</th>
                                        <th>Fecha</th>
                                        <th>Estado</th>
@@ -85,26 +84,42 @@
                                    </tr>
                                </thead>
                                <tbody>
-                                   <asp:Repeater ID="repeaterCheck" runat="server" OnItemCommand="repeaterCheck_ItemCommand">
+                                   <asp:HiddenField ID="hfOrdenRepeater" Value="0" runat="server" />
+                                   <asp:Repeater ID="repeaterCheck"  runat="server" OnItemCommand="repeaterCheck_ItemCommand"  >
                                        <ItemTemplate>
-                                           <tr>
+                                           <tr  >
                                                 <td>
                                                     
-                                                                               <asp:LinkButton ID="LinkButton3" Visible='<%#If(Eval("Valores").ToString.TrimEnd = "", True, False) %>' CommandName="Check" CommandArgument='<%# Eval("IDcheck").ToString + "|" + Eval("ID").ToString + "|" + Eval("Valores") + "|" + Eval("Descripcion")  %>' CssClass="fa fa-check" runat="server" ></asp:LinkButton>
-                                                                        <asp:LinkButton ID="LinkButton1" Visible='<%#If(Eval("Valores").ToString.TrimEnd = "", False, True) %>' CommandName="Edit" CommandArgument='<%#  Eval("Descripcion").ToString.TrimEnd + "|" + Eval("IDcheck").ToString + "|" + Eval("ID").ToString + "|" + Eval("Valores").ToString.TrimEnd + "|" + Eval("Descripcion").ToString %>' CssClass="fa fa-edit" runat="server" ></asp:LinkButton>
+                                                                        <asp:LinkButton ID="LinkButton3"  CommandName="Check" CommandArgument='<%# Eval("IDcheck").ToString + "|" + Eval("ID").ToString + "|" + Eval("Valores") + "|" + Eval("Descripcion") + "|" + Eval("IDEvento")  %>' CssClass="fa fa-check" runat="server" ></asp:LinkButton>
+                                                      <asp:LinkButton ID="LinkButton2"  CommandName="Close" Style="color:red;" CommandArgument='<%# Eval("IDcheck").ToString + "|" + Eval("ID").ToString + "|" + Eval("Valores") + "|" + Eval("Descripcion") + "|" + Eval("IDEvento")  %>' CssClass="fa fa-angle-double-down" runat="server" ></asp:LinkButton>
+                                                                                          
+                                                    <asp:LinkButton ID="LinkButton1" Visible="false" CommandName="Edit" CommandArgument='<%#  Eval("Descripcion").ToString.TrimEnd + "|" + Eval("IDcheck").ToString + "|" + Eval("ID").ToString + "|" + Eval("Valores").ToString.TrimEnd + "|" + Eval("Descripcion").ToString %>' CssClass="fa fa-edit" runat="server" ></asp:LinkButton>
                                                 
 
 
                                                    </td>
+                                              
                                                <td><%# Eval("Requisito") %></td>
-                                                <td><%# Eval("Descripcion") %></td>
+                                               <td>   
+                                                   <asp:HiddenField ID="hfValores" Value='<%# Bind("Descripcion") %>' runat="server" />
+                                                   <asp:HiddenField ID="hfDescripcion" Value='<%# Eval("Valores") %>' runat="server" />
+                                              <% retornarListado() %>
+                                               <asp:TextBox ID="tbOpcionesListado" runat="server"></asp:TextBox>
+                                               <asp:ListBox ID="ddlOpcionesListado" Enabled="false" CssClass="js-example-theme-single form-control"  SelectionMode="Multiple"   multiple="multiple" runat="server"></asp:ListBox>
+                                               </td>
+                                              
                                                <td><%# Eval("Usuario") %></td>
                                                <td><%# Eval("Fecha") %></td>
-                                               <td><%# Eval("Estado") %></td>
+                                               <td class='<%# If(Eval("Estado").ToString.TrimEnd.Equals("Finalizado"), "bg-success", "bg-danger")  %>'> 
+                                                 
+                                                   <asp:Label ID="lblOpcionesListado" runat="server" Text='<%# Eval("Estado") %>'></asp:Label>
+
+                                               </td>
                                            </tr>
                                            
                                        </ItemTemplate>
                                    </asp:Repeater>
+                                   
                                </tbody>
                            </table>
                             </div>

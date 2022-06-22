@@ -36,20 +36,13 @@ Public Class Solicitud
     End Sub
 
     Private Function consultarFechaFin() As Boolean
-        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Select Fecha_Finalizacion From Pru_Solicitud where Codigo=@Codigo", New Object() {
+        Dim DTOrig As DataTable = New TransacSQL().EjecutarConsulta("TranscoldPruebas", "Select Estado From Pru_Solicitud where Codigo=@Codigo", New Object() {
                                                                  New Object() {"@Codigo", lblCodigo.Text}
                                                                  }, CommandType.Text).Tables(0)
 
-        Dim fin As String = ""
+        Dim fin As String = DTOrig.Rows(0).Item(0).ToString
 
-        Try
-            fin = DTOrig.Rows(0).Item(0).ToString
-        Catch ex As Exception
-
-        End Try
-
-        'Si fin tienen texto, quiere decir que ya hay una fecha final
-        If (fin.Length > 5) Then
+        If (fin.Equals("Finalizada")) Then
 
             lbtnGuardarDivision.Enabled = False
             lbtnGuardarEnsayos.Enabled = False
@@ -570,23 +563,23 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
                 Try
 
 
-                    Dim Seleccionar As String() = DTOrigin.Rows(0).Item(3).ToString.TrimEnd().Split(",")
-                    lblEleccion.Text = DTOrigin.Rows(0).Item(3).ToString.TrimEnd()
+                    Dim Seleccionar As String() = DTOrigin.Rows(0).Item(6).ToString.TrimEnd().Split(",")
+                    lblEleccion.Text = DTOrigin.Rows(0).Item(6).ToString.TrimEnd()
 
 
-                    For a As Integer = 0 To Seleccionar.Length Step 1
+                    For a As Integer = 0 To Seleccionar.Length - 1 Step 1
+                        For b As Integer = 0 To lbOpciones.Items.Count - 1 Step 1
+                            If (lbOpciones.Items(b).ToString.TrimEnd.Equals(Seleccionar(a).TrimEnd)) Then
 
-                        If (lbOpciones.Items(a).Selected = Seleccionar(a)) Then
 
 
+                                Try
+                                    lbOpciones.Items(b).Selected = True
+                                Catch ex As Exception
 
-                            Try
-                                lbOpciones.Items(a).Selected = True
-                            Catch ex As Exception
-
-                            End Try
-                        End If
-
+                                End Try
+                            End If
+                        Next
                     Next
                 Catch ex As Exception
 
@@ -609,6 +602,7 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
             hfIDRequerimiento.Value = DTOrigin.Rows(0).Item(0).ToString.TrimEnd
             hfIDCheck.Value = DTOrigin.Rows(0).Item(2).ToString.TrimEnd
             lblEstadoCheck.Text = DTOrigin.Rows(0).Item(9).ToString.TrimEnd
+            lblUsuarioCheck.Text = DTOrigin.Rows(0).Item(7).ToString.TrimEnd
         Catch ex As Exception
             hfNum.Value = Integer.Parse(hfNum.Value) - 1
             MuestraErrorToast("Aun no existe requerimientos para este ensayo, dile al administrador que los agrege.", 3, True)

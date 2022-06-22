@@ -77,7 +77,7 @@
                     <div class="card-body">
                         <asp:UpdatePanel ID="upSolicitud" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-
+                                
                                 <div class="row">
 
                                     <div class="col-sm-2">
@@ -499,7 +499,9 @@ Descripción precisa es requerida. Evite descripciones tales como "la del están
                                                         <asp:ListBox ID="lbOpciones" CssClass="js-example-theme-single form-control"  SelectionMode="Multiple"   multiple="multiple"   runat="server"></asp:ListBox>
                                                         <asp:TextBox ID="tbOpciones" CssClass="form-control" runat="server"></asp:TextBox>
                                                         <small>Elección realizada: </small>
-                                                        <asp:Label ID="lblEleccion" runat="server" CssClass="text-sm text-danger" Text=""></asp:Label>
+                                                        <asp:Label ID="lblEleccion" runat="server" CssClass="text-sm text-danger" Text=""></asp:Label>&nbsp;&nbsp;&nbsp;
+                                                        <small>Usuario: </small>
+                                                        <asp:Label ID="lblUsuarioCheck" runat="server" CssClass="text-sm text-primary" Text=""></asp:Label>
                                                     </div>
                                                 </div>
 

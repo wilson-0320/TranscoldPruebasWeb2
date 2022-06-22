@@ -581,6 +581,15 @@ Partial Public Class Solicitud
     Protected WithEvents lblEleccion As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''Control lblUsuarioCheck.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblUsuarioCheck As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Control lbtnAnterior.
     '''</summary>
     '''<remarks>

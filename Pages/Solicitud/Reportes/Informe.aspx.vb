@@ -797,7 +797,7 @@
                                                          New Object() {"@LikeTerm", tbCodigoCrud.Text}
                                                          }).Tables(0)
         Try
-            tbPrecioCrud.Text = DT.Rows(0).Item(1)
+            tbPrecioCrud.Text = DT.Rows(0).Item(1).ToString.Replace(",", ".")
             MuestraErrorToast(DT.Rows(0).Item(0).ToString, 2, True)
         Catch ex As Exception
             MuestraErrorToast(ex.Message, 4, True)
