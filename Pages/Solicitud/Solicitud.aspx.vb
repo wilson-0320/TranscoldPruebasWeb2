@@ -475,7 +475,7 @@ tbDisposisionFinal.Text, tbComentariosEspeciales.Text, "", "", LocacionDropDownL
             imgqr.Width = 200
             imgqr.Height = 200
             Dim key As String = Guid.NewGuid.ToString
-            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, "abrirModal()", True)
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, "abrirModal('modal')", True)
 
 
         End Using

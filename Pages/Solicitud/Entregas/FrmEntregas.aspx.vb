@@ -9,6 +9,7 @@
             cargarRepeatEntregas()
             cargarddlUsuarios()
             cargarddlEntregas()
+            controlesRepeater()
         End If
 
     End Sub
@@ -23,6 +24,27 @@
 
     End Sub
 
+    Private Sub controlesRepeater()
+        Dim mod1 As Boolean = Roles("Administrador", 2)
+        Dim add1 As Boolean = Roles("Administrador", 1)
+        lbtnGuardarEntrega.Enabled = add1
+        lbtnGuardarUsuario.Enabled = add1
+
+
+        For index As Integer = 0 To RepeaterUsuarioEntrega.Items.Count - 1 Step 1
+            'Modificar
+            CType(RepeaterUsuarioEntrega.Items(index).FindControl("LinkButton1"), LinkButton).Visible = mod1
+
+        Next
+        For index As Integer = 0 To RepeaterEntregas.Items.Count - 1 Step 1
+            'Modificar
+            CType(RepeaterEntregas.Items(index).FindControl("LinkButton1"), LinkButton).Visible = mod1
+
+        Next
+
+
+
+    End Sub
     Private Sub msjNot()
         If Not BLL.Pru_Entrega_BLL.MsjError Is Nothing Then
             MuestraErrorToast(BLL.Pru_Entrega_BLL.MsjError, 4, True)
@@ -101,7 +123,8 @@
 
             BLL.Pru_Entrega_BLL.guardar_entrega_usuario(ddlEntregas.SelectedValue, ddlUsuario.SelectedValue, cbIncluir.Checked, Session("Usuario").ToString)
             msjNot()
-            RepeaterUsuarioEntrega.DataBind()
+            inicializar()
+            cargarRepeatUsuario()
         End If
     End Sub
 
@@ -114,7 +137,8 @@
         If (validarCrud()) Then
             BLL.Pru_Entrega_BLL.insertar(tbNum.Text, tbEntrega.Text, tbNum, cbEstado.Checked, Session("Usuario").ToString)
             msjNot()
-            RepeaterEntregas.DataBind()
+            inicializar()
+            cargarRepeatEntregas()
         End If
     End Sub
 
@@ -126,6 +150,8 @@
     Protected Sub RepeaterUsuarioEntrega_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Edi") Then
             hfIDUsuarioEntrega.Value = (e.CommandArgument)
+            lbtnCancelarUsuario.Visible = True
+            lbtnGuardarUsuario.Enabled = True
             llenarCuadrosUsuarios()
         End If
     End Sub
@@ -133,6 +159,8 @@
     Protected Sub RepeaterEntregas_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If (e.CommandName = "Edi") Then
             hfIDEntregas.Value = (e.CommandArgument)
+            lbtnCancelarEntrega.Visible = True
+            lbtnGuardarEntrega.Enabled = True
             llenarCuadrosEntregas()
         End If
     End Sub

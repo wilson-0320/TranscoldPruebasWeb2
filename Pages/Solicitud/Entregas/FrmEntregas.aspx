@@ -19,14 +19,14 @@
 
 
                     </div>
-                </div>
+                
 
 
-
+                <div class="card-body">
                 <asp:UpdatePanel ID="upCatalogoEntregas" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
 
-                        <div class="card-body">
+                        
                             <div class="row">
                                 <div class="col-sm-6">
 
@@ -157,7 +157,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="RepeaterEntregas" EventName="ItemCommand" />
@@ -168,7 +168,9 @@
                         <asp:AsyncPostBackTrigger ControlID="lbtnCancelarEntrega" EventName="Click" />
                     </Triggers>
                 </asp:UpdatePanel>
-            </div>
+                </div>
+                </div>
+           </div>
 
         </section>
     </div>

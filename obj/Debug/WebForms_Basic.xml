@@ -3187,18 +3187,99 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._repeaterReporte">
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._dsEntregas1">
 <summary>
-Control repeaterReporte.
+Control dsEntregas1.
 </summary>
 <remarks>
 Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._btnClick">
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbBuscar">
 <summary>
-Control btnClick.
+Control tbBuscar.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbFechaIni">
+<summary>
+Control tbFechaIni.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbFechaFin">
+<summary>
+Control tbFechaFin.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._ddlEntrega">
+<summary>
+Control ddlEntrega.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._chbSoloMios">
+<summary>
+Control chbSoloMios.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._btnRefrescar">
+<summary>
+Control btnRefrescar.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._dsSolicitudes">
+<summary>
+Control dsSolicitudes.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._dsSolicitudes1">
+<summary>
+Control dsSolicitudes1.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._upReporte">
+<summary>
+Control upReporte.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._repeaterReporte">
+<summary>
+Control repeaterReporte.
 </summary>
 <remarks>
 Campo generado automáticamente.
@@ -3214,18 +3295,54 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._hfQuery">
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbQuery">
 <summary>
-Control hfQuery.
+Control tbQuery.
 </summary>
 <remarks>
 Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._ddlEntregas">
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbIDEntrega">
 <summary>
-Control ddlEntregas.
+Control tbIDEntrega.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbID">
+<summary>
+Control tbID.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbCodigoReporte">
+<summary>
+Control tbCodigoReporte.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbEntrega">
+<summary>
+Control tbEntrega.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbUsuario">
+<summary>
+Control tbUsuario.
 </summary>
 <remarks>
 Campo generado automáticamente.
@@ -3250,9 +3367,27 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._lbtnSiguiente">
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbLinkReporte">
 <summary>
-Control lbtnSiguiente.
+Control tbLinkReporte.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._tbFechaReporte">
+<summary>
+Control tbFechaReporte.
+</summary>
+<remarks>
+Campo generado automáticamente.
+Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+</remarks>
+</member>
+<member name="F:TranscoldPruebasWeb2.FrmSolicitudEntregas._lbtnGuardar">
+<summary>
+Control lbtnGuardar.
 </summary>
 <remarks>
 Campo generado automáticamente.

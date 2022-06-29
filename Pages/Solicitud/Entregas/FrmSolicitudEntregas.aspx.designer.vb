@@ -23,6 +23,96 @@ Partial Public Class FrmSolicitudEntregas
     Protected WithEvents hfUsuarioName As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''Control dsEntregas1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents dsEntregas1 As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''Control tbBuscar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbBuscar As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control tbFechaIni.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbFechaIni As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control tbFechaFin.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbFechaFin As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control ddlEntrega.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlEntrega As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control chbSoloMios.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents chbSoloMios As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''Control btnRefrescar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnRefrescar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control dsSolicitudes.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents dsSolicitudes As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''Control dsSolicitudes1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents dsSolicitudes1 As Global.System.Web.UI.WebControls.ObjectDataSource
+
+    '''<summary>
+    '''Control upReporte.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents upReporte As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
     '''Control repeaterReporte.
     '''</summary>
     '''<remarks>
@@ -30,15 +120,6 @@ Partial Public Class FrmSolicitudEntregas
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents repeaterReporte As Global.System.Web.UI.WebControls.Repeater
-
-    '''<summary>
-    '''Control btnClick.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btnClick As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''Control upEntregas.
@@ -50,22 +131,58 @@ Partial Public Class FrmSolicitudEntregas
     Protected WithEvents upEntregas As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
-    '''Control hfQuery.
+    '''Control tbQuery.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents hfQuery As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents tbQuery As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control ddlEntregas.
+    '''Control tbIDEntrega.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ddlEntregas As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents tbIDEntrega As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control tbID.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbID As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control tbCodigoReporte.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbCodigoReporte As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control tbEntrega.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbEntrega As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control tbUsuario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbUsuario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control tbLink.
@@ -86,11 +203,29 @@ Partial Public Class FrmSolicitudEntregas
     Protected WithEvents tbFecha As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control lbtnSiguiente.
+    '''Control tbLinkReporte.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lbtnSiguiente As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents tbLinkReporte As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control tbFechaReporte.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents tbFechaReporte As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control lbtnGuardar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbtnGuardar As Global.System.Web.UI.WebControls.LinkButton
 End Class

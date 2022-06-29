@@ -27,7 +27,7 @@
 
     Private Sub controlesRepeater()
         Dim mod1 As Boolean = Roles("Administrador", 2)
-        Dim eli1 As Boolean = Roles("Administrador", 1)
+        Dim eli1 As Boolean = Roles("Administrador", 3)
 
         For index As Integer = 0 To repeaterCatalogo.Items.Count - 1 Step 1
             'Modificar
