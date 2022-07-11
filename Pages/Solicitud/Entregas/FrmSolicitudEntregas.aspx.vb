@@ -54,7 +54,7 @@
         End If
     End Sub
     Protected Sub dsSolEntregas_Selecting(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.ObjectDataSourceSelectingEventArgs)
-        e.InputParameters("UserName") = Session("Usuario").ToString
+        e.InputParameters("UserName") = Session("Usuario").ToString.TrimEnd
     End Sub
 
 

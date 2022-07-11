@@ -413,8 +413,8 @@
 
 
 
-    <script type="text/javascript" src="/Scripts/plugins/chart.js/chart/chart.js"></script>
-    <script src="/Scripts/plugins/chart.js/chart/hammerjs@2.0.8.js"></script>
+    <script type="text/javascript" src="../../Scripts/plugins/chart.js/chart/chart.js"></script>
+    <script src="../../Scripts/plugins/chart.js/chart/hammerjs@2.0.8.js"></script>
     
     <script>
 

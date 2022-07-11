@@ -33,7 +33,9 @@
                  $("#Main1_Main2_tbQuery").val("ReporteEditEntregas");
                  //
                  $("#Main1_Main2_tbFecha").val(fechas[2] + "-" + fechas[1] + "-" + fechas[0] + "T"+horas[1]);
-
+           //      document.getElementById(divs[id]).style.display = "inline-block";
+           
+          //       document.getElementById(divs[id]).style.display = "block";
              } else {
 
                  $("#divReporte1").css("display", "block");
@@ -172,7 +174,7 @@
 
                                         <tr>
                                             <td>
-                                        <asp:LinkButton ID="LinkButton3" CommandName="Agregar" Text='<%# Eval("Codigo") %>' CommandArgument='<%# Eval("Codigo") %>'   CssClass="fa fa-edit" runat="server"></asp:LinkButton></td>
+                                        <asp:LinkButton ID="LinkButton3" CommandName="Agregar" Text='<%# Eval("Codigo") %>' CommandArgument='<%# Eval("Codigo") %>'   CssClass="" runat="server"></asp:LinkButton></td>
                                             
                                             <td><%# Eval("Codigo") %></td>
                                             <td><%# Eval("Modelo") %></td>
@@ -325,7 +327,7 @@
 
                                 <hr />
                                 </div>
-                            <div class="row" id="divReporte2" >
+                            <div class="row" id="divReporte2" style="display:none;" >
                                
                                 <div class="col-sm-5">
 
