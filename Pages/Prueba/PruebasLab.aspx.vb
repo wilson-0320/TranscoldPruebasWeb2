@@ -1,5 +1,5 @@
 ﻿Public Class PruebasLab
-    Inherits System.Web.UI.Page
+    Inherits MiPageN
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
@@ -207,7 +207,7 @@
                 If (horaS < 10) Then
                     ceross = "0"
                 End If
-                retornoLabel = retornoLabel + "'" + Hour(minutosS).ToString() + ":" + ceros + Minute(minutosS).ToString() + "',"
+                retornoLabel = retornoLabel + "'" + horaS.ToString + ":" + ceros + Minute(minutosS).ToString() + "',"
 
                 minutosS = minutosS.AddMinutes(0.5)
                 If (Minute(minutosS) = 59 And Second(minutosS) = 0) Then

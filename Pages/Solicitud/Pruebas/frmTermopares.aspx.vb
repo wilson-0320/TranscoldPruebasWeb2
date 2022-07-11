@@ -38,6 +38,9 @@
         ddlFecha.DataTextField = "muestra"
         ddlFecha.DataBind()
 
+        RepeaterFechas.DataSource = DTOrig
+        RepeaterFechas.DataBind()
+
 
 
     End Sub
@@ -173,6 +176,48 @@
         End If
     End Sub
 
+    Private Sub eliminar(stFecha As String)
+
+
+        BLL.Pru_Termopar_BLL.eliminar(hfCodigo.Value, stFecha)
+        If Not BLL.Pru_Termopar_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Pru_Termopar_BLL.MsjError, 4, True)
+
+        Else
+            MuestraErrorToast("Registros realizados", 1, True)
+            panelEditorFecha.Visible = False
+            cargarDllFechas()
+            Try
+                ddlFecha.SelectedValue = stFecha
+            Catch ex As Exception
+
+            End Try
+
+            CargarTodo()
+        End If
+    End Sub
+
+    Private Sub validar(stFecha As String)
+
+
+        BLL.Pru_Termopar_BLL.validar(hfCodigo.Value, stFecha)
+        If Not BLL.Pru_Termopar_BLL.MsjError Is Nothing Then
+            MuestraErrorToast(BLL.Pru_Termopar_BLL.MsjError, 4, True)
+
+        Else
+            MuestraErrorToast("Registros realizados", 1, True)
+            panelEditorFecha.Visible = False
+            cargarDllFechas()
+            Try
+                ddlFecha.SelectedValue = stFecha
+            Catch ex As Exception
+
+            End Try
+
+            CargarTodo()
+        End If
+    End Sub
+
 
 
     Protected Sub lbtnModificarFecha_Click(sender As Object, e As EventArgs)
@@ -234,5 +279,16 @@
     Protected Sub lbtnCancelarGuardarFecha_Click(sender As Object, e As EventArgs)
         panelEditorFecha.Visible = False
         MuestraErrorToast(tbFechaReemplazo.Text, 0, True)
+    End Sub
+
+    Protected Sub RepeaterFechas_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
+        If e.CommandName = "eli" Then
+
+            eliminar(e.CommandArgument)
+
+        ElseIf e.CommandName = "val" Then
+            validar(e.CommandArgument)
+        End If
+
     End Sub
 End Class

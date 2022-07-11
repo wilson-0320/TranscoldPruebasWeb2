@@ -89,10 +89,10 @@
             tbCodigo.Text = DTOrig.Rows(0).Item(1)
             ddlEstacionCamara.SelectedValue = DTOrig.Rows(0).Item(2)
             ddlInstrumentos.SelectedValue = DTOrig.Rows(0).Item(3)
-            tbP1.Text = DTOrig.Rows(0).Item(4).ToString().Replace(",", ".")
-            tbP2.Text = DTOrig.Rows(0).Item(5).ToString().Replace(",", ".")
-            tbP3.Text = DTOrig.Rows(0).Item(6).ToString().Replace(",", ".")
-            tbP4.Text = DTOrig.Rows(0).Item(7).ToString().Replace(",", ".")
+            tbP1.Text = DTOrig.Rows(0).Item(4).ToString().Replace(".", ",")
+            tbP2.Text = DTOrig.Rows(0).Item(5).ToString().Replace(".", ",")
+            tbP3.Text = DTOrig.Rows(0).Item(6).ToString().Replace(".", ",")
+            tbP4.Text = DTOrig.Rows(0).Item(7).ToString().Replace(".", ",")
             tbComentarios.Text = DTOrig.Rows(0).Item(8).ToString.TrimEnd
             ddlTipoEntrada.SelectedValue = DTOrig.Rows(0).Item(9).ToString().TrimEnd
 

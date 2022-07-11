@@ -57,7 +57,7 @@
                                                     <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit" CommandArgument='<%# Eval("id") %>' CssClass="fa fa-edit"></asp:LinkButton>
                                                   </td>
                                                 <td><%# Eval("instrumento") %></td>
-                                                <td><%# Eval("descripcion") %></td>
+                                                <td  ><%# Eval("descripcion") %></td>
                                                 <td><%# Eval("modelo") %></td>
                                                 <td><%# Eval("serie") %></td>
                                                 <td><%# Eval("rango_maximo") %></td>
@@ -68,7 +68,7 @@
                                                 <td>
                                                 <a href="<%# Eval("linkC") %>" target="_blank"><%# Eval("calibracion") %></a>
                                                </td>
-                                                <td><%# Eval("prox") %></td>
+                                                <td class="<%# Eval("cssClass") %>"><%# Eval("prox") %></td>
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>

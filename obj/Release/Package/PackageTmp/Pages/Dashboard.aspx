@@ -15,7 +15,7 @@
 
                     </div>
                     </div>
-                </div>
+                
             <div class="card-body">
                    <div class=" table-responsive text-sm">
                         <table id="tt" class="table table-bordered table-sm tt" >
@@ -77,6 +77,7 @@
                         </div>
 
             </div>
+                </div>
             </div>
         </section>
         </div>

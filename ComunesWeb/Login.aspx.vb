@@ -15,12 +15,12 @@
 
 
             Dim DTOrig1 As DataTable = New TransacSQL().EjecutarConsulta("aspnetdb3", "select u.UserName, m.Password from aspnet_Users u, aspnet_Membership m, aspnet_Applications a " +
-                                                        "where u.UserId = m.UserId And u.ApplicationId = a.ApplicationId and m.IsLockedOut = 0 " +
-                                                        "and a.ApplicationName = @AppName and u.UserName = @UserName and m.Password = @Password", New Object() {
+                                                          "where u.UserId = m.UserId And u.ApplicationId = a.ApplicationId and m.IsLockedOut = 0 " +
+                                                         "and a.ApplicationName = @AppName and u.UserName = @UserName and m.Password = @Password", New Object() {
                                                                      New Object() {"@AppName", "TranscoldPruebasWeb"},
-                                                                    New Object() {"@UserName", tbUsuario.Text},
-                                                                    New Object() {"@Password", tbPassword.Text}
-                                                                    }, CommandType.Text).Tables(0)
+                                                                   New Object() {"@UserName", tbUsuario.Text},
+                                                                  New Object() {"@Password", tbPassword.Text}
+                                                                 }, CommandType.Text).Tables(0)
 
             ' If () Then
             If (DTOrig1.Rows(0).Item(0).ToString.Length > 0) Then

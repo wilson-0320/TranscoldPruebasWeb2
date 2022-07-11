@@ -203,6 +203,15 @@ Partial Public Class frmTermopares
     Protected WithEvents ddlFecha As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control RepeaterFechas.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RepeaterFechas As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
     '''Control panelEditorFecha.
     '''</summary>
     '''<remarks>

@@ -200,6 +200,7 @@
     <Content Include="Pages\Solicitud\Entregas\FrmSolicitudEntregas.aspx" />
     <Content Include="Pages\Solicitud\HistorialSolicitudes.aspx" />
     <Content Include="Pages\Solicitud\Pruebas\checkListProcedimientos.aspx" />
+    <Content Include="Pages\Solicitud\Pruebas\frmNotificaciones.aspx" />
     <Content Include="Pages\Solicitud\Pruebas\frmTermopares.aspx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucAdicionales.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucElectric.ascx" />
@@ -213,8 +214,10 @@
     <Content Include="Pages\Solicitud\Pruebas\PaginasTermopar\wucVidrios.ascx" />
     <Content Include="Pages\Solicitud\Pruebas\Pruebas.aspx" />
     <Content Include="Pages\Solicitud\Pruebas\PruEventos.aspx" />
+    <Content Include="Pages\Solicitud\Pruebas\PruPendientesSol.aspx" />
     <Content Include="Pages\Solicitud\Reportes\Controles\check.ascx" />
     <Content Include="Pages\Solicitud\Reportes\Controles\checkList.ascx" />
+    <Content Include="Pages\Solicitud\Reportes\InformePendienteSol.aspx" />
     <Content Include="Pages\Solicitud\Reportes\Informe.aspx" />
     <Content Include="Pages\Solicitud\Reportes\LineaTiempo.aspx" />
     <Content Include="Pages\Solicitud\Reportes\RepPruebas.aspx" />
@@ -2521,6 +2524,7 @@
     <Compile Include="Codigo\BLL\Pru_Entrega_BLL.vb" />
     <Compile Include="Codigo\BLL\Pru_Eventos_BLL.vb" />
     <Compile Include="Codigo\BLL\Pru_Solicitud_Valor_BLL.vb" />
+    <Compile Include="Codigo\BLL\Pru_Not_Solicitud_BLL.vb" />
     <Compile Include="Codigo\BLL\Pru_Termopar_BLL.vb" />
     <Compile Include="Codigo\BLL\Pru_Termopar_Nombre_BLL.vb" />
     <Compile Include="Codigo\BLL\Componentes_Compresor_BLL.vb" />
@@ -2755,6 +2759,13 @@
       <DependentUpon>checkListProcedimientos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\frmNotificaciones.aspx.designer.vb">
+      <DependentUpon>frmNotificaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\frmNotificaciones.aspx.vb">
+      <DependentUpon>frmNotificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\Solicitud\Pruebas\frmTermopares.aspx.designer.vb">
       <DependentUpon>frmTermopares.aspx</DependentUpon>
     </Compile>
@@ -2846,6 +2857,13 @@
       <DependentUpon>PruEventos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PruPendientesSol.aspx.designer.vb">
+      <DependentUpon>PruPendientesSol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Pruebas\PruPendientesSol.aspx.vb">
+      <DependentUpon>PruPendientesSol.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Pages\Solicitud\Reportes\Controles\check.ascx.designer.vb">
       <DependentUpon>check.ascx</DependentUpon>
     </Compile>
@@ -2858,6 +2876,13 @@
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\Controles\checkList.ascx.vb">
       <DependentUpon>checkList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Reportes\InformePendienteSol.aspx.designer.vb">
+      <DependentUpon>InformePendienteSol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Solicitud\Reportes\InformePendienteSol.aspx.vb">
+      <DependentUpon>InformePendienteSol.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Solicitud\Reportes\Informe.aspx.designer.vb">

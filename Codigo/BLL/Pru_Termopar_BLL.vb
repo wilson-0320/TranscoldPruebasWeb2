@@ -22,6 +22,35 @@ Namespace BLL
             End Try
         End Function
 
+        Public Shared Sub eliminar(cod_solicitud As String, stFecha As String)
+            MsjError = Nothing
+            Try
+                Dim trsql As New TransacSQL
+                trsql.EjecutarActualizacion("TranscoldPruebas", "Pru_Termopar_sp", New Object() {
+                                                New Object() {"@query", "eliminar"},
+                                                New Object() {"@cod_solicitud", cod_solicitud},
+                                                New Object() {"@stFecha", stFecha}
+                                            }, CommandType.StoredProcedure)
+            Catch ex As Exception
+                colocaError(ex)
+            End Try
+        End Sub
+
+
+        Public Shared Sub validar(cod_solicitud As String, stFecha As String)
+            MsjError = Nothing
+            Try
+                Dim trsql As New TransacSQL
+                trsql.EjecutarConsulta("TranscoldPruebas", "Pru_Termopar_sp", New Object() {
+                                                New Object() {"@query", "validar"},
+                                                New Object() {"@cod_solicitud", cod_solicitud},
+                                                New Object() {"@stFecha", stFecha}
+                                            }, CommandType.StoredProcedure)
+            Catch ex As Exception
+                colocaError(ex)
+            End Try
+        End Sub
+
         Public Shared Sub guardar_fecha(cod_solicitud As String, stFecha As String, fecha As DateTime, usuario As String)
             MsjError = Nothing
             Try

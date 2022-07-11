@@ -254,8 +254,41 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
 
+
+
                                                                 <small>Fechas</small>
                                                                 <asp:DropDownList ID="ddlFecha" CssClass="form-control" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                                                <asp:Repeater ID="RepeaterFechas" OnItemCommand="RepeaterFechas_ItemCommand" runat="server">
+                                                                   <HeaderTemplate>
+                                                                       <table class="table table-bordered table-sm">
+                                                                           <thead class="bg-gradient-navy">
+                                                                               <tr>
+                                                                                   <th></th>
+                                                                                   <th>Fechas</th>
+                                                                               </tr>
+                                                                           </thead>
+                                                                           <tbody>
+
+                                                                   </HeaderTemplate>
+
+                                                                    <FooterTemplate>
+                                                                        
+                                                                           </tbody>
+                                                                       </table>
+                                                                    </FooterTemplate>
+                                                                    <ItemTemplate>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <asp:LinkButton ID="LinkButton1" Visible='<%# If(Eval("estadoT") = True, False, True) %>' CommandArgument='<%# Eval("stFecha") %>' CommandName="val" CssClass=" fa fa-check"  runat="server"></asp:LinkButton>
+                                                                                <asp:LinkButton ID="LinkButton2" Visible='<%# If(Eval("estadoT") = False, False, True) %>'  CommandArgument='<%# Eval("stFecha") %>' CommandName="eli" CssClass="fa fa-exclamation-triangle"  runat="server"></asp:LinkButton>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%# Eval("stFecha") %>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </ItemTemplate>
+                                                                </asp:Repeater>
                                                             </div>
                                                             <div class="col-sm-12 ">
                                                                 <asp:Panel ID="panelEditorFecha" runat="server">
@@ -273,6 +306,8 @@
                                                             <Triggers>
                                                                 <asp:AsyncPostBackTrigger ControlID="lbtnCancelarGuardarFecha" EventName="Click" />
                                                                 <asp:AsyncPostBackTrigger ControlID="lbtnGuardarFecha" EventName="Click" />
+                                                                <asp:AsyncPostBackTrigger ControlID="RepeaterFechas" EventName="ItemCommand" />
+
                                                                    <asp:AsyncPostBackTrigger ControlID="lbtnGuardar" EventName="Click" />
                                                                 <asp:AsyncPostBackTrigger ControlID="ddlFecha" EventName="SelectedIndexChanged" />
                                                                 <asp:AsyncPostBackTrigger ControlID="lbtnModificarFecha" EventName="Click" />

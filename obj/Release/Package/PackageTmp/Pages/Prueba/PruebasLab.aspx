@@ -12,7 +12,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Main2" runat="server">
-    <asp:DropDownList ID="ddlFecha" CssClass="form-control" Style="display: none;" runat="server"></asp:DropDownList>
+    <asp:DropDownList ID="ddlFecha" Visible="false" runat="server"></asp:DropDownList>
 
     <div class="content-wrapper">
 
@@ -514,6 +514,32 @@
             return false;
         }
 
+        function calcularTiempoMaximoPrueba() {
+          
+            try {
+                const labelGrafico = data10.labels[data10.labels.length-1].toString().split(":");
+               
+                const labelTB = $('#final').val().toString().split(":");
+
+
+                const ejexG = (labelGrafico[0] * 120) + parseInt(labelGrafico[1] * 2);
+                const ejexTB = (labelTB[0] * 120) + parseInt(labelTB[1] * 2);
+                
+                if (parseInt(labelTB[1]) < 60) {
+                    if (ejexG < ejexTB) {
+                        $('#final').val(labelGrafico[0] + ":" + (parseInt(labelGrafico[1])
+                            - 1));
+                    }
+                }
+                else {
+                    metodo("Por favor, ingresa el dato de minutos valido", 2);
+                }
+            } catch (ex)
+
+            {
+            }
+          
+        }
        
        
         function calcularConsumo() {
@@ -872,8 +898,9 @@
             const ejexminS = $('#inicio').val().toString().split(":");
             const ejexmaxS = $('#final').val().toString().split(":");
 
-            var ejexmin = (ejexminS[0] * 120) + parseInt(ejexminS[1] * 2)
-            const ejexmax = (ejexmaxS[0] * 120) + parseInt(ejexmaxS[1] * 2)
+            var ejexmin = (ejexminS[0] * 120) + parseInt(ejexminS[1] * 2);
+            const ejexmax = (ejexmaxS[0] * 120) + parseInt(ejexmaxS[1] * 2);
+
             var posPor = ((coorX - left) * 100) / ((right) - (left));
             
             const indice = parseInt((((ejexmax) - (ejexmin)) * posPor) / 100);
@@ -947,7 +974,7 @@
                     $("#tb" + indicesTermopares[h].indexx).val(indicesTermopares[h].data[indice+ejexmin].toString().substring(0, 5));
                     var fechaI2 = new Date(horaInicio);
                     fechaI2.setMinutes(minutosInicio)
-                    fechaI2.setSeconds(segundoss);
+                    fechaI2.setSeconds(segundoss+90);
                     //  tbCursor
                     $("#tbCursor").val(fechaI2.toLocaleString());
                 }
@@ -1108,6 +1135,7 @@
         function filterData() {
 
             const filtro = [...labels];
+            calcularTiempoMaximoPrueba();
             //console.log(datesfiltrer);
           //  const startInicio = document.getElementById('inicio');
             //   const endFinal = document.getElementById('final');
@@ -1129,8 +1157,8 @@
             const ejexmaxS = $('#final').val().toString().split(":");
 
 
-            const ejexmin = (ejexminS[0] * 120) + parseInt(ejexminS[1] * 2)
-            const ejexmax = (ejexmaxS[0] * 120) + parseInt(ejexmaxS[1] * 2)
+            const ejexmin = (ejexminS[0] * 120) + parseInt(ejexminS[1] * 2);
+            const ejexmax = (ejexmaxS[0] * 120) + parseInt(ejexmaxS[1] * 2);
           //  const indexstart = labels.indexOf(startInicio.value);
          //   const indexend = labels.indexOf(endFinal.value);
 

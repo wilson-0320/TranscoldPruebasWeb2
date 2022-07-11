@@ -90,7 +90,7 @@ color:red;
                                     <a class="nav-link"  >
                                         <i class="nav-icon fas <%# Eval("Icono") %>""></i>
                                         <p>
-                                            <%# Eval("Nombre").ToString.TrimEnd %>
+                                            <%# Eval("MenuNombre").ToString.TrimEnd %>
                                             <i class="right fas fa-angle-left"></i>
                                         </p>
                                     </a>
@@ -106,7 +106,7 @@ color:red;
                                            <small> <a href="<%# Eval("Urls").ToString.TrimEnd %>" class="nav-link">
                                                 <i class="nav-icon fas <%# Eval("Icono") %>"></i>
                                                 <p>
-                                                    <%# Eval("Nombre").ToString.TrimEnd %>
+                                                    <%# Eval("MenuNombre").ToString.TrimEnd %>
                                                     <i class="right fas  fa-angle-left "></i>
                                                 </p>
                                             </a>

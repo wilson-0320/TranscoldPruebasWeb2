@@ -15,9 +15,11 @@ Public Class TransacSQL
     Public Function Conn(ByVal bd As String, Optional ByVal TimeOut As Integer = -1) As Object()
         bd = bd.ToUpper
         If Not Conexiones.ContainsKey(bd) Then
-            'Server=192.168.1.2; uid=TranscoldSa; pwd=SaTranscolD;
+            'Server=192.168.1.2; uid=TranscoldSa; pwd=SaTranscolD;0.
+
             '"Server=WUZPA; uid=wuzpa; pwd=wuz33.;
-            Conexiones.Add(bd, New Object() {New SqlConnection("Server=192.168.1.2; uid=sa; pwd=xp04nt; database=" + bd), TimeOut})
+
+            Conexiones.Add(bd, New Object() {New SqlConnection("Server=192.168.1.2; uid=TranscoldSa; pwd=SaTranscolD; database=" + bd), TimeOut})
         End If
         Return Conexiones(bd)
     End Function
